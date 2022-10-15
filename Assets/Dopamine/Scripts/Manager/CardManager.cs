@@ -102,11 +102,13 @@ public class CardManager : MonoBehaviour
 
                         obj.transform.parent = spawnHolder.transform;
 
-                        Debug.Log("Spawned the: " + selectedCard.name);
+                        GameManager.Instance.soldierList.Add(obj);
 
                         currentMana -= selectedCard.currentManaCost;
 
                         spawnIntervalTimer = 0.04f;
+
+                        Debug.Log("Spawned the: " + selectedCard.name);
                     }
                 }
             }

@@ -17,9 +17,6 @@ public class Card : MonoBehaviour
     public string currentDescription;
     public Sprite currentArt;
     public int currentManaCost;
-    public float currentAttackDamage;
-    public float currentPerAttackSpeed;
-    public int currentHealth;
 
     private Text manaCostText;
 
@@ -46,10 +43,5 @@ public class Card : MonoBehaviour
         currentArt = cardSO.ArtWork;
 
         currentManaCost = cardSO.ManaCost;
-
-        currentAttackDamage = cardSO.AttackDamage;
-        currentPerAttackSpeed = cardSO.AttackPerSpeed;
-
-        currentHealth = cardSO.Health;
     }
 }

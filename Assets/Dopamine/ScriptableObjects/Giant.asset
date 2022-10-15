@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4991d03152e85045a876f20d35f09d2, type: 3}
   m_Name: Giant
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 2407510380059697678, guid: 85e47298650ff9c4ea412e07af2ec4f5, type: 3}
+  cardPrefab: {fileID: 7049744727307906149, guid: 41196501978beec469ee2c475481be5a, type: 3}
   id: 3
   name: Giant
   description: An unstoppable giant!

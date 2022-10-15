@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class CardController : MonoBehaviour
 {
+    public CardSO cardSO;
+
     [HideInInspector] public Animator anim;
 
     [SerializeField] private float speed = 5f;
 
     [SerializeField] private bool canMove;
 
+    [Header("Character Stats")]
+    public float currentAttackDamage;
+    public float currentPerAttackSpeed;
+    public int currentHealth;
+
     private void Awake()
     {
+        GetCardData();
+
         anim = GetComponentInChildren<Animator>();
     }
 
@@ -40,5 +49,12 @@ public class CardController : MonoBehaviour
         {
             anim.SetBool("Walk", false);
         }
+    }
+    private void GetCardData()
+    {
+        currentAttackDamage = cardSO.AttackDamage;
+        currentPerAttackSpeed = cardSO.AttackPerSpeed;
+
+        currentHealth = cardSO.Health;
     }
 }

@@ -22,7 +22,7 @@ public class CardManager : MonoBehaviour
     public Text currentManaText;
     public Text maxManaText;
 
-    private float spawnIntervalTimer = 0.03f;
+    private float spawnIntervalTimer = 0.04f;
 
     private void Start()
     {
@@ -106,7 +106,7 @@ public class CardManager : MonoBehaviour
 
                         currentMana -= selectedCard.currentManaCost;
 
-                        spawnIntervalTimer = 0.03f;
+                        spawnIntervalTimer = 0.04f;
                     }
                 }
             }

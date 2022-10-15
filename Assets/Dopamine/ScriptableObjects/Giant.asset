@@ -19,5 +19,5 @@ MonoBehaviour:
   artwork: {fileID: 0}
   manaCost: 32
   attackDamage: 20
-  attackPerSpeed: 1
+  attackPerSpeed: 2.5
   health: 200

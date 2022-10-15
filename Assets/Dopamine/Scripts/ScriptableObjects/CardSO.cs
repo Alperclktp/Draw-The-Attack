@@ -19,8 +19,8 @@ public class CardSO : ScriptableObject
     [SerializeField] private Sprite artwork;
     public Sprite ArtWork { get { return artwork; } }
 
-    [SerializeField] private float manaCost;
-    public float ManaCost { get { return manaCost; } }
+    [SerializeField] private int manaCost;
+    public int ManaCost { get { return manaCost; } }
 
     [SerializeField] private float attackDamage;
     public float AttackDamage { get { return attackDamage; } }

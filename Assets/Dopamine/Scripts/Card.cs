@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
@@ -9,26 +10,31 @@ public class Card : MonoBehaviour
     [HideInInspector] public GameObject cardObj;
 
     public GameObject cardPrefab;
-
     public bool IsSelected { get; set; }
 
-    [SerializeField] private int currentID;
-    [SerializeField] private string currentName;
-    [SerializeField] private string currentDescription;
-    [SerializeField] private Sprite currentArt;
-    [SerializeField] private float currentManaCost;
-    [SerializeField] private float currentAttackDamage;
-    [SerializeField] private float currentPerAttackSpeed;
-    [SerializeField] private int currentHealth;
+    public int currentID;
+    public string currentName;
+    public string currentDescription;
+    public Sprite currentArt;
+    public int currentManaCost;
+    public float currentAttackDamage;
+    public float currentPerAttackSpeed;
+    public int currentHealth;
+
+    private Text manaCostText;
 
     private void Awake()
     {
         cardObj = this.gameObject;
 
         GetCardData();
+
+        manaCostText = GetComponentInChildren<Text>();
+
+        manaCostText.text = cardSO.ManaCost.ToString();
     }
 
-    public void GetCardData()
+    private void GetCardData()
     {
         cardPrefab = cardSO.cardPrefab;
 

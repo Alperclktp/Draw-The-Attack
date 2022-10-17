@@ -9,26 +9,25 @@ public class Card : MonoBehaviour
 
     [HideInInspector] public GameObject cardObj;
 
-    public GameObject cardPrefab;
+    [HideInInspector] public GameObject cardPrefab;
     public bool IsSelected { get; set; }
 
+    [Header("Card Data")]
     public int currentID;
     public string currentName;
     public string currentDescription;
-    public Sprite currentArt;
     public int currentManaCost;
+    
+    [Header("UI")]
+    public Sprite currentArt;
 
+    public Text nameText;
     private Text manaCostText;
 
     private void Awake()
     {
-        cardObj = this.gameObject;
-
         GetCardData();
-
-        manaCostText = GetComponentInChildren<Text>();
-
-        manaCostText.text = cardSO.ManaCost.ToString();
+        GetTextData();
     }
 
     private void GetCardData()
@@ -43,5 +42,18 @@ public class Card : MonoBehaviour
         currentArt = cardSO.ArtWork;
 
         currentManaCost = cardSO.ManaCost;
+
+        currentArt = cardSO.ArtWork;
+
+        cardObj = this.gameObject;
+    }
+
+    private void GetTextData()
+    {
+        manaCostText = GetComponentInChildren<Text>();
+
+        nameText.text = cardSO.Name.ToString();
+
+        manaCostText.text = cardSO.ManaCost.ToString();
     }
 }

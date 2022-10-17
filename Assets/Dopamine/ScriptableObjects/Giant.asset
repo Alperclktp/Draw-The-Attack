@@ -16,8 +16,9 @@ MonoBehaviour:
   id: 3
   name: Giant
   description: An unstoppable giant!
-  artwork: {fileID: 0}
   manaCost: 32
-  attackDamage: 20
+  attackDamage: 50
   attackPerSpeed: 2.5
+  movementSpeed: 1.5
   health: 200
+  artwork: {fileID: 0}

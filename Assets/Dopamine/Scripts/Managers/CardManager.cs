@@ -9,23 +9,33 @@ public class CardManager : Singleton<CardManager>
 
     [Header("Mana Settings")]
     public int currentMana;
-    public int maxMana;
+    [SerializeField] private int maxMana;
 
     [Space(5)]
-    public Card selectedCard;
+    [SerializeField] private Card selectedCard;
 
-    public GameObject spawnHolder;
+    [SerializeField] private GameObject soldierSpawnHolder;
 
     [Header("UI Elements")]
-    public Slider manaSliderBar;
+    [SerializeField] private Slider manaSliderBar;
 
-    public Text currentManaText;
-    public Text maxManaText;
+    [SerializeField] private Text currentManaText;
+    [SerializeField] private Text maxManaText;
+
+    [Header("Card Colors")]
+    [SerializeField] private Color defaultColor;
+    [SerializeField] private Color selectedColor;
+    //[SerializeField] private Color unselectedColor;
 
     private float spawnIntervalTimer = 0.04f;
 
     private void Start()
     {
+        for (int i = 0; i < cardList.Count; i++)
+        {
+            cardList[i].GetComponent<Image>().color = defaultColor;
+        }
+
         currentMana = maxMana;
 
         manaSliderBar.maxValue = maxMana;
@@ -65,7 +75,7 @@ public class CardManager : Singleton<CardManager>
     {
         for (int i = 0; i < cardList.Count; i++) // Deselect operation
         {
-            cardList[i].GetComponent<Image>().color = Color.gray;
+            cardList[i].GetComponent<Image>().color = defaultColor;
 
             cardList[i].IsSelected = false;
         }
@@ -74,7 +84,7 @@ public class CardManager : Singleton<CardManager>
         {
             selectedCard = card;
 
-            card.cardObj.GetComponent<Image>().color = Color.green; // Select operation
+            card.cardObj.GetComponent<Image>().color = selectedColor; // Select operation
 
             card.IsSelected = true;
         }
@@ -96,11 +106,11 @@ public class CardManager : Singleton<CardManager>
 
                 if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
                 {
-                    if (hit.collider != null && !hit.collider.CompareTag("Soldier"))
+                    if (hit.collider != null && !hit.collider.CompareTag("Soldier") && !hit.collider.CompareTag("Enemy"))
                     {
                         GameObject obj = Instantiate(selectedCard.cardPrefab, hit.point, selectedCard.cardPrefab.transform.rotation);
 
-                        obj.transform.parent = spawnHolder.transform;
+                        obj.transform.parent = soldierSpawnHolder.transform;
 
                         GameManager.Instance.soldierList.Add(obj);
 
@@ -111,6 +121,12 @@ public class CardManager : Singleton<CardManager>
                         Debug.Log("Spawned the: " + selectedCard.name);
                     }
                 }
+            }
+            else if(selectedCard != null && !selectedCard.IsSelected && currentMana < selectedCard.currentManaCost && Input.GetMouseButton(0))
+            {
+                //Alert mana bar animation.
+
+                //manaSliderBar.GetComponent<Animator>().SetBool("Slider", true);
             }
         }
     }

@@ -2,25 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoldierController : MonoBehaviour
+public class SoldierController : BaseAttackController
 {
-    public CardSO cardSO;
+    [Space(10)] public CardSO cardSO;
 
     [HideInInspector] public Animator anim;
-
-    [SerializeField] private float speed = 5f;
 
     [SerializeField] private bool canMove;
     [SerializeField] private bool canAttack;
 
     [Header("Character Stats")]
-    public float currentAttackDamage;
-    public float currentPerAttackSpeed;
-    public int currentHealth;
-    
-    [Header("Follow Settings")] 
-    public Transform nearestTarget = null;
+    public float currentHealth;
+    [SerializeField] private float currentSpeed;
 
+    [Header("Follow Settings")] 
     public float stoppingDistance;
 
     private void Awake()
@@ -37,17 +32,22 @@ public class SoldierController : MonoBehaviour
             Movement();
         }
 
+        CheckHealth();
+
         InýtAnimation();
 
         GetClosesEnemy();
 
         FollowTarget();
+
+        CheckEnemyList();
     }
 
     private void Movement()
     {
         //transform.position += -transform.forward * Time.deltaTime * speed;
     }
+
     private Transform GetClosesEnemy()
     {
         float minDist = Mathf.Infinity;
@@ -67,23 +67,46 @@ public class SoldierController : MonoBehaviour
         return nearestTarget;
     }
 
+    private void CheckHealth()
+    {
+        if(currentHealth <= 0)
+        {
+            DestroySoldier();
+
+            RemoveSoldierFromlist();
+        }
+    }
+
+    private void DestroySoldier()
+    {
+        Destroy(this.gameObject);
+    }
+
+    private void RemoveSoldierFromlist()
+    {
+        GameManager.Instance.soldierList.Remove(this.gameObject);
+    }
+
     private void FollowTarget()
     {
-        if(Vector3.Distance(transform.position, nearestTarget.position) > stoppingDistance)
+        if(nearestTarget != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, nearestTarget.position, speed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, nearestTarget.position) >= stoppingDistance)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, nearestTarget.position, currentSpeed * Time.deltaTime);
 
-            canMove = true;
-            canAttack = false;
+                canMove = true;
+                canAttack = false;
 
-            LookAtEnemy();
-        }
-        else
-        {
-            LookAtEnemy();
+                LookAtEnemy();
+            }
+            else
+            {
+                LookAtEnemy();
 
-            canMove = false;
-            canAttack = true;
+                canMove = false;
+                canAttack = true;
+            }
         }
     }
 
@@ -115,11 +138,30 @@ public class SoldierController : MonoBehaviour
         }
     }
 
+    private void CheckEnemyList()
+    {
+        if(GameManager.Instance.enemyList.Count <= 0)
+        {
+            canAttack = false;
+            canMove = false;
+
+            anim.Play("Win");
+        }
+    }
+
     private void GetCardData()
     {
         currentAttackDamage = cardSO.AttackDamage;
+
         currentPerAttackSpeed = cardSO.AttackPerSpeed;
 
+        currentSpeed = cardSO.MovementSpeed;
+
         currentHealth = cardSO.Health;
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
     }
 }

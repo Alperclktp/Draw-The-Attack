@@ -16,8 +16,9 @@ MonoBehaviour:
   id: 1
   name: Warrior
   description: An unstoppable warrior!
-  artwork: {fileID: 0}
   manaCost: 3
   attackDamage: 10
   attackPerSpeed: 3
+  movementSpeed: 2
   health: 125
+  artwork: {fileID: 0}

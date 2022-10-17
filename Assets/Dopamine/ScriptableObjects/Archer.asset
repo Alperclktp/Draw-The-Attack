@@ -16,8 +16,9 @@ MonoBehaviour:
   id: 2
   name: Archer
   description: An unstoppable archer!
-  artwork: {fileID: 0}
   manaCost: 6
   attackDamage: 15
   attackPerSpeed: 3
+  movementSpeed: 2
   health: 100
+  artwork: {fileID: 0}

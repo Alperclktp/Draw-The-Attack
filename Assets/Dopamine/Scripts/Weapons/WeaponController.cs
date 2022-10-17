@@ -8,11 +8,11 @@ public class WeaponController : MonoBehaviour
 
     public Transform arrowSpawnPosition;
 
-    private SoldierController soldierController;
+    private BaseAttackController baseAttackController;
 
     private void Start()
     {
-        soldierController = GetComponentInParent<SoldierController>();
+        baseAttackController = GetComponentInParent<BaseAttackController>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,7 +21,7 @@ public class WeaponController : MonoBehaviour
 
         if (hit != null)
         {
-            hit.TakeDamage(soldierController.currentAttackDamage);
+            hit.TakeDamage(baseAttackController.currentAttackDamage);
         }
     }
 
@@ -39,8 +39,8 @@ public class WeaponController : MonoBehaviour
     {
         GameObject obj = Instantiate(arrowPrefab, arrowSpawnPosition.position, arrowPrefab.transform.rotation);
 
-        obj.GetComponent<Arrow>().currentArrowAttackDamage =  soldierController.currentAttackDamage;
+        obj.GetComponent<Arrow>().currentArrowAttackDamage = baseAttackController.currentAttackDamage;
 
-        obj.GetComponent<Arrow>().nearestTarget = soldierController.nearestTarget;
+        obj.GetComponent<Arrow>().nearestTarget = baseAttackController.nearestTarget;
     }
 }

@@ -18,7 +18,7 @@ public class SoldierController : MonoBehaviour
     public float currentPerAttackSpeed;
     public int currentHealth;
     
-    [Header("Follow Settings")]
+    [Header("Follow Settings")] 
     public Transform nearestTarget = null;
 
     public float stoppingDistance;
@@ -82,14 +82,11 @@ public class SoldierController : MonoBehaviour
         {
             LookAtEnemy();
 
-            //Attack enemy; 
-
-            Debug.Log("Attack!");
-
             canMove = false;
             canAttack = true;
         }
     }
+
     private void LookAtEnemy()
     {
         transform.LookAt(nearestTarget);
@@ -125,5 +122,4 @@ public class SoldierController : MonoBehaviour
 
         currentHealth = cardSO.Health;
     }
-
 }

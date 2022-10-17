@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class CardManager : MonoBehaviour
+public class CardManager : Singleton<CardManager>
 {
     public List<Card> cardList = new List<Card>();
 

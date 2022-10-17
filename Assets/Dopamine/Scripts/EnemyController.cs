@@ -48,6 +48,8 @@ public class EnemyController : BaseAttackController
     private void MovementEndLine()
     {
         transform.position = Vector3.MoveTowards(transform.position, GameManager.Instance.endLinePosition.position, currentSpeed * Time.deltaTime);
+
+        LookAtEndPosition();
     }
 
     private Transform GetClosesSoldier()
@@ -120,6 +122,11 @@ public class EnemyController : BaseAttackController
     private void LookAtSoldier()
     {
         transform.LookAt(nearestTarget);
+    }
+
+    private void LookAtEndPosition()
+    {
+        transform.LookAt(GameManager.Instance.endLinePosition);
     }
 
     private void InýtAnimation()

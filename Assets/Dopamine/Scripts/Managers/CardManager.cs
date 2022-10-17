@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class CardManager : Singleton<CardManager>
 {
@@ -78,6 +79,8 @@ public class CardManager : Singleton<CardManager>
             cardList[i].GetComponent<Image>().color = defaultColor;
 
             cardList[i].IsSelected = false;
+
+            cardList[i].transform.DOScale(1.05f, 0.2f);
         }
 
         if (currentMana >= card.currentManaCost)
@@ -87,10 +90,12 @@ public class CardManager : Singleton<CardManager>
             card.cardObj.GetComponent<Image>().color = selectedColor; // Select operation
 
             card.IsSelected = true;
+
+            card.transform.DOScale(1.15f, 0.2f);
         }
         else
         {
-            card.GetComponent<Image>().color = Color.gray;
+            //card.GetComponent<Image>().color = Color.gray;
         }
     }
 
@@ -106,7 +111,7 @@ public class CardManager : Singleton<CardManager>
 
                 if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
                 {
-                    if (hit.collider != null && !hit.collider.CompareTag("Soldier") && !hit.collider.CompareTag("Enemy"))
+                    if (hit.collider != null && !hit.collider.CompareTag("Soldier") && !hit.collider.CompareTag("Enemy") && hit.collider.CompareTag("Ground"))
                     {
                         GameObject obj = Instantiate(selectedCard.cardPrefab, hit.point, selectedCard.cardPrefab.transform.rotation);
 
@@ -118,6 +123,8 @@ public class CardManager : Singleton<CardManager>
 
                         spawnIntervalTimer = 0.04f;
 
+                        Destroy(VFXManager.SpawnEffect(VFXType.CARD_SPAWN_EFFECT, obj.transform.position + new Vector3(0,1,0),Quaternion.identity),1);
+                       
                         Debug.Log("Spawned the: " + selectedCard.name);
                     }
                 }

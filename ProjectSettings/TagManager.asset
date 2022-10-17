@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Soldier
   - Enemy
+  - FxTemporaire
+  - Missile
+  - Ground
   layers:
   - Default
   - TransparentFX

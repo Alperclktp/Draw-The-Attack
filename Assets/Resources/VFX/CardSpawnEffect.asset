@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9d5d66065aa4b48bcdccfcbb5b9fb3, type: 3}
+  m_Name: CardSpawnEffect
+  m_EditorClassIdentifier: 
+  type: 0
+  prefab: {fileID: 5919975819822999852, guid: e79b6641061e7c44da4c953c4e7a1256, type: 3}

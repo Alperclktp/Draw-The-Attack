@@ -14,7 +14,7 @@ public class Singleton<T> : MonoBehaviour where T: Singleton<T>
         }
         else
         {
-            Debug.LogWarning("There cannot be more than one of this object in the scene!");
+            Debug.LogWarning("<color=yellow> There cannot be more than one of this object in the scene! </color>");
 
             //Destroy the newly copied manager
         }

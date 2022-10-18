@@ -369,14 +369,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2177802553464792623}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.97, y: 0.039, z: -13.45666}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1852002676585671111}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &4664106006968475922
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -419,16 +419,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad1b4a325a9e964b92fa1e612248aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSO: {fileID: 11400000, guid: ed295520b076d3146b8e2f2577449a0c, type: 2}
-  anim: {fileID: 0}
-  speed: 3
-  canMove: 1
-  canAttack: 0
+  nearestTarget: {fileID: 0}
   currentAttackDamage: 0
   currentPerAttackSpeed: 0
+  cardSO: {fileID: 11400000, guid: ed295520b076d3146b8e2f2577449a0c, type: 2}
+  anim: {fileID: 0}
+  canMove: 1
+  canAttack: 0
   currentHealth: 0
-  nearestTarget: {fileID: 0}
+  currentSpeed: 0
   stoppingDistance: 10
+  lookRotateSpeed: 10
 --- !u!1 &2827659985791062908
 GameObject:
   m_ObjectHideFlags: 0

@@ -422,16 +422,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad1b4a325a9e964b92fa1e612248aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAttackDamage: 0
   nearestTarget: {fileID: 0}
+  currentAttackDamage: 0
+  currentPerAttackSpeed: 0
   cardSO: {fileID: 11400000, guid: 06ed566f4fbc53b49b892643a616519b, type: 2}
   anim: {fileID: 0}
-  speed: 3
   canMove: 1
   canAttack: 0
-  currentPerAttackSpeed: 0
   currentHealth: 0
+  currentSpeed: 0
   stoppingDistance: 1.5
+  lookRotateSpeed: 10
 --- !u!1 &3645055403352729958
 GameObject:
   m_ObjectHideFlags: 0

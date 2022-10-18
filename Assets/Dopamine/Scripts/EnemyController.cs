@@ -16,6 +16,7 @@ public class EnemyController : BaseAttackController
 
     [Header("Follow Settings")]
     public float stoppingDistance;
+    public float lookRotateSpeed;
 
     public int amountToGiveMana;
 
@@ -28,7 +29,7 @@ public class EnemyController : BaseAttackController
     {
         GetClosesSoldier();
 
-        if(nearestTarget != null)
+        if (nearestTarget != null)
         {
             FollowSoldier();
         }
@@ -123,7 +124,11 @@ public class EnemyController : BaseAttackController
 
     private void LookAtSoldier()
     {
-        transform.LookAt(nearestTarget);
+        //transform.LookAt(nearestTarget);
+
+        Quaternion lookRotation = Quaternion.LookRotation(nearestTarget.position - transform.position);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * lookRotateSpeed);
     }
 
     private void LookAtEndPosition()
@@ -156,7 +161,7 @@ public class EnemyController : BaseAttackController
 
     private void CheckSoldierList()
     {
-        if(GameManager.Instance.soldierList.Count <= 0)
+        if (GameManager.Instance.soldierList.Count <= 0)
         {
             canAttack = false;
             canMove = true;

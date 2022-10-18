@@ -17,6 +17,7 @@ public class SoldierController : BaseAttackController
 
     [Header("Follow Settings")] 
     public float stoppingDistance;
+    public float lookRotateSpeed;
 
     private void Awake()
     {
@@ -114,7 +115,11 @@ public class SoldierController : BaseAttackController
 
     private void LookAtEnemy()
     {
-        transform.LookAt(nearestTarget);
+        //transform.LookAt(nearestTarget);
+
+        Quaternion lookRotation = Quaternion.LookRotation(nearestTarget.position - transform.position);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * lookRotateSpeed);
     }
 
     private void InýtAnimation()

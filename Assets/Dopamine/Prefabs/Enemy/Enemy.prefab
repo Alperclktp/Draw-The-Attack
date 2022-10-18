@@ -432,6 +432,7 @@ MonoBehaviour:
   currentHealth: 125
   currentSpeed: 3
   stoppingDistance: 1.5
+  lookRotateSpeed: 10
   amountToGiveMana: 10
 --- !u!1 &3645055403352729958
 GameObject:

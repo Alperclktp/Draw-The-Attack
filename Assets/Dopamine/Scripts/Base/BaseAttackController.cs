@@ -10,5 +10,9 @@ public abstract class BaseAttackController : MonoBehaviour, IDamageable
     public float currentAttackDamage;
     public float currentPerAttackSpeed;
 
+    public abstract string damageableID { get; }
+
     public abstract void TakeDamage(float damage);
+
+
 }

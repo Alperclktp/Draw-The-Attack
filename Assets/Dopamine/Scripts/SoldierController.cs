@@ -19,6 +19,8 @@ public class SoldierController : BaseAttackController
     public float stoppingDistance;
     public float lookRotateSpeed;
 
+    public override string damageableID { get { return typeof(SoldierController).Name; } }
+
     private void Awake()
     {
         GetCardData();

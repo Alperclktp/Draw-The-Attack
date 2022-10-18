@@ -20,6 +20,8 @@ public class EnemyController : BaseAttackController
 
     public int amountToGiveMana;
 
+    public override string damageableID { get { return typeof(EnemyController).Name; } }
+
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();

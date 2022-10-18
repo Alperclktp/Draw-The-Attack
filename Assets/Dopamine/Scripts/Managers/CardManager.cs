@@ -45,8 +45,6 @@ public class CardManager : Singleton<CardManager>
 
     private void Update()
     {
-        SpawnCard(selectedCard);
-
         CheckMana();
 
         CheckCardInteractable();
@@ -55,6 +53,8 @@ public class CardManager : Singleton<CardManager>
         {
             ChooseCard(selectedCard);
         }
+
+        SpawnCard(selectedCard);
     }
 
     public void CheckCardInteractable()
@@ -92,6 +92,7 @@ public class CardManager : Singleton<CardManager>
             card.IsSelected = true;
 
             card.transform.DOScale(1.15f, 0.2f);
+
         }
         else
         {
@@ -129,11 +130,11 @@ public class CardManager : Singleton<CardManager>
                     }
                 }
             }
-            else if(selectedCard != null && !selectedCard.IsSelected && currentMana < selectedCard.currentManaCost && Input.GetMouseButton(0))
+            else if(selectedCard != null && currentMana < selectedCard.currentManaCost && Input.GetMouseButton(0))
             {
-                //Alert mana bar animation.
+                manaSliderBar.GetComponent<Animator>().SetTrigger("EnergyBarAlert");
 
-                //manaSliderBar.GetComponent<Animator>().SetBool("Slider", true);
+                //The warning animation is triggered even though we have enough mana  *********************** *********************** ***********************                                                     
             }
         }
     }

@@ -21,6 +21,11 @@ public class WeaponController : MonoBehaviour
 
         if (hit != null)
         {
+            if(hit.damageableID == baseAttackController.damageableID)
+            {
+                return;
+            }
+
             hit.TakeDamage(baseAttackController.currentAttackDamage);
         }
     }

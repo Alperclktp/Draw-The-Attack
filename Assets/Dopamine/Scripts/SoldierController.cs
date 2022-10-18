@@ -79,6 +79,8 @@ public class SoldierController : BaseAttackController
 
     private void DestroySoldier()
     {
+        Destroy(VFXManager.SpawnEffect(VFXType.EXPLOSION_EFFECT, transform.position + new Vector3(0, 1, 0), Quaternion.identity), 1);
+
         Destroy(this.gameObject);
     }
 

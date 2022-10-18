@@ -85,6 +85,8 @@ public class EnemyController : BaseAttackController
 
     private void DestroyEnemy()
     {
+        Destroy(VFXManager.SpawnEffect(VFXType.EXPLOSION_EFFECT, transform.position + new Vector3(0, 1, 0), Quaternion.identity), 1);
+
         Destroy(this.gameObject);
     }
 

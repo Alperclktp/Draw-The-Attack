@@ -75,5 +75,6 @@ public class VFXGroup
 
 public enum VFXType
 {
-    CARD_SPAWN_EFFECT
+    CARD_SPAWN_EFFECT,
+    EXPLOSION_EFFECT
 }

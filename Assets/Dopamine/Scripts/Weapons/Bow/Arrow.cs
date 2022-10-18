@@ -32,7 +32,13 @@ public class Arrow : MonoBehaviour
         {
             hit.TakeDamage(currentArrowAttackDamage);
 
+            GetHitVFX(other);
+
             Destroy(this.gameObject);
         }
+    }
+    public void GetHitVFX(Collider other)
+    {
+        VFXManager.SpawnEffect(VFXType.CARD_HIT_EFFECT, other.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
     }
 }

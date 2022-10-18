@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc9d5d66065aa4b48bcdccfcbb5b9fb3, type: 3}
-  m_Name: ExplosionEffect
+  m_Name: CardHitEffect
   m_EditorClassIdentifier: 
-  type: 2
-  prefab: {fileID: 4154103177478290894, guid: 75ca141e118fa0f4eaad8b85a97ab50b, type: 3}
+  type: 1
+  prefab: {fileID: 268552345385554663, guid: 696df3c827015d44e8b8f627ac25aacf, type: 3}

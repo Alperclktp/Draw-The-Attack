@@ -80,7 +80,8 @@ public class CardManager : Singleton<CardManager>
 
             cardList[i].IsSelected = false;
 
-            cardList[i].transform.DOScale(1.05f, 0.2f);
+            //cardList[i].transform.DOScale(1.05f, 0.2f);
+            cardList[i].transform.DOScale(1.2f, 0.2f);
         }
 
         if (currentMana >= card.currentManaCost)
@@ -91,8 +92,8 @@ public class CardManager : Singleton<CardManager>
 
             card.IsSelected = true;
 
-            card.transform.DOScale(1.15f, 0.2f);
-
+            //card.transform.DOScale(1.15f, 0.2f);
+            card.transform.DOScale(1.3f, 0.2f);
         }
         else
         {

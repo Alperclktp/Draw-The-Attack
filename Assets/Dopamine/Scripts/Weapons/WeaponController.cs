@@ -27,6 +27,8 @@ public class WeaponController : MonoBehaviour
             }
 
             hit.TakeDamage(baseAttackController.currentAttackDamage);
+
+            GetHitVFX(other);
         }
     }
 
@@ -47,5 +49,10 @@ public class WeaponController : MonoBehaviour
         obj.GetComponent<Arrow>().currentArrowAttackDamage = baseAttackController.currentAttackDamage;
 
         obj.GetComponent<Arrow>().nearestTarget = baseAttackController.nearestTarget;
+    }
+
+    public void GetHitVFX(Collider other)
+    {
+        VFXManager.SpawnEffect(VFXType.CARD_HIT_EFFECT, other.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
     }
 }

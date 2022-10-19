@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : BaseAttackController
 {
@@ -20,11 +21,17 @@ public class EnemyController : BaseAttackController
 
     public int amountToGiveMana;
 
+    [Header("UI")]
+    public GameObject enemyCanvas;
+    //public Text giveToManaCountText;
+
     public override string damageableID { get { return typeof(EnemyController).Name; } }
 
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
+
+        //giveToManaCountText.text = "+" + amountToGiveMana.ToString();
     }
 
     private void Update()
@@ -88,7 +95,7 @@ public class EnemyController : BaseAttackController
 
     private void DestroyEnemy()
     {
-        Destroy(VFXManager.SpawnEffect(VFXType.EXPLOSION_EFFECT, transform.position + new Vector3(0, 1, 0), Quaternion.identity), 1);
+        Destroy(VFXManager.SpawnEffect(VFXType.EXPLOSION_EFFECT, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity), 1);
 
         Destroy(this.gameObject);
     }
@@ -101,6 +108,8 @@ public class EnemyController : BaseAttackController
     private void AddToMana(int amount)
     {
         CardManager.Instance.currentMana += amount;
+
+        Destroy(Instantiate(enemyCanvas, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity), 1);
     }
 
     private void FollowSoldier()

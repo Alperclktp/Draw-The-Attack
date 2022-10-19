@@ -16,6 +16,7 @@ public class EnemyController : BaseAttackController
     public float currentSpeed;
 
     [Header("Follow Settings")]
+    public float sensingDistance;
     public float stoppingDistance;
     public float lookRotateSpeed;
 
@@ -64,7 +65,7 @@ public class EnemyController : BaseAttackController
 
     private Transform GetClosesSoldier()
     {
-        float minDist = Mathf.Infinity;
+        float minDist = sensingDistance;
 
         Vector3 currentPosition = transform.position;
 
@@ -113,6 +114,7 @@ public class EnemyController : BaseAttackController
 
         Destroy(Instantiate(enemyCanvas, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity), 1);
     }
+
     private void FollowSoldier()
     {
         if (Vector3.Distance(transform.position, nearestTarget.position) >= stoppingDistance)
@@ -121,6 +123,7 @@ public class EnemyController : BaseAttackController
 
             canAttack = false;
             canGoEndLine = false;
+            canMove = true;
 
             LookAtSoldier();
         }

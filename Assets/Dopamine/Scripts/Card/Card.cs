@@ -10,6 +10,7 @@ public class Card : MonoBehaviour
     [HideInInspector] public GameObject cardObj;
 
     [HideInInspector] public GameObject cardPrefab;
+
     public bool IsSelected { get; set; }
 
     [Header("Card Data")]
@@ -19,8 +20,10 @@ public class Card : MonoBehaviour
     public int currentManaCost;
     
     [Header("UI")]
-    public Sprite currentArt;
+    public Sprite cardArt;
 
+    public Image currentCardIcon;
+   
     public Text nameText;
     private Text manaCostText;
 
@@ -28,6 +31,8 @@ public class Card : MonoBehaviour
     {
         GetCardData();
         GetTextData();
+
+        currentCardIcon.sprite = cardArt;
     }
 
     private void GetCardData()
@@ -39,11 +44,11 @@ public class Card : MonoBehaviour
         currentName = cardSO.Name;
         currentDescription = cardSO.Description;
 
-        currentArt = cardSO.ArtWork;
+        cardArt = cardSO.ArtWork;
 
         currentManaCost = cardSO.ManaCost;
 
-        currentArt = cardSO.ArtWork;
+        cardArt = cardSO.ArtWork;
 
         cardObj = this.gameObject;
     }

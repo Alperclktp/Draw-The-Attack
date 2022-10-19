@@ -30,6 +30,8 @@ public class SoldierController : BaseAttackController
 
     private void Update()
     {
+        GetClosesEnemy();
+
         if (canMove)
         {
             Movement();
@@ -38,8 +40,6 @@ public class SoldierController : BaseAttackController
         CheckHealth();
 
         InýtAnimation();
-
-        GetClosesEnemy();
 
         FollowTarget();
 
@@ -152,7 +152,7 @@ public class SoldierController : BaseAttackController
         if(GameManager.Instance.enemyList.Count <= 0)
         {
             canAttack = false;
-            canMove = false;
+            canMove = true;
 
             anim.Play("Win");
         }

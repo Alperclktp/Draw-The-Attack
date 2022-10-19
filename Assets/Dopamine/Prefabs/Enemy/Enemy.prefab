@@ -433,9 +433,8 @@ MonoBehaviour:
   currentSpeed: 3
   stoppingDistance: 1.5
   lookRotateSpeed: 10
-  amountToGiveMana: 10
-  enemyCanvas: {fileID: 4176521496073621096, guid: eabbe357fffd67246a8600dcb024ca0a, type: 3}
-  giveToManaCountText: {fileID: 0}
+  amountToGiveMana: 1
+  enemyCanvas: {fileID: 1601195290463684104, guid: eabbe357fffd67246a8600dcb024ca0a, type: 3}
 --- !u!1 &3645055403352729958
 GameObject:
   m_ObjectHideFlags: 0

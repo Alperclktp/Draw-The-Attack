@@ -109,9 +109,10 @@ public class EnemyController : BaseAttackController
     {
         CardManager.Instance.currentMana += amount;
 
+        //CardManager.Instance.currentMana += Mathf.Lerp(CardManager.Instance.currentMana, amount, Time.deltaTime);
+
         Destroy(Instantiate(enemyCanvas, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity), 1);
     }
-
     private void FollowSoldier()
     {
         if (Vector3.Distance(transform.position, nearestTarget.position) >= stoppingDistance)

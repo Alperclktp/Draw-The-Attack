@@ -3257,7 +3257,7 @@ MonoBehaviour:
   - {fileID: 1434199055}
   - {fileID: 1965645430}
   - {fileID: 1045107140}
-  currentMana: 100
+  currentMana: 0
   maxMana: 100
   selectedCard: {fileID: 0}
   soldierSpawnHolder: {fileID: 164664391}
@@ -3632,14 +3632,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1704153631, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: enemyCanvas
-      value: 
-      objectReference: {fileID: 1601195290463684104, guid: eabbe357fffd67246a8600dcb024ca0a, type: 3}
-    - target: {fileID: 1704153631, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: giveToManaCountText
-      value: 
-      objectReference: {fileID: 5428566107488015352, guid: 5e3f4eebaaec9d8419b84f09f8eac350, type: 3}
     - target: {fileID: 3195566690026147400, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -3686,10 +3678,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3195566690026147415, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5591750587060147512, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

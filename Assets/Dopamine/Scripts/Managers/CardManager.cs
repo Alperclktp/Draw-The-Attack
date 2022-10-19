@@ -9,7 +9,7 @@ public class CardManager : Singleton<CardManager>
     public List<Card> cardList = new List<Card>();
 
     [Header("Mana Settings")]
-    public int currentMana;
+    public float currentMana;
     [SerializeField] private int maxMana;
 
     [Space(5)]

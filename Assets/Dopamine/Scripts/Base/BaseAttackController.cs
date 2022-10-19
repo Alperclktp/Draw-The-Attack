@@ -14,5 +14,4 @@ public abstract class BaseAttackController : MonoBehaviour, IDamageable
 
     public abstract void TakeDamage(float damage);
 
-
 }

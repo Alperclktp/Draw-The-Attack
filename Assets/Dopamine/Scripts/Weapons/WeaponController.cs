@@ -46,9 +46,14 @@ public class WeaponController : MonoBehaviour
     {
         GameObject obj = Instantiate(arrowPrefab, arrowSpawnPosition.position, arrowPrefab.transform.rotation);
 
-        obj.GetComponent<Arrow>().currentArrowAttackDamage = baseAttackController.currentAttackDamage;
+        Arrow arrow = obj.GetComponent<Arrow>();
 
-        obj.GetComponent<Arrow>().nearestTarget = baseAttackController.nearestTarget;
+        arrow.baseAttackController = baseAttackController;
+
+        arrow.currentArrowAttackDamage = baseAttackController.currentAttackDamage;
+
+        arrow.nearestTarget = baseAttackController.nearestTarget;
+
     }
 
     public void GetHitVFX(Collider other)

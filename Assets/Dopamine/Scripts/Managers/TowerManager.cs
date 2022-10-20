@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerManager : Singleton<TowerManager>
+public class TowerManager : Singleton<TowerManager>, IDamageable
 {
     public Transform[] enemySpawnPoints;
 
@@ -14,9 +14,15 @@ public class TowerManager : Singleton<TowerManager>
 
     public bool canSpawn;
 
+    [Header("Tower Stats")]
+    public float currentHealth;
+    public string damageableID { get { return typeof(TowerManager).Name; } }
+
     private void Update()
     {
         StartCoroutine(IEEnemySpawner());
+
+        CheckHealth();
     }
 
     private void EnemySpawner()
@@ -25,12 +31,12 @@ public class TowerManager : Singleton<TowerManager>
 
         obj.transform.parent = enemySpawnHolder.transform;
 
-        AddToEnemyList();
+        AddToEnemyList(obj);
     }
 
-    private void AddToEnemyList()
+    private void AddToEnemyList(GameObject obj)
     {
-        GameManager.Instance.enemyList.Add(enemyPrefab);
+        GameManager.Instance.enemyList.Add(obj);
     }
 
     private IEnumerator IEEnemySpawner()
@@ -45,5 +51,20 @@ public class TowerManager : Singleton<TowerManager>
 
             canSpawn = true;
         }
+    }
+
+    private void CheckHealth()
+    {
+        if(currentHealth <= 0)
+        {
+            Destroy(gameObject);
+
+            Debug.Log("You Won!");
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
     }
 }

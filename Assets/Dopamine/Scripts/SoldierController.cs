@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SoldierController : BaseAttackController
 {
@@ -8,14 +9,18 @@ public class SoldierController : BaseAttackController
 
     [HideInInspector] public Animator anim;
 
+    private NavMeshAgent agent;
+
     [SerializeField] private bool canMove;
     [SerializeField] private bool canAttack;
+    [SerializeField] private bool canGoTower;
 
     [Header("Character Stats")]
     public float currentHealth;
     [SerializeField] private float currentSpeed;
 
-    [Header("Follow Settings")] 
+    [Header("Follow Settings")]
+    public float sensingDistance;
     public float stoppingDistance;
     public float lookRotateSpeed;
 
@@ -26,34 +31,53 @@ public class SoldierController : BaseAttackController
         GetCardData();
 
         anim = GetComponentInChildren<Animator>();
+
+        agent = GetComponent<NavMeshAgent>();
+
+        agent.speed = currentSpeed;
+
+        agent.stoppingDistance = stoppingDistance;
+
     }
 
     private void Update()
     {
         GetClosesEnemy();
 
-        if (canMove)
+        if (nearestTarget != null)
         {
-            Movement();
+            FollowTarget();
+        }
+        else
+        {
+            MoveTower();
         }
 
         CheckHealth();
 
         InýtAnimation();
 
-        FollowTarget();
-
         CheckEnemyList();
     }
 
-    private void Movement()
+    private void MoveTower()
     {
-        //transform.position += -transform.forward * Time.deltaTime * speed;
+        agent.SetDestination(GameManager.Instance.winLinePosition.position);
+
+        agent.isStopped = false;
+
+        agent.stoppingDistance = stoppingDistance;
+
+        canAttack = false;
+        canMove = true;
+        canGoTower = true;
+
+        LookAtTower();
     }
 
     private Transform GetClosesEnemy()
     {
-        float minDist = Mathf.Infinity;
+        float minDist = sensingDistance;
 
         Vector3 currentPosition = transform.position;
 
@@ -61,7 +85,7 @@ public class SoldierController : BaseAttackController
         {
             float dist = Vector3.Distance(obj.transform.position, currentPosition);
 
-            if(dist < minDist)
+            if (dist < minDist)
             {
                 nearestTarget = obj.transform;
                 minDist = dist;
@@ -72,7 +96,7 @@ public class SoldierController : BaseAttackController
 
     private void CheckHealth()
     {
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             DestroySoldier();
 
@@ -94,13 +118,18 @@ public class SoldierController : BaseAttackController
 
     private void FollowTarget()
     {
-        if(nearestTarget != null)
+        if (nearestTarget != null)
         {
-            if (Vector3.Distance(transform.position, nearestTarget.position) >= stoppingDistance)
+            agent.stoppingDistance = stoppingDistance;
+
+            if (Vector3.Distance(transform.position, nearestTarget.position) >= agent.stoppingDistance)
             {
-                transform.position = Vector3.MoveTowards(transform.position, nearestTarget.position, currentSpeed * Time.deltaTime);
+                //transform.position = Vector3.MoveTowards(transform.position, nearestTarget.position, currentSpeed * Time.deltaTime);
+
+                agent.SetDestination(nearestTarget.position);
 
                 canMove = true;
+                canGoTower = false;
                 canAttack = false;
 
                 LookAtEnemy();
@@ -110,9 +139,30 @@ public class SoldierController : BaseAttackController
                 LookAtEnemy();
 
                 canMove = false;
+                canGoTower = false;
                 canAttack = true;
+                agent.isStopped = true;
             }
         }
+
+        /*
+        agent.SetDestination(nearestTarget.position);
+
+        if ((transform.position - nearestTarget.position).magnitude < agent.stoppingDistance)
+        {
+            LookAtEnemy();
+
+            canMove = false;
+            canAttack = true;
+        }
+        else
+        {
+            LookAtEnemy();
+
+            canAttack = false;
+            canMove = true;
+        }
+        */
     }
 
     private void LookAtEnemy()
@@ -122,6 +172,11 @@ public class SoldierController : BaseAttackController
         Quaternion lookRotation = Quaternion.LookRotation(nearestTarget.position - transform.position);
 
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * lookRotateSpeed);
+    }
+
+    private void LookAtTower()
+    {
+        transform.LookAt(GameManager.Instance.winLinePosition);
     }
 
     private void InýtAnimation()
@@ -138,7 +193,7 @@ public class SoldierController : BaseAttackController
         if (canAttack)
         {
             anim.SetBool("Walk", false);
-            anim.SetBool("Attack",true);
+            anim.SetBool("Attack", true);
         }
         else
         {
@@ -149,12 +204,9 @@ public class SoldierController : BaseAttackController
 
     private void CheckEnemyList()
     {
-        if(GameManager.Instance.enemyList.Count <= 0)
+        if (GameManager.Instance.enemyList.Count <= 0)
         {
-            canAttack = false;
-            canMove = true;
 
-            anim.Play("Win");
         }
     }
 

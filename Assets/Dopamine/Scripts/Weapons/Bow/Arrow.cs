@@ -9,6 +9,8 @@ public class Arrow : MonoBehaviour
     [Header("Arrow Settings")]
     public float throwSpeed;
     public float currentArrowAttackDamage;
+
+    public BaseAttackController baseAttackController;  
     private void Update()
     {
         FollowEnemy();
@@ -30,6 +32,11 @@ public class Arrow : MonoBehaviour
 
         if (hit != null)
         {
+            if(hit.damageableID == baseAttackController.damageableID)
+            {
+                return;
+            }
+
             hit.TakeDamage(currentArrowAttackDamage);
 
             GetHitVFX(other);

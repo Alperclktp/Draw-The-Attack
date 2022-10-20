@@ -13,6 +13,8 @@ public enum GameState
 
 public class GameManager : Singleton<GameManager>
 {
+    public GameObject tower;
+
     public Transform endLinePosition;
 
     public Transform winLinePosition;

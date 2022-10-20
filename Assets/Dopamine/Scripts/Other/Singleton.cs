@@ -1,22 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T: Singleton<T>
+public abstract class SingletonBase: MonoBehaviour
 {
-    public static T Instance;   
-    public static T _instance { get { return Instance;} }
-    public Singleton()
+    public abstract void Inýt();
+}
+
+public abstract class Singleton<T> : SingletonBase where T : Component
+{
+    public static T Instance { get; protected set; }
+
+    public override void Inýt()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
-            Instance = this as T;         
+            Instance = this as T;
         }
         else
         {
-            Debug.LogWarning("<color=yellow> There cannot be more than one of this object in the scene! </color>");
+            Destroy(gameObject);
+        }
+    }
+}
 
-            //Destroy the newly copied manager
+public abstract class DontDestroySingleton<T> : Singleton<T> where T : Component
+{
+    public override void Inýt()
+    {
+        if(Instance == null)
+        {
+            Instance = this as T;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            DestroyImmediate(gameObject);
         }
     }
 }

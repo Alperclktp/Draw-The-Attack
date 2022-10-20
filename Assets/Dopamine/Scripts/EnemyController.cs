@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class EnemyController : BaseAttackController
 {
     [HideInInspector] public Animator anim;
+
+    private NavMeshAgent agent;
 
     [SerializeField] private bool canMove;
     [SerializeField] private bool canAttack;
@@ -32,6 +35,12 @@ public class EnemyController : BaseAttackController
     {
         anim = GetComponentInChildren<Animator>();
 
+        agent = GetComponent<NavMeshAgent>();
+
+        agent.speed = currentSpeed;
+
+        agent.stoppingDistance = stoppingDistance;
+
         //giveToManaCountText.text = "+" + amountToGiveMana.ToString();
     }
 
@@ -43,22 +52,29 @@ public class EnemyController : BaseAttackController
         {
             FollowSoldier();
         }
+        else
+        {
+            MoveEndLine();
+        }
 
         CheckHealth();
 
         CheckSoldierList();
 
-        if (canGoEndLine & canGoEndLine)
-        {
-            MovementEndLine();
-        }
-
         InýtAnimation();
     }
 
-    private void MovementEndLine()
+    private void MoveEndLine()
     {
-        transform.position = Vector3.MoveTowards(transform.position, GameManager.Instance.endLinePosition.position, currentSpeed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, GameManager.Instance.endLinePosition.position, currentSpeed * Time.deltaTime);
+
+        agent.SetDestination(GameManager.Instance.endLinePosition.position);
+
+        agent.isStopped = false;
+
+        canAttack = false;
+        canMove = true;
+        canGoEndLine = true;
 
         LookAtEndPosition();
     }
@@ -117,17 +133,35 @@ public class EnemyController : BaseAttackController
 
     private void FollowSoldier()
     {
-        if (Vector3.Distance(transform.position, nearestTarget.position) >= stoppingDistance)
+        if (nearestTarget != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, nearestTarget.position, currentSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, nearestTarget.position) >= agent.stoppingDistance)
+            {
+                //transform.position = Vector3.MoveTowards(transform.position, nearestTarget.position, currentSpeed * Time.deltaTime);
 
-            canAttack = false;
-            canGoEndLine = false;
-            canMove = true;
+                agent.SetDestination(nearestTarget.position);
 
-            LookAtSoldier();
+                canAttack = false;
+                canGoEndLine = false;
+                canMove = true;
+
+                LookAtSoldier();
+            }
+            else
+            {
+                LookAtSoldier();
+
+                canMove = false;
+                canGoEndLine = false;
+                canAttack = true;
+                agent.isStopped = true;
+            }
         }
-        else
+        
+        /*
+        agent.SetDestination(nearestTarget.position);
+
+        if ((transform.position - nearestTarget.position).magnitude < agent.stoppingDistance)
         {
             LookAtSoldier();
 
@@ -135,6 +169,15 @@ public class EnemyController : BaseAttackController
             canGoEndLine = false;
             canAttack = true;
         }
+        else
+        {
+            LookAtSoldier();
+
+            canAttack = false;
+            canGoEndLine = true;
+            canMove = true;
+        }
+        */
     }
 
     private void LookAtSoldier()
@@ -178,9 +221,7 @@ public class EnemyController : BaseAttackController
     {
         if (GameManager.Instance.soldierList.Count <= 0)
         {
-            canAttack = false;
-            canMove = true;
-            canGoEndLine = true;
+        
         }
     }
 

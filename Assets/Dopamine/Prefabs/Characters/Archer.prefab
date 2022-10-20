@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 4664106006968475922}
   - component: {fileID: 4664106006968475923}
   - component: {fileID: 2410432168044792548}
+  - component: {fileID: 331659735}
   m_Layer: 6
   m_Name: Archer
   m_TagString: Soldier
@@ -388,10 +389,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!136 &4664106006968475923
 CapsuleCollider:
@@ -426,10 +427,34 @@ MonoBehaviour:
   anim: {fileID: 0}
   canMove: 1
   canAttack: 0
+  canGoTower: 0
   currentHealth: 0
   currentSpeed: 0
-  stoppingDistance: 10
+  sensingDistance: 10
+  stoppingDistance: 8
   lookRotateSpeed: 10
+--- !u!195 &331659735
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2177802553464792623}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.3
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 10
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.7
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &2827659985791062908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,11 +1476,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 238cff22de854a7418ea45a360e4ad89, type: 3}
---- !u!4 &1501951451 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6347573496916309682, guid: 238cff22de854a7418ea45a360e4ad89, type: 3}
-  m_PrefabInstance: {fileID: 6347573495968596841}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6347573495890498903 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 81286718, guid: 238cff22de854a7418ea45a360e4ad89, type: 3}
@@ -1467,3 +1487,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8046d8218f4a3094d8693e4e582e7c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1501951451 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6347573496916309682, guid: 238cff22de854a7418ea45a360e4ad89, type: 3}
+  m_PrefabInstance: {fileID: 6347573495968596841}
+  m_PrefabAsset: {fileID: 0}

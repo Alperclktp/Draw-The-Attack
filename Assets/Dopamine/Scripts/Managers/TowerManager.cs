@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerManager : Singleton<TowerManager>, IDamageable
+public class TowerManager : BaseAttackController
 {
     public Transform[] enemySpawnPoints;
 
@@ -16,7 +16,7 @@ public class TowerManager : Singleton<TowerManager>, IDamageable
 
     [Header("Tower Stats")]
     public float currentHealth;
-    public string damageableID { get { return typeof(TowerManager).Name; } }
+    public override string damageableID { get { return typeof(TowerManager).Name; } }
 
     private void Update()
     {
@@ -63,7 +63,7 @@ public class TowerManager : Singleton<TowerManager>, IDamageable
         }
     }
 
-    public void TakeDamage(float damage)
+    public override void TakeDamage(float damage)
     {
         currentHealth -= damage;
     }

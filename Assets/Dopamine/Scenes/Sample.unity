@@ -3833,8 +3833,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471462897}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0331, y: 3.4879, z: 26.7}
-  m_LocalScale: {x: 19.865864, y: 10.026, z: 1}
+  m_LocalPosition: {x: -0.0331, y: 1.7127, z: 26.7}
+  m_LocalScale: {x: 19.865864, y: 6.4757934, z: 1}
   m_Children:
   - {fileID: 1089712041}
   - {fileID: 229658679}
@@ -3853,6 +3853,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95782a1632b95034c903a995f8ac5549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nearestTarget: {fileID: 0}
+  currentAttackDamage: 0
+  currentPerAttackSpeed: 0
   enemySpawnPoints:
   - {fileID: 950495978}
   - {fileID: 1372704924}
@@ -3861,7 +3864,7 @@ MonoBehaviour:
   - {fileID: 1323475428}
   enemySpawnHolder: {fileID: 463498289}
   enemyPrefab: {fileID: 3195566690026147400, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-  intervalSpawnTimer: 5
+  intervalSpawnTimer: 50000
   canSpawn: 1
   currentHealth: 250
 --- !u!1 &1642815191

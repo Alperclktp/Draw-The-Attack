@@ -116,13 +116,15 @@ public class SoldierController : BaseAttackController
         GameManager.Instance.soldierList.Remove(this.gameObject);
     }
 
+    public float temp;
+
     private void FollowTarget()
     {
         if (nearestTarget != null)
         {
             agent.stoppingDistance = stoppingDistance;
 
-            if (Vector3.Distance(transform.position, nearestTarget.position) >= agent.stoppingDistance)
+            if (Vector3.Distance(transform.position, new Vector3(nearestTarget.position.x,transform.position.y,nearestTarget.position.z)) > stoppingDistance)
             {
                 //transform.position = Vector3.MoveTowards(transform.position, nearestTarget.position, currentSpeed * Time.deltaTime);
 

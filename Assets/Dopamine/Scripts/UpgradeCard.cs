@@ -42,7 +42,7 @@ public class UpgradeCard : MonoBehaviour
         neededUpgradeMoneyText.text = neededUpgradeMoney.ToString();
     }
 
-    [Button("Reset Card Data")]
+    [Button("Reset Card Level")]
     public void ResetCardLevel()
     {
         cardSO.level = 1;
@@ -54,7 +54,9 @@ public class UpgradeCard : MonoBehaviour
 
     public void UpgradeCardButton() //Upgrade card.
     {
-        //Bizim kartlarýmýz yükseldikçe karþý düþmanýn da hasarý bizden 0.5 az olacak þekilde artacak.
+        //Bizim kartlarýmýz yükseldikçe karþý düþmanýn da hasarý bizden 0.5 az olacak þekilde artacak. [TR]
+        //As our cards increase, the opponent's stats will increase by 0.5 less than ours. [EN]
+
         /*
         for (int i = 0; i < UpgradeManager.Instance.enemyCardSOs.Count; i++)
         {

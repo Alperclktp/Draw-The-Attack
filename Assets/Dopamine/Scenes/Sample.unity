@@ -7581,7 +7581,7 @@ MonoBehaviour:
     - {fileID: 3195566690026147400, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
     - {fileID: 3195566690026147400, guid: 8c0f572011d6ede4692778503bab23cf, type: 3}
     - {fileID: 370460924880563518, guid: f372fb7640188b04a85cb07ce96d7e7c, type: 3}
-  currentTowerHealth: 100
+  currentTowerHealth: 1000
   secondsBetweenSpawn: 1
   maxLevelNumberOfEnemies: 5
   totalNumberOfSpawnedEnemies: 0

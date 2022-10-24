@@ -41,6 +41,8 @@ public class TowerManager : BaseAttackController
         {
             EnemySpawner("Warrior");
         }
+
+        CheckHealth();
     }
 
     private void EnemySpawner(string value)
@@ -62,6 +64,24 @@ public class TowerManager : BaseAttackController
                 totalNumberOfSpawnedEnemies++;
             }
         }
+    }
+    private void CheckHealth()
+    {
+        if (currentTowerHealth <= 0)
+        {
+            GetExplosionVFX();
+
+            Destroy(gameObject);
+
+            GameManager.Instance.levelComplete = true;
+
+            Debug.Log("You Won!");
+        }
+    }
+
+    private void GetExplosionVFX()
+    {
+        Destroy(VFXManager.SpawnEffect(VFXType.TOWER_EXPLOSION_EFFECT, transform.position + new Vector3(0, 4, 0), Quaternion.identity), 1f);
     }
 
     private void AddToEnemyList(GameObject obj)

@@ -115,7 +115,7 @@ public class TowerManager : BaseAttackController
 
     public override void TakeDamage(float damage)
     {
-        currentTowerHealth -= damage;
+        currentTowerHealth -= (int)damage;
 
         TowerHýtAnimation();
     }

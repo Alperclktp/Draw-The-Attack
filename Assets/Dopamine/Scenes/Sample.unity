@@ -7767,10 +7767,10 @@ MonoBehaviour:
   secondsBetweenSpawn: 1
   canSpawn: 0
   levelDifficulty:
-    maxLevelNumberOfEnemies: 0
-    warrior: 0
-    archer: 0
-    giant: 0
+    maxLevelNumberOfEnemies: 10
+    warrior: 8
+    archer: 1
+    giant: 1
   currentHealthText: {fileID: 965747555}
 --- !u!54 &1471462903
 Rigidbody:

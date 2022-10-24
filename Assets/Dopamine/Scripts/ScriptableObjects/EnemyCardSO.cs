@@ -26,8 +26,12 @@ public class EnemyCardSO : ScriptableObject
     [SerializeField] private float attackPerSpeed;
     public float AttackPerSpeed { get { return attackPerSpeed; } }
 
-    [SerializeField] private float movementSpeed;
-    public float MovementSpeed { get { return movementSpeed; } }
+    public float movementSpeed;
 
     public int health;
+    
+    [Header("Power-up Per Upgrade")]
+    public float powerAdd;
+    public float powerHealthAdd;
+    public float popwerSpeedAdd;
 }

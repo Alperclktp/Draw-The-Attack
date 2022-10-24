@@ -14,7 +14,7 @@ public class EnemyController : BaseAttackController
 
     [SerializeField] private bool canMove;
     [SerializeField] private bool canAttack;
-    [SerializeField] private bool canGoEndLine;
+    public bool canGoEndLine;
 
     [Header("Character Stats")]
     public float currentHealth;
@@ -35,6 +35,8 @@ public class EnemyController : BaseAttackController
 
     private void Awake()
     {
+        Upgrade();
+
         GetCardData();
 
         anim = GetComponentInChildren<Animator>();
@@ -46,7 +48,10 @@ public class EnemyController : BaseAttackController
         agent.stoppingDistance = stoppingDistance;
 
         //giveToManaCountText.text = "+" + amountToGiveMana.ToString();
+
     }
+
+   
 
     private void Update()
     {
@@ -66,6 +71,23 @@ public class EnemyController : BaseAttackController
         CheckSoldierList();
 
         InýtAnimation();
+    }
+
+    private void OnEnable()
+    {
+        EventManager.onUpgrade += Upgrade;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.onUpgrade -= Upgrade;
+    }
+
+    public void Upgrade()
+    {
+        enemyCardSO.attackDamage += enemyCardSO.powerAdd * UpgradeManager.Instance.upgradeCount;
+        enemyCardSO.health += (int)enemyCardSO.powerHealthAdd * UpgradeManager.Instance.upgradeCount;
+        enemyCardSO.movementSpeed += enemyCardSO.popwerSpeedAdd * UpgradeManager.Instance.upgradeCount;
     }
 
     private void MoveEndLine()
@@ -235,7 +257,7 @@ public class EnemyController : BaseAttackController
 
         currentPerAttackSpeed = enemyCardSO.AttackPerSpeed;
 
-        currentSpeed = enemyCardSO.MovementSpeed;
+        currentSpeed = enemyCardSO.movementSpeed;
 
         currentHealth = enemyCardSO.health;
     }

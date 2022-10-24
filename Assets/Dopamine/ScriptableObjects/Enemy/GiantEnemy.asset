@@ -9,17 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4991d03152e85045a876f20d35f09d2, type: 3}
-  m_Name: Giant
+  m_Script: {fileID: 11500000, guid: 500001bf12d1d4243a822280e8aeb6c3, type: 3}
+  m_Name: GiantEnemy
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 7049744727307906149, guid: 41196501978beec469ee2c475481be5a, type: 3}
+  cardPrefab: {fileID: 3195566690026147400, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
   level: 1
-  id: 3
-  name: GIANT
-  description: An unstoppable giant!
-  manaCost: 32
-  attackDamage: 10
+  id: 0
+  name: WarriorEnemy
+  description: "\t\t\t\t"
+  attackDamage: 50
   attackPerSpeed: 2.5
   movementSpeed: 1.5
   health: 250
-  artwork: {fileID: 21300000, guid: 2bf93502b66649d42bc08ed2f5d50b89, type: 3}
+  powerAdd: 0.5
+  powerHealthAdd: 0.5
+  popwerSpeedAdd: 0

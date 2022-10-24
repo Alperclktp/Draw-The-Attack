@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class UpgradeManager : Singleton<UpgradeManager>
 {
-    public List<EnemyCardSO> enemyCardSOs = new List<EnemyCardSO>();
+    public int upgradeCount;
 }

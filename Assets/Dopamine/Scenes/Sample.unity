@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 809c804ce037ba24e90ddd4b441dee24, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &16174464
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +970,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &226832630
 GameObject:
@@ -1355,7 +1355,7 @@ MonoBehaviour:
   towerPosition: {fileID: 229658679}
   gameState: 0
   levelComplete: 0
-  currentLevel: 0
+  currentLevel: 1
   currentMoney: 1000
   upgradeManagerPanel: {fileID: 2107542358}
   cardPanel: {fileID: 1995011336}
@@ -2000,6 +2000,7 @@ MonoBehaviour:
   managers:
   - {fileID: 293914441}
   - {fileID: 1904392550}
+  - {fileID: 2088330365}
 --- !u!4 &387648700
 Transform:
   m_ObjectHideFlags: 0
@@ -2239,7 +2240,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &487018571
 GameObject:
@@ -2435,7 +2436,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &528429611
 GameObject:
@@ -2951,7 +2952,7 @@ RectTransform:
   - {fileID: 1995011337}
   - {fileID: 321156830}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3748,7 +3749,7 @@ Transform:
   - {fileID: 155949913}
   - {fileID: 294509924}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &739484398
 GameObject:
@@ -4451,7 +4452,7 @@ Transform:
   m_Children:
   - {fileID: 1257698528}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &883976337
 GameObject:
@@ -6220,7 +6221,7 @@ Transform:
   - {fileID: 686666587}
   - {fileID: 1105610640}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1303867073
 GameObject:
@@ -7467,7 +7468,7 @@ GameObject:
   - component: {fileID: 1471462898}
   - component: {fileID: 1471462902}
   m_Layer: 0
-  m_Name: Tower
+  m_Name: _TowerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7550,7 +7551,7 @@ Transform:
   - {fileID: 1089712041}
   - {fileID: 1812779064}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1471462902
 MonoBehaviour:
@@ -7579,88 +7580,21 @@ MonoBehaviour:
     - Giant
     m_values:
     - {fileID: 3195566690026147400, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-    - {fileID: 3195566690026147400, guid: 8c0f572011d6ede4692778503bab23cf, type: 3}
-    - {fileID: 370460924880563518, guid: f372fb7640188b04a85cb07ce96d7e7c, type: 3}
+    - {fileID: 7491645478653324961, guid: 8c0f572011d6ede4692778503bab23cf, type: 3}
+    - {fileID: 8216808974713176166, guid: 5f1a0b63405a33943981584d1fe30546, type: 3}
   currentTowerHealth: 1000
   secondsBetweenSpawn: 1
-  maxLevelNumberOfEnemies: 5
-  totalNumberOfSpawnedEnemies: 0
-  elapsedTime: 0
   canSpawn: 0
+  levelDifficulty:
+    maxLevelNumberOfEnemies: 10
+    warrior: 8
+    archer: 1
+    giant: 1
 --- !u!4 &1501037409 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c5022dfc076deb4b826c34e39ebe959, type: 3}
   m_PrefabInstance: {fileID: 458817251}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1503263852
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1704153631, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: currentSpeed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2080448419, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195566690026147400, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_Name
-      value: WarriorEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195566690026147400, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195566690026147415, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195566690026147415, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.64636326
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195566690026147415, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.039
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195566690026147415, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -13.45666
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195566690026147415, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195566690026147415, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195566690026147415, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195566690026147415, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195566690026147415, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195566690026147415, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195566690026147415, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
 --- !u!1 &1536220123
 GameObject:
   m_ObjectHideFlags: 0
@@ -10004,6 +9938,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075266273}
   m_CullTransparentMesh: 1
+--- !u!1 &2088330364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2088330366}
+  - component: {fileID: 2088330365}
+  m_Layer: 0
+  m_Name: _UpgradeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2088330365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088330364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408991e6c4e1b684eaa0015837d000cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeCount: 0
+--- !u!4 &2088330366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088330364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2107542358
 GameObject:
   m_ObjectHideFlags: 0
@@ -10015,10 +9993,9 @@ GameObject:
   - component: {fileID: 2107542359}
   - component: {fileID: 2107542363}
   - component: {fileID: 2107542362}
-  - component: {fileID: 2107542360}
   - component: {fileID: 2107542361}
   m_Layer: 0
-  m_Name: _UpgradeManager
+  m_Name: UpgradeHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10046,20 +10023,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1, y: -548}
   m_SizeDelta: {x: 0, y: -1521.1863}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2107542360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2107542358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 408991e6c4e1b684eaa0015837d000cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyCardSOs:
-  - {fileID: 11400000, guid: e7e2595f4b7ed934bb17453f4b7708fe, type: 2}
 --- !u!95 &2107542361
 Animator:
   serializedVersion: 3

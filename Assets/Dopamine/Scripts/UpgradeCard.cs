@@ -52,19 +52,11 @@ public class UpgradeCard : MonoBehaviour
         GetCardData();
     }
 
-    public void UpgradeCardButton() //Upgrade card.
+    public void UpgradeCardButton() 
     {
-        //Bizim kartlarýmýz yükseldikçe karþý düþmanýn da hasarý bizden 0.5 az olacak þekilde artacak. [TR]
-        //As our cards increase, the opponent's stats will increase by 0.5 less than ours. [EN]
+        UpgradeManager.Instance.upgradeCount += 1;
 
-        /*
-        for (int i = 0; i < UpgradeManager.Instance.enemyCardSOs.Count; i++)
-        {
-            UpgradeManager.Instance.enemyCardSOs[i].level += 1;
-            UpgradeManager.Instance.enemyCardSOs[i].attackDamage += 10;
-            UpgradeManager.Instance.enemyCardSOs[i].health += 10;
-        }
-        */
+        EventManager.onUpgrade?.Invoke();
 
         cardSO.level += 1;  
         cardSO.attackDamage += 10;

@@ -18,16 +18,10 @@ public class TowerManager : BaseAttackController
 
     [SerializeField] private float secondsBetweenSpawn;
 
-    [Tooltip("Total number of enemies to spawn")]
-    [SerializeField] private int maxLevelNumberOfEnemies;
-
-    [ReadOnly] public float totalNumberOfSpawnedEnemies;
- 
-    [ReadOnly] public float elapsedTime = 0.0f;
-
     [Space(5)]
     public bool canSpawn;
 
+    public LevelDifficulty levelDifficulty;
     public override string damageableID { get { return typeof(TowerManager).Name; } }
 
     private void Awake()
@@ -37,34 +31,48 @@ public class TowerManager : BaseAttackController
 
     private void Update()
     {
-        if (canSpawn)
-        {
-            EnemySpawner("Warrior");
-        }
-
         CheckHealth();
     }
 
     private void EnemySpawner(string value)
     {
-        elapsedTime += Time.deltaTime;
+        GameObject obj = Instantiate(enemyPrefabs[value], enemySpawnPoints[Random.Range(0, enemySpawnPoints.Length)].transform.position, enemyPrefabs[value].transform.rotation);
 
-        if (elapsedTime > secondsBetweenSpawn && totalNumberOfSpawnedEnemies < maxLevelNumberOfEnemies)
+        obj.transform.parent = enemySpawnHolder.transform;
+
+        AddToEnemyList(obj);
+
+    }
+    public IEnumerator IEEnemySpawner()
+    {
+        for (int i = 0; i < levelDifficulty.Warrior; i++)
         {
-            for (int i = 0; i < 1; i++)
-            {
-                GameObject obj = Instantiate(enemyPrefabs[value], enemySpawnPoints[Random.Range(0, enemySpawnPoints.Length)].transform.position, enemyPrefabs[value].transform.rotation);
+            yield return new WaitForSeconds(secondsBetweenSpawn);
 
-                obj.transform.parent = enemySpawnHolder.transform;
+            EnemySpawner("Warrior");
 
-                AddToEnemyList(obj);
+            //if
+        }
 
-                elapsedTime = 0f;
+        for (int i = 0; i < levelDifficulty.Archer; i++)
+        {
+            yield return new WaitForSeconds(secondsBetweenSpawn);
 
-                totalNumberOfSpawnedEnemies++;
-            }
+            EnemySpawner("Archer");
+
+            //if()
+        }
+
+        for (int i = 0; i < levelDifficulty.Giant; i++)
+        {
+            yield return new WaitForSeconds(secondsBetweenSpawn);
+
+            EnemySpawner("Giant");
+
+            //if()
         }
     }
+
     private void CheckHealth()
     {
         if (currentTowerHealth <= 0)
@@ -92,5 +100,49 @@ public class TowerManager : BaseAttackController
     public override void TakeDamage(float damage)
     {
         currentTowerHealth -= damage;
+    }
+}
+
+[System.Serializable]
+public class LevelDifficulty
+{
+    public int maxLevelNumberOfEnemies;
+
+    [SerializeField] private int warrior = 0;
+    [SerializeField] private int archer = 0;
+    [SerializeField] private int giant = 0;
+
+    public int Warrior
+    {
+        get { return warrior; }
+        set
+        {
+            if (value >= 0)
+            {
+                warrior = value;
+            }
+        }
+    }
+    public int Archer
+    {
+        get { return archer; }
+        set
+        {
+            if (value >= 0)
+            {
+                archer = value;
+            }
+        }
+    }
+    public int Giant
+    {
+        get { return giant; }
+        set
+        {
+            if (value >= 0)
+            {
+                giant = value;
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ public class SoldierController : BaseAttackController
 
     [SerializeField] private bool canMove;
     [SerializeField] private bool canAttack;
-    [SerializeField] private bool canGoTower;
+    public bool canGoTower;
 
     [Header("Character Stats")]
     public float currentHealth;

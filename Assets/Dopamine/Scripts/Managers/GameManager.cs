@@ -55,6 +55,8 @@ public class GameManager : Singleton<GameManager>
 
         TowerManager.Instance.canSpawn = true;
 
+        StartCoroutine(TowerManager.Instance.IEEnemySpawner());
+
         upgradeManagerPanel.SetActive(false);
 
         cardPanel.GetComponent<Animator>().enabled = true;

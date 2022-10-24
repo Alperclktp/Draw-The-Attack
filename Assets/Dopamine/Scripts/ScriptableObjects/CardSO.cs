@@ -9,6 +9,9 @@ public class CardSO : ScriptableObject
     public GameObject cardPrefab;
 
     [Header("Card Properties")]
+
+    public int level;
+
     [SerializeField] private int id = default;
     public int ID { get { return id; } }
 
@@ -21,8 +24,7 @@ public class CardSO : ScriptableObject
     [SerializeField] private int manaCost;
     public int ManaCost { get { return manaCost; } }
 
-    [SerializeField] private float attackDamage;
-    public float AttackDamage { get { return attackDamage; } }
+    public float attackDamage;
 
     [SerializeField] private float attackPerSpeed;
     public float AttackPerSpeed { get { return attackPerSpeed; } }
@@ -30,8 +32,7 @@ public class CardSO : ScriptableObject
     [SerializeField] private float movementSpeed;
     public float MovementSpeed { get { return movementSpeed; } }
 
-    [SerializeField] private int health;
-    public int Health { get { return health; } }
+    public int health;
 
     [Header("Card UI")]
     [SerializeField] private Sprite artwork;

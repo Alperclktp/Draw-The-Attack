@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Create/VFX", fileName = "VFX", order = 2)]
+[CreateAssetMenu(menuName = "VFX/VFX", fileName = "VFX", order = 2)]
 public class VFXSO : ScriptableObject
 {
     public VFXType type;

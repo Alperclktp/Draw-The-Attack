@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 2177802553464792623, guid: f7128dbf183ecb04289dea63805bb1ce, type: 3}
+  level: 1
   id: 2
   name: ARCHER
   description: An unstoppable archer!

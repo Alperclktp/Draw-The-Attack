@@ -1,37 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
-public class TowerManager : BaseAttackController
+public class TowerManager : BaseAttackController  
 {
-    public Transform[] enemySpawnPoints;
+    public static TowerManager Instance;
+
+    [SerializeField] private Transform[] enemySpawnPoints;
 
     [SerializeField] private GameObject enemySpawnHolder;
 
-    public GameObject enemyPrefab;
-
-    public float intervalSpawnTimer;
-
-    public bool canSpawn;
+    public MyDictionarys enemyPrefabs = new MyDictionarys();
 
     [Header("Tower Stats")]
-    public float currentHealth;
+    public float currentTowerHealth;
+
+    [SerializeField] private float secondsBetweenSpawn;
+
+    [Tooltip("Total number of enemies to spawn")]
+    [SerializeField] private int maxLevelNumberOfEnemies;
+
+    [ReadOnly] public float totalNumberOfSpawnedEnemies;
+ 
+    [ReadOnly] public float elapsedTime = 0.0f;
+
+    [Space(5)]
+    public bool canSpawn;
+
     public override string damageableID { get { return typeof(TowerManager).Name; } }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Update()
     {
-        StartCoroutine(IEEnemySpawner());
-
-        CheckHealth();
+        if (canSpawn)
+        {
+            EnemySpawner("Warrior");
+        }
     }
 
-    private void EnemySpawner()
+    private void EnemySpawner(string value)
     {
-        GameObject obj = Instantiate(enemyPrefab, enemySpawnPoints[Random.Range(0, enemySpawnPoints.Length)].transform.position, enemyPrefab.transform.rotation);
+        elapsedTime += Time.deltaTime;
 
-        obj.transform.parent = enemySpawnHolder.transform;
+        if (elapsedTime > secondsBetweenSpawn && totalNumberOfSpawnedEnemies < maxLevelNumberOfEnemies)
+        {
+            for (int i = 0; i < 1; i++)
+            {
+                GameObject obj = Instantiate(enemyPrefabs[value], enemySpawnPoints[Random.Range(0, enemySpawnPoints.Length)].transform.position, enemyPrefabs[value].transform.rotation);
 
-        AddToEnemyList(obj);
+                obj.transform.parent = enemySpawnHolder.transform;
+
+                AddToEnemyList(obj);
+
+                elapsedTime = 0f;
+
+                totalNumberOfSpawnedEnemies++;
+            }
+        }
     }
 
     private void AddToEnemyList(GameObject obj)
@@ -39,32 +69,8 @@ public class TowerManager : BaseAttackController
         GameManager.Instance.enemyList.Add(obj);
     }
 
-    private IEnumerator IEEnemySpawner()
-    {
-        while (canSpawn)
-        {
-            EnemySpawner();
-
-            canSpawn = false;
-
-            yield return new WaitForSeconds(intervalSpawnTimer);
-
-            canSpawn = true;
-        }
-    }
-
-    private void CheckHealth()
-    {
-        if(currentHealth <= 0)
-        {
-            Destroy(gameObject);
-
-            Debug.Log("You Won!");
-        }
-    }
-
     public override void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        currentTowerHealth -= damage;
     }
 }

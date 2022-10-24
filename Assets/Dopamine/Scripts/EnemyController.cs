@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class EnemyController : BaseAttackController
 {
+    [Space(10)] public EnemyCardSO enemyCardSO;
+
     [HideInInspector] public Animator anim;
 
     private NavMeshAgent agent;
@@ -33,6 +35,8 @@ public class EnemyController : BaseAttackController
 
     private void Awake()
     {
+        GetCardData();
+
         anim = GetComponentInChildren<Animator>();
 
         agent = GetComponent<NavMeshAgent>();
@@ -68,7 +72,7 @@ public class EnemyController : BaseAttackController
     {
         //transform.position = Vector3.MoveTowards(transform.position, GameManager.Instance.endLinePosition.position, currentSpeed * Time.deltaTime);
 
-        agent.SetDestination(GameManager.Instance.endLinePosition.position);
+        agent.SetDestination(GameManager.Instance.failLinePosition.position);
 
         agent.isStopped = false;
 
@@ -191,7 +195,7 @@ public class EnemyController : BaseAttackController
 
     private void LookAtEndPosition()
     {
-        transform.LookAt(GameManager.Instance.endLinePosition);
+        transform.LookAt(GameManager.Instance.failLinePosition);
     }
 
     private void InýtAnimation()
@@ -223,6 +227,17 @@ public class EnemyController : BaseAttackController
         {
         
         }
+    }
+
+    private void GetCardData()
+    {
+        currentAttackDamage = enemyCardSO.attackDamage;
+
+        currentPerAttackSpeed = enemyCardSO.AttackPerSpeed;
+
+        currentSpeed = enemyCardSO.MovementSpeed;
+
+        currentHealth = enemyCardSO.health;
     }
 
     public override void TakeDamage(float damage)

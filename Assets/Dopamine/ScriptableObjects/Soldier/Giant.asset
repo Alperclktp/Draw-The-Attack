@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Giant
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 7049744727307906149, guid: 41196501978beec469ee2c475481be5a, type: 3}
+  level: 1
   id: 3
   name: GIANT
   description: An unstoppable giant!

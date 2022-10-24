@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Warrior
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 3195566690026147400, guid: 1f10f8c32f3558441bac177c0de18ce2, type: 3}
+  level: 1
   id: 1
   name: WARRIOR
   description: An unstoppable warrior!

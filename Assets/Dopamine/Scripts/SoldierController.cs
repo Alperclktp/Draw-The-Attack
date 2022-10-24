@@ -42,7 +42,14 @@ public class SoldierController : BaseAttackController
 
     private void Update()
     {
-        GetClosesEnemy();
+        if (!GameManager.Instance.levelComplete)
+        {
+            GetClosesEnemy();
+        }
+        else
+        {
+            TestWin(); //Test function
+        }
 
         if (nearestTarget != null)
         {
@@ -50,7 +57,10 @@ public class SoldierController : BaseAttackController
         }
         else
         {
-            MoveTower();
+            if (!GameManager.Instance.levelComplete)
+            {
+                MoveTower();
+            }
         }
 
         CheckHealth();
@@ -62,7 +72,7 @@ public class SoldierController : BaseAttackController
 
     private void MoveTower()
     {
-        agent.SetDestination(GameManager.Instance.winLinePosition.position);
+        agent.SetDestination(GameManager.Instance.towerPosition.position);
 
         agent.isStopped = false;
 
@@ -116,15 +126,13 @@ public class SoldierController : BaseAttackController
         GameManager.Instance.soldierList.Remove(this.gameObject);
     }
 
-    public float temp;
-
     private void FollowTarget()
     {
         if (nearestTarget != null)
         {
             agent.stoppingDistance = stoppingDistance;
 
-            if (Vector3.Distance(transform.position, new Vector3(nearestTarget.position.x,transform.position.y,nearestTarget.position.z)) > stoppingDistance)
+            if (Vector3.Distance(transform.position, new Vector3(nearestTarget.position.x, transform.position.y, nearestTarget.position.z)) > stoppingDistance)
             {
                 //transform.position = Vector3.MoveTowards(transform.position, nearestTarget.position, currentSpeed * Time.deltaTime);
 
@@ -178,7 +186,7 @@ public class SoldierController : BaseAttackController
 
     private void LookAtTower()
     {
-        transform.LookAt(GameManager.Instance.winLinePosition);
+        transform.LookAt(GameManager.Instance.towerPosition);
     }
 
     private void InýtAnimation()
@@ -212,15 +220,21 @@ public class SoldierController : BaseAttackController
         }
     }
 
+    private void TestWin() //Test fuction.
+    {
+        anim.Play("Win");
+        agent.isStopped = true;
+    }
+
     private void GetCardData()
     {
-        currentAttackDamage = cardSO.AttackDamage;
+        currentAttackDamage = cardSO.attackDamage;
 
         currentPerAttackSpeed = cardSO.AttackPerSpeed;
 
         currentSpeed = cardSO.MovementSpeed;
 
-        currentHealth = cardSO.Health;
+        currentHealth = cardSO.health;
     }
 
     public override void TakeDamage(float damage)

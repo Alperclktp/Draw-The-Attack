@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using DG.Tweening;
 
 public class TowerManager : BaseAttackController  
 {
@@ -84,6 +85,7 @@ public class TowerManager : BaseAttackController
             GameManager.Instance.levelComplete = true;
 
             Debug.Log("You Won!");
+
         }
     }
 
@@ -97,9 +99,19 @@ public class TowerManager : BaseAttackController
         GameManager.Instance.enemyList.Add(obj);
     }
 
+    public void TowerHýtAnimation()
+    {
+        transform.DOScaleX(20, 0.1f).OnComplete(() =>
+        {
+            transform.DOScaleX(19.86586f, 0.1f);
+        });
+    }
+
     public override void TakeDamage(float damage)
     {
         currentTowerHealth -= damage;
+
+        TowerHýtAnimation();
     }
 }
 

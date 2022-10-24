@@ -221,3 +221,4 @@ MonoBehaviour:
   nearestTarget: {fileID: 0}
   throwSpeed: 10
   currentArrowAttackDamage: 0
+  baseAttackController: {fileID: 0}

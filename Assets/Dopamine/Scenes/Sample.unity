@@ -7644,6 +7644,7 @@ GameObject:
   - component: {fileID: 1471462901}
   - component: {fileID: 1471462900}
   - component: {fileID: 1471462899}
+  - component: {fileID: 1471462903}
   - component: {fileID: 1471462898}
   - component: {fileID: 1471462902}
   m_Layer: 0
@@ -7766,11 +7767,27 @@ MonoBehaviour:
   secondsBetweenSpawn: 1
   canSpawn: 0
   levelDifficulty:
-    maxLevelNumberOfEnemies: 10
-    warrior: 8
-    archer: 1
-    giant: 1
+    maxLevelNumberOfEnemies: 0
+    warrior: 0
+    archer: 0
+    giant: 0
   currentHealthText: {fileID: 965747555}
+--- !u!54 &1471462903
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471462897}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1501037409 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c5022dfc076deb4b826c34e39ebe959, type: 3}

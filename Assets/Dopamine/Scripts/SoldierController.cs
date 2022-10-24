@@ -72,7 +72,7 @@ public class SoldierController : BaseAttackController
 
     private void MoveTower()
     {
-        agent.SetDestination(GameManager.Instance.towerPosition.position);
+        agent.SetDestination(new Vector3(GameManager.Instance.towerPosition.position.x, 0, GameManager.Instance.towerPosition.position.z));
 
         agent.isStopped = false;
 

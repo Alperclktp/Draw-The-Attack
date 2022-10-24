@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class TowerManager : BaseAttackController  
 {
@@ -23,6 +24,9 @@ public class TowerManager : BaseAttackController
     public bool canSpawn;
 
     public LevelDifficulty levelDifficulty;
+
+    [Header("UI Elements")]
+    public Text currentHealthText;
     public override string damageableID { get { return typeof(TowerManager).Name; } }
 
     private void Awake()
@@ -33,6 +37,8 @@ public class TowerManager : BaseAttackController
     private void Update()
     {
         CheckHealth();
+
+        currentHealthText.text = currentTowerHealth.ToString();
     }
 
     private void EnemySpawner(string value)
@@ -101,7 +107,7 @@ public class TowerManager : BaseAttackController
 
     public void TowerHýtAnimation()
     {
-        transform.DOScaleX(20, 0.1f).OnComplete(() =>
+        transform.DOScaleX(20.2f, 0.1f).OnComplete(() =>
         {
             transform.DOScaleX(19.86586f, 0.1f);
         });

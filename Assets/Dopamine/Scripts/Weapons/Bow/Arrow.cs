@@ -19,7 +19,7 @@ public class Arrow : MonoBehaviour
     {
         if(nearestTarget != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, nearestTarget.position + new Vector3(nearestTarget.position.x, 1, nearestTarget.position.z), throwSpeed * Time.deltaTime);     
+            transform.position = Vector3.MoveTowards(transform.position, nearestTarget.position + new Vector3(0,1,0), throwSpeed * Time.deltaTime);     
         }
         else
         {

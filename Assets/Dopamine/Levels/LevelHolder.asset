@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d257f2e1ef180b940ad26a969d04e8fe, type: 3}
+  m_Name: LevelHolder
+  m_EditorClassIdentifier: 
+  levels:
+  - level: {fileID: 7308039444851374464, guid: d4dea1dc102839c4a9bae57f32aadd36, type: 3}
+    difficulty:
+      maxLevelNumberOfEnemies: 0
+      warrior: 1
+      archer: 1
+      giant: 1
+  - level: {fileID: 3038355202782550884, guid: 621e7d15f4a9562428fd8cc5069d690a, type: 3}
+    difficulty:
+      maxLevelNumberOfEnemies: 0
+      warrior: 0
+      archer: 0
+      giant: 1

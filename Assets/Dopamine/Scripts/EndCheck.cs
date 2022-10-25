@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EndCheck : MonoBehaviour
 {
@@ -8,9 +9,13 @@ public class EndCheck : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Game Over!");
+            GameManager.Instance.FailLevel();
 
-            Time.timeScale = 0f;
-        }
+            for (int i = 0; i < GameManager.Instance.enemyList.Count; i++)
+            {
+                GameManager.Instance.enemyList[i].GetComponent<NavMeshAgent>().speed = 0f;
+                GameManager.Instance.enemyList[i].GetComponentInChildren<Animator>().enabled = false;
+            }
+        }   
     }
 }

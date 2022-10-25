@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public enum GameState
 {
     DEFAULT,
@@ -36,12 +36,14 @@ public class GameManager : Singleton<GameManager>
     public GameObject upgradeManagerPanel;
     public GameObject cardPanel;
     public GameObject startButton;
+    public GameObject restartButton;
+    public GameObject nextLevelButton;
     public GameObject moneyPanel;
     public Text currentMoneyText;
 
     private void Start()
     {
-       //
+        GetLevelValues();        
     }
 
     private void Update()
@@ -65,6 +67,37 @@ public class GameManager : Singleton<GameManager>
 
         moneyPanel.SetActive(false);
     }   
+
+    public void FailLevel()
+    {
+        gameState = GameState.FAIL;
+
+        cardPanel.SetActive(false);
+
+        restartButton.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        string currentSceneLevel = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneLevel);
+    }
+
+    public void NextLevel() 
+    {
+        int currentLevel;
+        currentLevel = PlayerPrefs.GetInt("CurrentLevel");
+        currentLevel++;
+        PlayerPrefs.SetInt("CurrentLevel", currentLevel);
+
+        RestartGame();
+    }
+
+    public void GetLevelValues()
+    {
+        TowerManager.Instance.levelDifficulty = LevelManager.Instance.levelSOTemplate.levels[PlayerPrefs.GetInt("CurrentLevel")].difficulty;
+    }
+
     public void MoneySpendAnimation()
     {
         moneyPanel.transform.DOScale(1.02f, 0.1f).OnComplete(() => 

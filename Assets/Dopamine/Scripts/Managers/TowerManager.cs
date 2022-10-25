@@ -90,6 +90,10 @@ public class TowerManager : BaseAttackController
 
             GameManager.Instance.levelComplete = true;
 
+            GameManager.Instance.nextLevelButton.SetActive(true);
+
+            GameManager.Instance.cardPanel.SetActive(false);
+
             Debug.Log("You Won!");
 
         }

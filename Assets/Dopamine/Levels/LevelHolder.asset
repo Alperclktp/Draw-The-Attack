@@ -15,13 +15,13 @@ MonoBehaviour:
   levels:
   - level: {fileID: 7308039444851374464, guid: d4dea1dc102839c4a9bae57f32aadd36, type: 3}
     difficulty:
-      maxLevelNumberOfEnemies: 0
+      maxLevelNumberOfEnemies: 1
+      warrior: 1
+      archer: 0
+      giant: 0
+  - level: {fileID: 4075675610120421353, guid: 621e7d15f4a9562428fd8cc5069d690a, type: 3}
+    difficulty:
+      maxLevelNumberOfEnemies: 3
       warrior: 1
       archer: 1
-      giant: 1
-  - level: {fileID: 3038355202782550884, guid: 621e7d15f4a9562428fd8cc5069d690a, type: 3}
-    difficulty:
-      maxLevelNumberOfEnemies: 0
-      warrior: 0
-      archer: 0
       giant: 1

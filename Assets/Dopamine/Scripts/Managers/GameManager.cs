@@ -12,7 +12,6 @@ public enum GameState
     FAIL,
     COMPLATE
 }
-
 public class GameManager : Singleton<GameManager>
 {
     public List<GameObject> soldierList = new List<GameObject>();
@@ -39,6 +38,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject restartButton;
     public GameObject nextLevelButton;
     public GameObject moneyPanel;
+
     public Text currentMoneyText;
 
     private void Start()
@@ -75,6 +75,9 @@ public class GameManager : Singleton<GameManager>
         cardPanel.SetActive(false);
 
         restartButton.SetActive(true);
+
+        TowerManager.Instance.canSpawn = false;
+
     }
 
     public void RestartGame()
@@ -104,5 +107,10 @@ public class GameManager : Singleton<GameManager>
         {
             moneyPanel.transform.DOScale(1f, 0.1f);
         });
+    }
+
+    public void DecreaseMoney(int amount)
+    {
+        currentMoney -= amount;
     }
 }

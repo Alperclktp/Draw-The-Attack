@@ -16,7 +16,7 @@ MonoBehaviour:
   - level: {fileID: 7308039444851374464, guid: d4dea1dc102839c4a9bae57f32aadd36, type: 3}
     difficulty:
       maxLevelNumberOfEnemies: 1
-      warrior: 1
+      warrior: 10
       archer: 0
       giant: 0
   - level: {fileID: 4075675610120421353, guid: 621e7d15f4a9562428fd8cc5069d690a, type: 3}

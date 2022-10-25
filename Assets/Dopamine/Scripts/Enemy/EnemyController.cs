@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class SoldierController : BaseAttackController
+public class EnemyController : BaseAttackController
 {
-    [Space(10)] public CardSO cardSO;
+    [Space(10)] public EnemyCardSO enemyCardSO;
 
     [HideInInspector] public Animator anim;
 
@@ -13,21 +14,29 @@ public class SoldierController : BaseAttackController
 
     [SerializeField] private bool canMove;
     [SerializeField] private bool canAttack;
-    public bool canGoTower;
+    public bool canGoEndLine;
 
     [Header("Character Stats")]
     public float currentHealth;
-    [SerializeField] private float currentSpeed;
+    public float currentSpeed;
 
     [Header("Follow Settings")]
     public float sensingDistance;
     public float stoppingDistance;
     public float lookRotateSpeed;
 
-    public override string damageableID { get { return typeof(SoldierController).Name; } }
+    public int amountToGiveMana;
+
+    [Header("UI")]
+    public GameObject enemyCanvas;
+    //public Text giveToManaCountText;
+
+    public override string damageableID { get { return typeof(EnemyController).Name; } }
 
     private void Awake()
     {
+        Upgrade();
+
         GetCardData();
 
         anim = GetComponentInChildren<Animator>();
@@ -38,60 +47,69 @@ public class SoldierController : BaseAttackController
 
         agent.stoppingDistance = stoppingDistance;
 
+        //giveToManaCountText.text = "+" + amountToGiveMana.ToString();
+
     }
 
     private void Update()
     {
-        if (!GameManager.Instance.levelComplete)
-        {
-            GetClosesEnemy();
-        }
-        else
-        {
-            TestWin(); //Test function
-        }
+        GetClosesSoldier();
 
         if (nearestTarget != null)
         {
-            FollowTarget();
+            FollowSoldier();
         }
         else
         {
-            if (!GameManager.Instance.levelComplete)
-            {
-                MoveTower();
-            }
+            MoveEndLine();
         }
 
         CheckHealth();
 
-        InýtAnimation();
+        CheckSoldierList();
 
-        CheckEnemyList();
+        InýtAnimation();
     }
 
-    private void MoveTower()
+    private void OnEnable()
     {
-        agent.SetDestination(new Vector3(GameManager.Instance.towerPosition.position.x, 0, GameManager.Instance.towerPosition.position.z));
+        EventManager.onUpgrade += Upgrade;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.onUpgrade -= Upgrade;
+    }
+
+    public void Upgrade()
+    {
+        enemyCardSO.attackDamage += enemyCardSO.powerAdd * UpgradeManager.Instance.upgradeCount;
+        enemyCardSO.health += (int)enemyCardSO.powerHealthAdd * UpgradeManager.Instance.upgradeCount;
+        enemyCardSO.movementSpeed += enemyCardSO.powerSpeedAdd * UpgradeManager.Instance.upgradeCount;
+    }
+
+    private void MoveEndLine()
+    {
+        //transform.position = Vector3.MoveTowards(transform.position, GameManager.Instance.endLinePosition.position, currentSpeed * Time.deltaTime);
+
+        agent.SetDestination(GameManager.Instance.failLinePosition.position);
 
         agent.isStopped = false;
 
-        agent.stoppingDistance = stoppingDistance;
-
         canAttack = false;
         canMove = true;
-        canGoTower = true;
+        canGoEndLine = true;
 
-        LookAtTower();
+        LookAtEndPosition();
     }
 
-    private Transform GetClosesEnemy()
+    private Transform GetClosesSoldier()
     {
         float minDist = sensingDistance;
 
         Vector3 currentPosition = transform.position;
 
-        foreach (GameObject obj in GameManager.Instance.enemyList)
+        foreach (GameObject obj in GameManager.Instance.soldierList)
         {
             float dist = Vector3.Distance(obj.transform.position, currentPosition);
 
@@ -108,74 +126,85 @@ public class SoldierController : BaseAttackController
     {
         if (currentHealth <= 0)
         {
-            DestroySoldier();
+            DestroyEnemy();
 
-            RemoveSoldierFromlist();
+            RemoveEnemyFromList();
+
+            AddToMana(amountToGiveMana);
         }
     }
 
-    private void DestroySoldier()
+    private void DestroyEnemy()
     {
-        Destroy(VFXManager.SpawnEffect(VFXType.EXPLOSION_EFFECT, transform.position + new Vector3(0, 1, 0), Quaternion.identity), 1);
+        Destroy(VFXManager.SpawnEffect(VFXType.EXPLOSION_EFFECT, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity), 1);
 
         Destroy(this.gameObject);
     }
 
-    private void RemoveSoldierFromlist()
+    private void RemoveEnemyFromList()
     {
-        GameManager.Instance.soldierList.Remove(this.gameObject);
+        GameManager.Instance.enemyList.Remove(this.gameObject);
     }
 
-    private void FollowTarget()
+    private void AddToMana(int amount)
+    {
+        CardManager.Instance.currentMana += amount;
+
+        //CardManager.Instance.currentMana += Mathf.Lerp(CardManager.Instance.currentMana, amount, Time.deltaTime);
+
+        Destroy(Instantiate(enemyCanvas, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity), 1);
+    }
+
+    private void FollowSoldier()
     {
         if (nearestTarget != null)
         {
-            agent.stoppingDistance = stoppingDistance;
-
-            if (Vector3.Distance(transform.position, new Vector3(nearestTarget.position.x, transform.position.y, nearestTarget.position.z)) > stoppingDistance)
+            if (Vector3.Distance(transform.position, nearestTarget.position) >= agent.stoppingDistance)
             {
                 //transform.position = Vector3.MoveTowards(transform.position, nearestTarget.position, currentSpeed * Time.deltaTime);
 
                 agent.SetDestination(nearestTarget.position);
 
-                canMove = true;
-                canGoTower = false;
                 canAttack = false;
+                canGoEndLine = false;
+                canMove = true;
 
-                LookAtEnemy();
+                LookAtSoldier();
             }
             else
             {
-                LookAtEnemy();
+                LookAtSoldier();
 
                 canMove = false;
-                canGoTower = false;
+                canGoEndLine = false;
                 canAttack = true;
                 agent.isStopped = true;
             }
         }
-
+        
         /*
         agent.SetDestination(nearestTarget.position);
 
         if ((transform.position - nearestTarget.position).magnitude < agent.stoppingDistance)
         {
-            LookAtEnemy();
+            LookAtSoldier();
 
             canMove = false;
+            canGoEndLine = false;
             canAttack = true;
         }
         else
         {
-            LookAtEnemy();
+            LookAtSoldier();
 
             canAttack = false;
+            canGoEndLine = true;
             canMove = true;
         }
         */
     }
 
-    private void LookAtEnemy()
+    private void LookAtSoldier()
     {
         //transform.LookAt(nearestTarget);
 
@@ -184,9 +213,9 @@ public class SoldierController : BaseAttackController
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * lookRotateSpeed);
     }
 
-    private void LookAtTower()
+    private void LookAtEndPosition()
     {
-        transform.LookAt(GameManager.Instance.towerPosition);
+        transform.LookAt(GameManager.Instance.failLinePosition);
     }
 
     private void InýtAnimation()
@@ -212,29 +241,23 @@ public class SoldierController : BaseAttackController
         }
     }
 
-    private void CheckEnemyList()
+    private void CheckSoldierList()
     {
-        if (GameManager.Instance.enemyList.Count <= 0)
+        if (GameManager.Instance.soldierList.Count <= 0)
         {
-
+        
         }
-    }
-
-    private void TestWin() //Test fuction.
-    {
-        anim.Play("Win");
-        agent.isStopped = true;
     }
 
     private void GetCardData()
     {
-        currentAttackDamage = cardSO.attackDamage;
+        currentAttackDamage = enemyCardSO.attackDamage;
 
-        currentPerAttackSpeed = cardSO.AttackPerSpeed;
+        currentPerAttackSpeed = enemyCardSO.AttackPerSpeed;
 
-        currentSpeed = cardSO.MovementSpeed;
+        currentSpeed = enemyCardSO.movementSpeed;
 
-        currentHealth = cardSO.health;
+        currentHealth = enemyCardSO.health;
     }
 
     public override void TakeDamage(float damage)
@@ -242,3 +265,4 @@ public class SoldierController : BaseAttackController
         currentHealth -= damage;
     }
 }
+

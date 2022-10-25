@@ -5,7 +5,7 @@ using NaughtyAttributes;
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class TowerManager : BaseAttackController  
+public class TowerManager : BaseAttackController
 {
     public static TowerManager Instance;
 
@@ -50,33 +50,37 @@ public class TowerManager : BaseAttackController
         AddToEnemyList(obj);
 
     }
+
     public IEnumerator IEEnemySpawner()
     {
-        for (int i = 0; i < levelDifficulty.Warrior; i++)
+        if (canSpawn)
         {
-            yield return new WaitForSeconds(secondsBetweenSpawn);
+            for (int i = 0; i < levelDifficulty.Warrior; i++)
+            {
+                yield return new WaitForSeconds(secondsBetweenSpawn);
 
-            EnemySpawner("Warrior");
+                EnemySpawner("Warrior");
 
-            //if
-        }
+                //if
+            }
 
-        for (int i = 0; i < levelDifficulty.Archer; i++)
-        {
-            yield return new WaitForSeconds(secondsBetweenSpawn);
+            for (int i = 0; i < levelDifficulty.Archer; i++)
+            {
+                yield return new WaitForSeconds(secondsBetweenSpawn);
 
-            EnemySpawner("Archer");
+                EnemySpawner("Archer");
 
-            //if()
-        }
+                //if()
+            }
 
-        for (int i = 0; i < levelDifficulty.Giant; i++)
-        {
-            yield return new WaitForSeconds(secondsBetweenSpawn);
+            for (int i = 0; i < levelDifficulty.Giant; i++)
+            {
+                yield return new WaitForSeconds(secondsBetweenSpawn);
 
-            EnemySpawner("Giant");
+                EnemySpawner("Giant");
 
-            //if()
+                //if()
+            }
         }
     }
 

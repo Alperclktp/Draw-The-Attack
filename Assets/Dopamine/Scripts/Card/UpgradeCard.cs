@@ -19,10 +19,10 @@ public class UpgradeCard : MonoBehaviour
 
     [SerializeField] private Image moneyIcon;
 
+    [Header("Read Only Values")]
     [ReadOnly] [SerializeField] private int currentLevel = 1;
     [ReadOnly] [SerializeField] private int currentHealth;
     [ReadOnly] [SerializeField] private float currentAttackDamage;
-
     [ReadOnly] [SerializeField] private Color moneyDefaultColor;
     [ReadOnly] [SerializeField] private Color moneyAlphaColor;
 
@@ -54,7 +54,7 @@ public class UpgradeCard : MonoBehaviour
 
     public void UpgradeCardButton() 
     {
-        UpgradeManager.Instance.upgradeCount += 1;
+        UpgradeManager.Instance.IncreaseUpgradeCount();
 
         EventManager.onUpgrade?.Invoke();
 
@@ -66,7 +66,7 @@ public class UpgradeCard : MonoBehaviour
 
         GameManager.Instance.MoneySpendAnimation();
 
-        GameManager.Instance.currentMoney -= neededUpgradeMoney;
+        GameManager.Instance.DecreaseMoney(neededUpgradeMoney);
 
         neededUpgradeMoney += 15;
 

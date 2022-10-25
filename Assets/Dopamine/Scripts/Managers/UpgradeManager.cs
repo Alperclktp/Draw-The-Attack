@@ -5,4 +5,8 @@ using UnityEngine;
 public class UpgradeManager : Singleton<UpgradeManager>
 {
     public int upgradeCount;
+    public void IncreaseUpgradeCount()
+    {
+        upgradeCount += 1;
+    }
 }

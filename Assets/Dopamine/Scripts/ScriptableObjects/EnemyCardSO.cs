@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Enemy Card", menuName = "Enemy Card/Create Enemy Card", order = 1)]
+[CreateAssetMenu(fileName = "New Enemy Card", menuName = "Card/Create Enemy Card", order = 1)]
 public class EnemyCardSO : ScriptableObject
 {
     [Header("Prefab")]
@@ -33,5 +33,5 @@ public class EnemyCardSO : ScriptableObject
     [Header("Power-up Per Upgrade")]
     public float powerAdd;
     public float powerHealthAdd;
-    public float popwerSpeedAdd;
+    public float powerSpeedAdd;
 }

@@ -10,7 +10,6 @@ public class Card : MonoBehaviour
     [HideInInspector] public GameObject cardObj;
 
     [HideInInspector] public GameObject cardPrefab;
-
     public bool IsSelected { get; set; }
 
     [Header("Card Data")]

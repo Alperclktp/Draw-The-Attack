@@ -9,12 +9,13 @@ public class EndCheck : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            GameManager.Instance.enemyList.RemoveAt(0);
+
             GameManager.Instance.FailLevel();
 
             for (int i = 0; i < GameManager.Instance.enemyList.Count; i++)
             {
-                GameManager.Instance.enemyList[i].GetComponent<NavMeshAgent>().speed = 0f;
-                GameManager.Instance.enemyList[i].GetComponentInChildren<Animator>().enabled = false;
+                Destroy(GameManager.Instance.enemyList[i].gameObject);
             }
         }   
     }

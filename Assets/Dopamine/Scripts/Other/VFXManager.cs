@@ -61,6 +61,7 @@ public static class VFXManager
 }
 
 [System.Serializable]
+
 public class VFXGroup
 {
     public VFXType type;

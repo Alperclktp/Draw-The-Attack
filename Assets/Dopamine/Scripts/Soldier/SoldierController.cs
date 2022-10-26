@@ -30,9 +30,9 @@ public class SoldierController : BaseAttackController
     {
         GetCardData();
 
-        AnimationOffset();
-
         anim = GetComponentInChildren<Animator>();
+
+        AnimationOffset();
 
         agent = GetComponent<NavMeshAgent>();
 

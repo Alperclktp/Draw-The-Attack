@@ -23,4 +23,4 @@ MonoBehaviour:
   health: 125
   powerAdd: 0.5
   powerHealthAdd: 0.5
-  popwerSpeedAdd: 0
+  powerSpeedAdd: 0

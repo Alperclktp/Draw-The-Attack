@@ -10,7 +10,7 @@ public class CardManager : Singleton<CardManager>
 
     [Header("Mana Settings")]
     public float currentMana;
-    [SerializeField] private int maxMana;
+    public int maxMana;
 
     [Space(5)]
     [SerializeField] private Card selectedCard;

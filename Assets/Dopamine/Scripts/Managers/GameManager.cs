@@ -48,7 +48,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        GetLevelValues();        
+        GetLevelHardness();        
     }
 
     private void Update()
@@ -113,10 +113,9 @@ public class GameManager : Singleton<GameManager>
         currentMoney = PlayerPrefs.GetInt("CurrentMoney");
     }
 
-
-    public void GetLevelValues()
+    public void GetLevelHardness()
     {
-        TowerManager.Instance.levelDifficulty = LevelManager.Instance.levelSOTemplate.levels[PlayerPrefs.GetInt("CurrentLevel")].difficulty;
+        TowerManager.Instance.levelDifficulty.SetHardness(LevelManager.Instance.levelSOTemplate.levels[PlayerPrefs.GetInt("CurrentLevel")].hardness);
     }
 
     public void MoneySpendAnimation()

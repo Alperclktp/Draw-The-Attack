@@ -171,4 +171,76 @@ public class LevelDifficulty
             }
         }
     }
+
+    public void SetHardness(int hardness)
+    {
+        CardManager cardManager = CardManager.Instance;
+
+        switch (hardness)
+        {
+            case 1:
+                warrior = 10; 
+
+                warrior = cardManager.maxMana / cardManager.cardList[0].currentManaCost;
+                cardManager.cardList[0].cardSO.attackDamage = cardManager.cardList[0].cardSO.health / 3;
+                cardManager.cardList[0].cardSO.health = (int)cardManager.cardList[0].cardSO.attackDamage;
+               
+                archer = 0; 
+
+                archer = cardManager.maxMana / cardManager.cardList[1].currentManaCost;
+                cardManager.cardList[1].cardSO.attackDamage = cardManager.cardList[1].cardSO.health / 3;
+                cardManager.cardList[1].cardSO.health = (int)cardManager.cardList[1].cardSO.attackDamage;
+
+                giant = 1; 
+
+                giant = (int)(cardManager.maxMana / cardManager.cardList[2].currentManaCost * 0.5f);
+                cardManager.cardList[2].cardSO.attackDamage = cardManager.cardList[2].cardSO.health / 2;
+                cardManager.cardList[2].cardSO.health = (int)cardManager.cardList[2].cardSO.attackDamage;
+
+                break;
+            case 2:
+                warrior = 15;
+
+                warrior = cardManager.maxMana / cardManager.cardList[0].currentManaCost;
+                cardManager.cardList[0].cardSO.attackDamage = cardManager.cardList[0].cardSO.health / 2;
+                cardManager.cardList[0].cardSO.health = (int)((int)cardManager.cardList[0].cardSO.attackDamage * 1.5f);
+
+                archer = 1;
+
+                warrior = (int)(cardManager.maxMana / cardManager.cardList[1].currentManaCost * 0.5f);
+                cardManager.cardList[1].cardSO.attackDamage = cardManager.cardList[1].cardSO.health / 2;
+                cardManager.cardList[1].cardSO.health = (int)((int)cardManager.cardList[1].cardSO.attackDamage * 1.5f);
+
+                giant = 3;
+
+                warrior = (int)(cardManager.maxMana / cardManager.cardList[2].currentManaCost * 0.5f);
+                cardManager.cardList[2].cardSO.attackDamage = cardManager.cardList[2].cardSO.health / 2;
+                cardManager.cardList[2].cardSO.health = (int)((int)cardManager.cardList[2].cardSO.attackDamage * 1.5f);
+
+                break;
+            case 3:
+                warrior = 25;
+
+                warrior = cardManager.maxMana / cardManager.cardList[0].currentManaCost;
+                cardManager.cardList[0].cardSO.attackDamage = cardManager.cardList[0].cardSO.health;
+                cardManager.cardList[0].cardSO.health = (int)cardManager.cardList[0].cardSO.attackDamage * 2;
+
+                archer = 3;
+
+                warrior = (int)(cardManager.maxMana / cardManager.cardList[1].currentManaCost * 0.5f);
+                cardManager.cardList[1].cardSO.attackDamage = cardManager.cardList[1].cardSO.health;
+                cardManager.cardList[1].cardSO.health = (int)cardManager.cardList[1].cardSO.attackDamage * 2;
+
+                giant = 4;
+
+                giant = (int)(cardManager.maxMana / cardManager.cardList[2].currentManaCost * 0.5f);
+                cardManager.cardList[2].cardSO.attackDamage = cardManager.cardList[2].cardSO.health;
+                cardManager.cardList[2].cardSO.health = (int)cardManager.cardList[2].cardSO.attackDamage * 2;
+
+
+                break;
+            default:
+                break;
+        }
+    }
 }

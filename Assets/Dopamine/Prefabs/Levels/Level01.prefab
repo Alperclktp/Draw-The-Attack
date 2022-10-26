@@ -59,7 +59,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 723bf65c15241e0408f3a6b1da13da22, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: fe1e6cd60b6f82949b3f57f95db30bcc, type: 2}
 --- !u!1 &1706335612851732450
 GameObject:
   m_ObjectHideFlags: 0
@@ -9820,8 +9820,8 @@ MonoBehaviour:
   - {fileID: 1706335614181255315}
   - {fileID: 1706335614712566506}
   - {fileID: 1706335613762411864}
-  currentMana: 500
-  maxMana: 500
+  currentMana: 100
+  maxMana: 100
   selectedCard: {fileID: 0}
   soldierSpawnHolder: {fileID: 7308039443800146903}
   manaSliderBar: {fileID: 7308039444766247270}

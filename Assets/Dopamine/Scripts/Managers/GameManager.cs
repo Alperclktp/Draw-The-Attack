@@ -41,6 +41,11 @@ public class GameManager : Singleton<GameManager>
 
     public Text currentMoneyText;
 
+    private void Awake()
+    {
+        GetMoney();
+    }
+
     private void Start()
     {
         GetLevelValues();        
@@ -49,6 +54,8 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         currentMoneyText.text = "$" + currentMoney.ToString();
+
+        SetMoney();
     }
 
     public void StartGame() //Test
@@ -96,6 +103,17 @@ public class GameManager : Singleton<GameManager>
         RestartGame();
     }
 
+    public void SetMoney()
+    {
+        PlayerPrefs.SetInt("CurrentMoney", currentMoney);
+    }
+
+    public void GetMoney()
+    {
+        currentMoney = PlayerPrefs.GetInt("CurrentMoney");
+    }
+
+
     public void GetLevelValues()
     {
         TowerManager.Instance.levelDifficulty = LevelManager.Instance.levelSOTemplate.levels[PlayerPrefs.GetInt("CurrentLevel")].difficulty;
@@ -112,5 +130,7 @@ public class GameManager : Singleton<GameManager>
     public void DecreaseMoney(int amount)
     {
         currentMoney -= amount;
+
+        SetMoney();
     }
 }

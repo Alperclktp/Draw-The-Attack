@@ -41,7 +41,8 @@ public class LevelManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
 
         GameManager.Instance.RestartGame();
-    }
 
+        GameManager.Instance.currentMoney = 1000;
+    }
 } 
 

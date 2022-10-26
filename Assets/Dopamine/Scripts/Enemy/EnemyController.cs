@@ -39,6 +39,8 @@ public class EnemyController : BaseAttackController
 
         GetCardData();
 
+        AnimationOffset();
+
         anim = GetComponentInChildren<Animator>();
 
         agent = GetComponent<NavMeshAgent>();
@@ -239,6 +241,11 @@ public class EnemyController : BaseAttackController
             anim.SetBool("Walk", true);
             anim.SetBool("Attack", false);
         }
+    }
+
+    private void AnimationOffset()
+    {
+        anim.SetFloat("Offset", Random.Range(0f, 1f));
     }
 
     private void CheckSoldierList()

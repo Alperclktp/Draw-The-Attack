@@ -101,13 +101,13 @@ AnimatorState:
   m_Mirror: 0
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
+  m_CycleOffsetParameterActive: 1
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 4b18c3ad60ed88c43b0cdf0ef4b4751f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
+  m_CycleOffsetParameter: Offset
   m_TimeParameter: 
 --- !u!1102 &-915149737648872398
 AnimatorState:
@@ -128,13 +128,13 @@ AnimatorState:
   m_Mirror: 0
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
+  m_CycleOffsetParameterActive: 1
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: b661fd9e793add940b8a96600b3957c6, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
+  m_CycleOffsetParameter: Offset
   m_TimeParameter: 
 --- !u!1101 &-373993094637919947
 AnimatorStateTransition:
@@ -175,13 +175,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: Offset
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -213,13 +219,13 @@ AnimatorState:
   m_Mirror: 0
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
+  m_CycleOffsetParameterActive: 1
   m_TimeParameterActive: 0
   m_Motion: {fileID: 4821609917503249430, guid: 6f59e7b1644fb9d4d95ba6a2f1a5dfd2, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
+  m_CycleOffsetParameter: Offset
   m_TimeParameter: 
 --- !u!1102 &2172130731910614160
 AnimatorState:
@@ -241,13 +247,13 @@ AnimatorState:
   m_Mirror: 0
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
+  m_CycleOffsetParameterActive: 1
   m_TimeParameterActive: 0
   m_Motion: {fileID: -203655887218126122, guid: 753b565483828124aba6c7ede46bc069, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
+  m_CycleOffsetParameter: Offset
   m_TimeParameter: 
 --- !u!1101 &3363148118394083955
 AnimatorStateTransition:

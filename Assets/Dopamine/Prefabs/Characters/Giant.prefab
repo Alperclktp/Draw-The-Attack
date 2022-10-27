@@ -1033,15 +1033,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nearestTarget: {fileID: 0}
-  currentAttackDamage: 0
+  currentAttackDamage: 50
   currentPerAttackSpeed: 0
   cardSO: {fileID: 11400000, guid: 9b0ae091cbec1904191f9f59b16f5f6d, type: 2}
   anim: {fileID: 0}
   canMove: 1
   canAttack: 0
   canGoTower: 0
-  currentHealth: 0
-  currentSpeed: 0
+  currentHealth: 200
+  currentSpeed: 1.5
   sensingDistance: 5
   stoppingDistance: 1.5
   lookRotateSpeed: 10

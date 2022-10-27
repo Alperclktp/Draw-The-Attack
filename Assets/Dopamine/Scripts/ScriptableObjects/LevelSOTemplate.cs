@@ -13,6 +13,7 @@ public class LevelController
 {
     public GameObject level;
 
+    [Range(0,3)]
     public int hardness;
 
     //public bool isLoop;

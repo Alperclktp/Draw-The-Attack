@@ -13,21 +13,29 @@ public class UpgradeCard : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] private Text currentLevelText;
+    [SerializeField] private Text currentLevelBoxText;
+    [SerializeField] private Text nextLevelBoxText;
     [SerializeField] private Text currentHealthText;
     [SerializeField] private Text currentAttackDamageText;
     [SerializeField] private Text neededUpgradeMoneyText;
 
+    [SerializeField] private Image artWorkImage;
     [SerializeField] private Image moneyIcon;
 
     [Header("Read Only Values")]
     [ReadOnly] [SerializeField] private int currentLevel = 1;
+    [ReadOnly] [SerializeField] private int nextLevel;
+    [ReadOnly] [SerializeField] public float levelUpCounter;
     [ReadOnly] [SerializeField] private int currentHealth;
     [ReadOnly] [SerializeField] private float currentAttackDamage;
     [ReadOnly] [SerializeField] private Color moneyDefaultColor;
     [ReadOnly] [SerializeField] private Color moneyAlphaColor;
 
+    [SerializeField] private Image[] levelBoxes;
+
     private void Start()
     {
+        nextLevel += currentLevel +1;
         GetCardData();
     }
 
@@ -36,10 +44,20 @@ public class UpgradeCard : MonoBehaviour
         CheckUpgradeButtonInteractable();
 
         currentLevelText.text = "LEVEL " + cardSO.level.ToString();
+        currentLevelBoxText.text = cardSO.level.ToString();
+        nextLevelBoxText.text = nextLevel.ToString();
         currentHealthText.text = cardSO.health.ToString();
         currentAttackDamageText.text = cardSO.attackDamage.ToString();
 
         neededUpgradeMoneyText.text = neededUpgradeMoney.ToString();
+    
+        if(levelUpCounter <= 0)
+        {
+            for (int i = 0; i < levelBoxes.Length; i++)
+            {
+                levelBoxes[i].GetComponent<Image>().color = Color.white;
+            }
+        }
     }
 
     [Button("Reset Card Level")]
@@ -54,13 +72,26 @@ public class UpgradeCard : MonoBehaviour
 
     public void UpgradeCardButton() 
     {
+        levelUpCounter+= 1;
+
+        if(levelUpCounter >= 3)
+        {
+            LevelUp();
+        }
+
+        for (int i = 0; i < levelUpCounter; i++)
+        {
+            levelBoxes[i].GetComponent<Image>().color = Color.green;
+        }
+
         UpgradeManager.Instance.IncreaseUpgradeCount();
 
         EventManager.onUpgrade?.Invoke();
 
-        cardSO.level += 1;  
+        /*
         cardSO.attackDamage += 10;
         cardSO.health += 10;
+        */
 
         UpgradeCardAnimation();
 
@@ -73,11 +104,23 @@ public class UpgradeCard : MonoBehaviour
         GetCardData();
     }
 
+    private void LevelUp()
+    {
+        cardSO.level += 1;
+        levelUpCounter = 0;
+        nextLevel += 1;
+
+        cardSO.attackDamage += 10;
+        cardSO.health += 10;
+    }
+
     private void GetCardData()
     {
         currentLevel = cardSO.level;
         currentHealth = cardSO.health;
         currentAttackDamage = cardSO.attackDamage;
+
+        artWorkImage.sprite = cardSO.ArtWork;
     }
 
     private void CheckUpgradeButtonInteractable()
@@ -99,9 +142,9 @@ public class UpgradeCard : MonoBehaviour
 
     private void UpgradeCardAnimation()
     {
-        transform.DOScale(1.01f, 0.1f).OnComplete(() =>
+        transform.DOScale(1.17f, 0.1f).OnComplete(() =>
         {
-            transform.DOScale(0.9972509f, 0.1f);
+            transform.DOScale(1.2f, 0.1f);
         });
     }
 

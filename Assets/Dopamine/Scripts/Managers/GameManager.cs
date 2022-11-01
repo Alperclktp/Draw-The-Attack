@@ -82,11 +82,11 @@ public class GameManager : Singleton<GameManager>
     {
         gameState = GameState.FAIL;
 
+        TowerManager.Instance.canSpawn = false;
+
         cardPanel.SetActive(false);
 
         restartButton.SetActive(true);
-
-        TowerManager.Instance.canSpawn = false;
     }
 
     public void RestartGame()

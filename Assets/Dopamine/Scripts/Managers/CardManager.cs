@@ -128,6 +128,10 @@ public class CardManager : Singleton<CardManager>
                         Destroy(VFXManager.SpawnEffect(VFXType.CARD_SPAWN_EFFECT, obj.transform.position + new Vector3(0,1,0),Quaternion.identity),1);
                        
                         Debug.Log("Spawned the: " + selectedCard.name);
+
+                        GameManager.Instance.tutorial = false;
+
+                        GameManager.Instance.Tutorial();
                     }
                 }
             }

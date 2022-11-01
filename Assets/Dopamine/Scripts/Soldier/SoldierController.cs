@@ -72,11 +72,18 @@ public class SoldierController : BaseAttackController
         CheckEnemyList();
     }
 
+    private void LateUpdate()
+    {
+        Vector3 rot = transform.localEulerAngles;
+        rot.x = 0;
+        transform.localEulerAngles = rot;
+    }
+
     private void MoveTower()
     {
         agent.SetDestination(new Vector3(GameManager.Instance.towerPosition.position.x, 0, GameManager.Instance.towerPosition.position.z));
 
-        agent.isStopped = false;
+        //agent.isStopped = false;
 
         agent.stoppingDistance = stoppingDistance;
 
@@ -85,6 +92,14 @@ public class SoldierController : BaseAttackController
         canGoTower = true;
 
         LookAtTower();
+
+        if (Physics.Raycast(transform.position + Vector3.up, Vector3.forward, out RaycastHit hit, 1.5f, LayerMask.GetMask("Soldier"), QueryTriggerInteraction.Ignore)) {
+
+            if (transform.position.x > 0)
+                transform.position += Vector3.right * Time.deltaTime * 0.5f;
+            else
+                transform.position += Vector3.left * Time.deltaTime * 0.5f;
+        }
     }
 
     private Transform GetClosesEnemy()
@@ -97,7 +112,7 @@ public class SoldierController : BaseAttackController
         {
             float dist = Vector3.Distance(obj.transform.position, currentPosition);
 
-            if (dist < minDist)
+            if (dist <= minDist)
             {
                 nearestTarget = obj.transform;
                 minDist = dist;
@@ -153,7 +168,7 @@ public class SoldierController : BaseAttackController
                 canMove = false;
                 canGoTower = false;
                 canAttack = true;
-                agent.isStopped = true;
+                //agent.isStopped = true;
             }
         }
 
@@ -247,5 +262,21 @@ public class SoldierController : BaseAttackController
     public override void TakeDamage(float damage)
     {
         currentHealth -= damage;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out SoldierController soldierController ))
+        {
+            currentSpeed = 5f;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out SoldierController soldierController))
+        {
+            currentSpeed = 2f;
+        }
     }
 }

@@ -38,17 +38,16 @@ public class GameManager : Singleton<GameManager>
     public GameObject restartButton;
     public GameObject nextLevelButton;
     public GameObject moneyPanel;
+    public GameObject spawnAreaIndicator;
 
     public Text currentMoneyText;
+    public Text tapToSpawnText;
+
+    public bool tutorial;
 
     private void Awake()
     {
         GetMoney();
-    }
-
-    private void Start()
-    {
-        GetLevelHardness();        
     }
 
     private void Update()
@@ -58,7 +57,7 @@ public class GameManager : Singleton<GameManager>
         SetMoney();
     }
 
-    public void StartGame() //Test
+    public void StartGame() 
     {
         gameState = GameState.START;
 
@@ -73,7 +72,11 @@ public class GameManager : Singleton<GameManager>
         startButton.SetActive(false);
 
         moneyPanel.SetActive(false);
-    }   
+
+        Tutorial();
+
+        GetLevelHardness();
+    }
 
     public void FailLevel()
     {
@@ -84,7 +87,6 @@ public class GameManager : Singleton<GameManager>
         restartButton.SetActive(true);
 
         TowerManager.Instance.canSpawn = false;
-
     }
 
     public void RestartGame()
@@ -131,5 +133,19 @@ public class GameManager : Singleton<GameManager>
         currentMoney -= amount;
 
         SetMoney();
+    }
+
+    public void Tutorial()
+    {
+        if (tutorial)
+        {
+            tapToSpawnText.gameObject.SetActive(true);
+            spawnAreaIndicator.SetActive(true);
+        }
+        else
+        {
+            tapToSpawnText.gameObject.SetActive(false);
+            spawnAreaIndicator.SetActive(false);
+        }
     }
 }

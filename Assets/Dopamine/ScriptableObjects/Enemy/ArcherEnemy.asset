@@ -20,7 +20,7 @@ MonoBehaviour:
   attackDamage: 10
   attackPerSpeed: 3
   movementSpeed: 2
-  health: 100
+  health: 125
   powerAdd: 0.5
   powerHealthAdd: 0.5
-  popwerSpeedAdd: 0
+  powerSpeedAdd: 0

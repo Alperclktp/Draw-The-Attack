@@ -967,8 +967,8 @@ GameObject:
   - component: {fileID: 7491645478653324990}
   - component: {fileID: 4140087404702787996}
   - component: {fileID: 4140087404702787997}
-  - component: {fileID: 8777146497813410137}
   - component: {fileID: 5398468078149935430}
+  - component: {fileID: 8777146497813410137}
   m_Layer: 7
   m_Name: ArcherEnemy
   m_TagString: Enemy
@@ -999,7 +999,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7491645478653324961}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
@@ -1014,13 +1014,40 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7491645478653324961}
-  m_Material: {fileID: 13400000, guid: 51984e9b42612bf4ab8f62cab84ccf8b, type: 2}
+  m_Material: {fileID: 13400000, guid: 2d447451d05ae5842b97449add206083, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2561403
   m_Height: 1.7076713
   m_Direction: 1
   m_Center: {x: -0.004781544, y: 0.8128657, z: 0}
+--- !u!114 &5398468078149935430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7491645478653324961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc65b1684a84a740834a2cc2ba49f2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nearestTarget: {fileID: 0}
+  currentAttackDamage: 25
+  currentPerAttackSpeed: 0
+  enemyCardSO: {fileID: 11400000, guid: 2339a5cbc4e78784c80cbe78ea0d0006, type: 2}
+  anim: {fileID: 0}
+  canMove: 1
+  canAttack: 0
+  canGoEndLine: 1
+  currentHealth: 125
+  currentSpeed: 2
+  sensingDistance: 8
+  stoppingDistance: 6
+  lookRotateSpeed: 10
+  amountToGiveMana: 1
+  enemyCanvas: {fileID: 1601195290463684104, guid: eabbe357fffd67246a8600dcb024ca0a, type: 3}
 --- !u!195 &8777146497813410137
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1043,33 +1070,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5398468078149935430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7491645478653324961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cc65b1684a84a740834a2cc2ba49f2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nearestTarget: {fileID: 0}
-  currentAttackDamage: 25
-  currentPerAttackSpeed: 0
-  enemyCardSO: {fileID: 11400000, guid: 2339a5cbc4e78784c80cbe78ea0d0006, type: 2}
-  anim: {fileID: 0}
-  canMove: 1
-  canAttack: 0
-  canGoEndLine: 1
-  currentHealth: 125
-  currentSpeed: 3
-  sensingDistance: 10
-  stoppingDistance: 8
-  lookRotateSpeed: 10
-  amountToGiveMana: 1
-  enemyCanvas: {fileID: 1601195290463684104, guid: eabbe357fffd67246a8600dcb024ca0a, type: 3}
 --- !u!1 &7609799891199945350
 GameObject:
   m_ObjectHideFlags: 0

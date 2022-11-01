@@ -85,9 +85,13 @@ public class EnemyController : BaseAttackController
 
     public void Upgrade()
     {
-        enemyCardSO.attackDamage += enemyCardSO.powerAdd * UpgradeManager.Instance.upgradeCount;
+        //enemyCardSO.attackDamage = so.attackDamage / GameManager.Instance."katman deðeri"
+
+        /*
+        enemyCardSO.attackDamage = enemyCardSO.powerAdd * UpgradeManager.Instance.upgradeCount;
         enemyCardSO.health += (int)enemyCardSO.powerHealthAdd * UpgradeManager.Instance.upgradeCount;
         enemyCardSO.movementSpeed += enemyCardSO.powerSpeedAdd * UpgradeManager.Instance.upgradeCount;
+        */
     }
 
     private void MoveEndLine()
@@ -96,7 +100,7 @@ public class EnemyController : BaseAttackController
 
         agent.SetDestination(GameManager.Instance.failLinePosition.position);
 
-        agent.isStopped = false;
+        //agent.isStopped = false;
 
         canAttack = false;
         canMove = true;
@@ -180,7 +184,7 @@ public class EnemyController : BaseAttackController
                 canMove = false;
                 canGoEndLine = false;
                 canAttack = true;
-                agent.isStopped = true;
+                //agent.isStopped = true;
             }
         }
         
@@ -270,6 +274,22 @@ public class EnemyController : BaseAttackController
     public override void TakeDamage(float damage)
     {
         currentHealth -= damage;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out EnemyController enemyController))
+        {
+            currentSpeed = 5f;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent(out EnemyController enemyController))
+        {
+            currentSpeed = 2f;
+        }
     }
 }
 

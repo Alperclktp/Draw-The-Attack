@@ -18,8 +18,8 @@ MonoBehaviour:
   name: ARCHER
   description: An unstoppable archer!
   manaCost: 6
-  attackDamage: 15
+  attackDamage: 25
   attackPerSpeed: 3
   movementSpeed: 2
-  health: 100
+  health: 125
   artwork: {fileID: 21300000, guid: a4efd78c5f85717489bad70c3f139dfe, type: 3}

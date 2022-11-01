@@ -17,8 +17,14 @@ public class LevelManager : MonoBehaviour
         {
             int tmpLevelCount = PlayerPrefs.GetInt("CurrentLevel");
 
-            if (tmpLevelCount < levelSOTemplate.levels.Count)
+            while (tmpLevelCount < levelSOTemplate.levels.Count && !levelSOTemplate.levels[tmpLevelCount].isLoop)
             {
+                tmpLevelCount++;
+                PlayerPrefs.SetInt("CurrentLevel", tmpLevelCount);
+            }
+
+            if (tmpLevelCount < levelSOTemplate.levels.Count)
+            {        
                 Instantiate(levelSOTemplate.levels[PlayerPrefs.GetInt("CurrentLevel")].level);
             }
             else
@@ -38,11 +44,9 @@ public class LevelManager : MonoBehaviour
     [Button("Delete Save")]
     public void DeleteSave()
     {
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("CurrentLevel");
 
         GameManager.Instance.RestartGame();
-
-        GameManager.Instance.currentMoney = 1000;
     }
 } 
 

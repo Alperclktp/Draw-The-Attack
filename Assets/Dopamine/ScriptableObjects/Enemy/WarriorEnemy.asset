@@ -17,7 +17,7 @@ MonoBehaviour:
   id: 0
   name: WarriorEnemy
   description: "\t\t\t\t"
-  attackDamage: 25
+  attackDamage: 10
   attackPerSpeed: 3
   movementSpeed: 2
   health: 125

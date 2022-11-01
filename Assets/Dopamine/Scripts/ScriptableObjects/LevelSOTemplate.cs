@@ -16,6 +16,5 @@ public class LevelController
     [Range(0,3)]
     public int hardness;
 
-    //public bool isLoop;
-
+    public bool isLoop;
 }

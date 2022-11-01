@@ -30,8 +30,10 @@ public class EnemyCardSO : ScriptableObject
 
     public int health;
     
+    /*
     [Header("Power-up Per Upgrade")]
     public float powerAdd;
     public float powerHealthAdd;
     public float powerSpeedAdd;
+    */
 }

@@ -17,10 +17,10 @@ MonoBehaviour:
   id: 0
   name: WarriorEnemy
   description: "\t\t\t\t"
-  attackDamage: 50
+  attackDamage: 10
   attackPerSpeed: 2.5
   movementSpeed: 1.5
   health: 250
   powerAdd: 0.5
   powerHealthAdd: 0.5
-  popwerSpeedAdd: 0
+  powerSpeedAdd: 0

@@ -23,3 +23,7 @@ MonoBehaviour:
   movementSpeed: 2
   health: 100
   artwork: {fileID: 21300000, guid: 30bf50c07906db84a9542f00fa2e6be4, type: 3}
+  artWorks:
+  - {fileID: -2294274420075737727, guid: 74a82799c259a2b4e8f9a8cabbd285aa, type: 3}
+  - {fileID: -6828639619141066162, guid: 74a82799c259a2b4e8f9a8cabbd285aa, type: 3}
+  - {fileID: 1869488973861961276, guid: 74a82799c259a2b4e8f9a8cabbd285aa, type: 3}

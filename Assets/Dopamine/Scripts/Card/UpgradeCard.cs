@@ -25,9 +25,11 @@ public class UpgradeCard : MonoBehaviour
     [Header("Read Only Values")]
     [ReadOnly] [SerializeField] private int currentLevel = 1;
     [ReadOnly] [SerializeField] private int nextLevel;
-    [ReadOnly] [SerializeField] public float levelUpCounter;
+    [ReadOnly] [SerializeField] private int levelUpCounter;
     [ReadOnly] [SerializeField] private int currentHealth;
+
     [ReadOnly] [SerializeField] private float currentAttackDamage;
+
     [ReadOnly] [SerializeField] private Color moneyDefaultColor;
     [ReadOnly] [SerializeField] private Color moneyAlphaColor;
 
@@ -104,6 +106,7 @@ public class UpgradeCard : MonoBehaviour
         GetCardData();
     }
 
+
     private void LevelUp()
     {
         cardSO.level += 1;
@@ -112,6 +115,11 @@ public class UpgradeCard : MonoBehaviour
 
         cardSO.attackDamage += 10;
         cardSO.health += 10;
+
+        for (int i = 0; i < 1; i++)
+        {
+            artWorkImage.sprite = cardSO.artWorks[currentLevel -1];
+        }
     }
 
     private void GetCardData()
@@ -120,7 +128,7 @@ public class UpgradeCard : MonoBehaviour
         currentHealth = cardSO.health;
         currentAttackDamage = cardSO.attackDamage;
 
-        artWorkImage.sprite = cardSO.ArtWork;
+        artWorkImage.sprite = cardSO.artWorks[currentLevel - 1];
     }
 
     private void CheckUpgradeButtonInteractable()

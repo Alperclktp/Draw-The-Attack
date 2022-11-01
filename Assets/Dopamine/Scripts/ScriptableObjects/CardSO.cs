@@ -37,4 +37,8 @@ public class CardSO : ScriptableObject
     [Header("Card UI")]
     [SerializeField] private Sprite artwork;
     public Sprite ArtWork { get { return artwork; } }
+
+    public Sprite[] artWorks;
+
+
 }

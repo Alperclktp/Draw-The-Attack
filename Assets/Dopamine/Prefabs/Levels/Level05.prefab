@@ -3015,7 +3015,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7292388739784723778}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
@@ -9371,7 +9371,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSO: {fileID: 11400000, guid: 06ed566f4fbc53b49b892643a616519b, type: 2}
-  neededUpgradeMoney: 10
   currentLevelText: {fileID: 1570552909099978643}
   currentLevelBoxText: {fileID: 1570552908893979787}
   nextLevelBoxText: {fileID: 1570552908519830854}
@@ -9502,7 +9501,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSO: {fileID: 11400000, guid: ed295520b076d3146b8e2f2577449a0c, type: 2}
-  neededUpgradeMoney: 15
   currentLevelText: {fileID: 3450370659936967976}
   currentLevelBoxText: {fileID: 3450370659936967971}
   nextLevelBoxText: {fileID: 3450370659936968144}
@@ -11233,7 +11231,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSO: {fileID: 11400000, guid: 9b0ae091cbec1904191f9f59b16f5f6d, type: 2}
-  neededUpgradeMoney: 25
   currentLevelText: {fileID: 3450370659936967943}
   currentLevelBoxText: {fileID: 3450370659936967989}
   nextLevelBoxText: {fileID: 3450370659936967953}

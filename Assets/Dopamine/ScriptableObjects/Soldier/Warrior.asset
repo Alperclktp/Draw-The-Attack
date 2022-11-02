@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 3195566690026147400, guid: 1f10f8c32f3558441bac177c0de18ce2, type: 3}
   level: 1
+  nextLevel: 2
+  levelUpCounter: 0
   id: 1
   name: WARRIOR
   description: An unstoppable warrior!
@@ -22,6 +24,7 @@ MonoBehaviour:
   attackPerSpeed: 3
   movementSpeed: 2
   health: 100
+  neededUpgradeMoney: 10
   artwork: {fileID: 21300000, guid: 30bf50c07906db84a9542f00fa2e6be4, type: 3}
   artWorks:
   - {fileID: -2294274420075737727, guid: 74a82799c259a2b4e8f9a8cabbd285aa, type: 3}

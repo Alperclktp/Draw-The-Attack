@@ -14,14 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 7049744727307906149, guid: 41196501978beec469ee2c475481be5a, type: 3}
   level: 1
+  nextLevel: 2
+  levelUpCounter: 0
   id: 3
   name: GIANT
   description: An unstoppable giant!
   manaCost: 32
-  attackDamage: 25
+  attackDamage: 20
   attackPerSpeed: 2.5
   movementSpeed: 1.5
-  health: 250
+  health: 150
+  neededUpgradeMoney: 25
   artwork: {fileID: 21300000, guid: 2bf93502b66649d42bc08ed2f5d50b89, type: 3}
   artWorks:
   - {fileID: -6891281137675852587, guid: 74a82799c259a2b4e8f9a8cabbd285aa, type: 3}

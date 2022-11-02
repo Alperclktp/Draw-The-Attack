@@ -4,6 +4,8 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using MoreMountains.NiceVibrations;
+
 public enum GameState
 {
     DEFAULT,
@@ -39,15 +41,18 @@ public class GameManager : Singleton<GameManager>
     public GameObject nextLevelButton;
     public GameObject moneyPanel;
     public GameObject spawnAreaIndicator;
+    public GameObject tutorialHand;
 
     public Text currentMoneyText;
     public Text tapToSpawnText;
 
     public bool tutorial;
 
-    private void Awake()
+    private void Start()
     {
         GetMoney();
+
+        currentMoneyText.text = "$" + currentMoney.ToString();
     }
 
     private void Update()
@@ -93,6 +98,8 @@ public class GameManager : Singleton<GameManager>
     {
         string currentSceneLevel = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneLevel);
+
+        MMVibrationManager.Haptic(HapticTypes.Failure, true, this);
     }
 
     public void NextLevel() 
@@ -101,6 +108,10 @@ public class GameManager : Singleton<GameManager>
         currentLevel = PlayerPrefs.GetInt("CurrentLevel");
         currentLevel++;
         PlayerPrefs.SetInt("CurrentLevel", currentLevel);
+
+        currentMoney += 250; 
+
+        MMVibrationManager.Haptic(HapticTypes.Success, true, this);
 
         RestartGame();
     }
@@ -141,11 +152,20 @@ public class GameManager : Singleton<GameManager>
         {
             tapToSpawnText.gameObject.SetActive(true);
             spawnAreaIndicator.SetActive(true);
+            Invoke("OnTutorialHandEnable", 1f);
+            
         }
         else
         {
             tapToSpawnText.gameObject.SetActive(false);
             spawnAreaIndicator.SetActive(false);
+            tutorialHand.SetActive(false);
+
         }
+    }
+
+    private void OnTutorialHandEnable()
+    {
+        tutorialHand.SetActive(true);
     }
 }

@@ -4,12 +4,11 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using MoreMountains.NiceVibrations;
 
 public class UpgradeCard : MonoBehaviour
 {
     public CardSO cardSO;
-
-    public int neededUpgradeMoney;
 
     [Header("UI Elements")]
     [SerializeField] private Text currentLevelText;
@@ -51,7 +50,7 @@ public class UpgradeCard : MonoBehaviour
         currentHealthText.text = cardSO.health.ToString();
         currentAttackDamageText.text = cardSO.attackDamage.ToString();
 
-        neededUpgradeMoneyText.text = neededUpgradeMoney.ToString();
+        neededUpgradeMoneyText.text = cardSO.neededUpgradeMoney.ToString();
     
         if(levelUpCounter <= 0)
         {
@@ -60,6 +59,12 @@ public class UpgradeCard : MonoBehaviour
                 levelBoxes[i].GetComponent<Image>().color = Color.white;
             }
         }
+
+        for (int i = 0; i < cardSO.levelUpCounter; i++)
+        {
+            levelBoxes[i].GetComponent<Image>().color = Color.green;
+        }
+
     }
 
     [Button("Reset Card Level")]
@@ -68,20 +73,20 @@ public class UpgradeCard : MonoBehaviour
         cardSO.level = 1;
         cardSO.health = 100;
         cardSO.attackDamage = 10;
-
+     
         GetCardData();
     }
 
     public void UpgradeCardButton() 
     {
-        levelUpCounter+= 1;
+        cardSO.levelUpCounter += 1;
 
-        if(levelUpCounter >= 3)
+        if(cardSO.levelUpCounter >= 3)
         {
             LevelUp();
         }
 
-        for (int i = 0; i < levelUpCounter; i++)
+        for (int i = 0; i < cardSO.levelUpCounter; i++)
         {
             levelBoxes[i].GetComponent<Image>().color = Color.green;
         }
@@ -99,9 +104,9 @@ public class UpgradeCard : MonoBehaviour
 
         GameManager.Instance.MoneySpendAnimation();
 
-        GameManager.Instance.DecreaseMoney(neededUpgradeMoney);
+        GameManager.Instance.DecreaseMoney(cardSO.neededUpgradeMoney);
 
-        neededUpgradeMoney += 15;
+        cardSO.neededUpgradeMoney += 15;
 
         GetCardData();
     }
@@ -110,11 +115,13 @@ public class UpgradeCard : MonoBehaviour
     private void LevelUp()
     {
         cardSO.level += 1;
-        levelUpCounter = 0;
-        nextLevel += 1;
+        cardSO.levelUpCounter = 0;
+        cardSO.nextLevel += 1;
 
         cardSO.attackDamage += 10;
         cardSO.health += 10;
+
+        MMVibrationManager.Haptic(HapticTypes.MediumImpact, true, this);
 
         for (int i = 0; i < 1; i++)
         {
@@ -125,6 +132,9 @@ public class UpgradeCard : MonoBehaviour
     private void GetCardData()
     {
         currentLevel = cardSO.level;
+        nextLevel = cardSO.nextLevel;
+        levelUpCounter = cardSO.levelUpCounter;
+
         currentHealth = cardSO.health;
         currentAttackDamage = cardSO.attackDamage;
 
@@ -133,7 +143,7 @@ public class UpgradeCard : MonoBehaviour
 
     private void CheckUpgradeButtonInteractable()
     {
-        if (GameManager.Instance.currentMoney >= neededUpgradeMoney)
+        if (GameManager.Instance.currentMoney >= cardSO.neededUpgradeMoney)
         {
             GetComponentInChildren<Button>().interactable = true;
 

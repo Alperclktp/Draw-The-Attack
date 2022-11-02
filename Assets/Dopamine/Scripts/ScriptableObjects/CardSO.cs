@@ -12,6 +12,10 @@ public class CardSO : ScriptableObject
 
     public int level;
 
+    public int nextLevel;
+
+    public int levelUpCounter;
+
     [SerializeField] private int id = default;
     public int ID { get { return id; } }
 
@@ -33,6 +37,8 @@ public class CardSO : ScriptableObject
     public float MovementSpeed { get { return movementSpeed; } }
 
     public int health;
+
+    public int neededUpgradeMoney;
 
     [Header("Card UI")]
     [SerializeField] private Sprite artwork;

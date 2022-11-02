@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
+using MoreMountains.NiceVibrations;
 
 public class CardManager : Singleton<CardManager>
 {
@@ -82,6 +83,7 @@ public class CardManager : Singleton<CardManager>
 
             //cardList[i].transform.DOScale(1.05f, 0.2f);
             cardList[i].transform.DOScale(1.2f, 0.2f);
+
         }
 
         if (currentMana >= card.currentManaCost)
@@ -99,6 +101,11 @@ public class CardManager : Singleton<CardManager>
         {
             //card.GetComponent<Image>().color = Color.gray;
         }
+    }
+
+    public void OnClick()
+    {
+        MMVibrationManager.Haptic(HapticTypes.Selection, true, this);
     }
 
     private void SpawnCard(Card selectedCard)
@@ -125,13 +132,16 @@ public class CardManager : Singleton<CardManager>
 
                         spawnIntervalTimer = 0.04f;
 
-                        Destroy(VFXManager.SpawnEffect(VFXType.CARD_SPAWN_EFFECT, obj.transform.position + new Vector3(0,1,0),Quaternion.identity),1);
-                       
+                        Destroy(VFXManager.SpawnEffect(VFXType.CARD_SPAWN_EFFECT, obj.transform.position + new Vector3(0, 1, 0), Quaternion.identity), 1);
+
                         Debug.Log("Spawned the: " + selectedCard.name);
 
                         GameManager.Instance.tutorial = false;
 
                         GameManager.Instance.Tutorial();
+
+                        MMVibrationManager.Haptic(HapticTypes.Selection, true, this);
+
                     }
                 }
             }

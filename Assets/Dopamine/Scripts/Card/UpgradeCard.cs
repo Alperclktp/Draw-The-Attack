@@ -21,9 +21,13 @@ public class UpgradeCard : MonoBehaviour
     [SerializeField] private Image artWorkImage;
     [SerializeField] private Image moneyIcon;
 
+    [SerializeField] private GameObject levelCheckBox;
+    [SerializeField] private GameObject maxLevelObj;
+
     [Header("Read Only Values")]
     [ReadOnly] [SerializeField] private int currentLevel = 1;
     [ReadOnly] [SerializeField] private int nextLevel;
+    [ReadOnly] [SerializeField] private int maxLevel;
     [ReadOnly] [SerializeField] private int levelUpCounter;
     [ReadOnly] [SerializeField] private int currentHealth;
     [ReadOnly] [SerializeField] private int neededUpgradeMoney;
@@ -37,6 +41,8 @@ public class UpgradeCard : MonoBehaviour
 
     private void Start()
     {
+        MaxLevel();
+
         if (PlayerPrefs.GetInt("CurrentLevel") == 0)
         {
             GetCardData();
@@ -46,7 +52,7 @@ public class UpgradeCard : MonoBehaviour
 
         LoadCardData();
 
-        Debug.Log(PlayerPrefs.GetInt("CurrentCardLevel") + gameObject.name);
+        //Debug.Log(PlayerPrefs.GetInt("CurrentCardLevel") + gameObject.name);    
 
         currentLevel = PlayerPrefs.GetInt("CurrentCardLevel" + gameObject.name);
 
@@ -59,13 +65,22 @@ public class UpgradeCard : MonoBehaviour
     {
         CheckUpgradeButtonInteractable();
 
+        CheckMaxLevel();
+
         currentLevelText.text = "LEVEL " + currentLevel.ToString();
         currentLevelBoxText.text = currentLevel.ToString();
         nextLevelBoxText.text = nextLevel.ToString();
         currentHealthText.text = currentHealth.ToString();
         currentAttackDamageText.text = currentAttackDamage.ToString();
 
-        neededUpgradeMoneyText.text = neededUpgradeMoney.ToString();
+        if(currentLevel != maxLevel)
+        {
+            neededUpgradeMoneyText.text = neededUpgradeMoney.ToString();
+        }
+        else
+        {
+            neededUpgradeMoneyText.text = "MAX";
+        }
 
         if (levelUpCounter <= 0)
         {
@@ -113,7 +128,7 @@ public class UpgradeCard : MonoBehaviour
 
         UpgradeManager.Instance.IncreaseUpgradeCount();
 
-        EventManager.onUpgrade?.Invoke();
+        //EventManager.onUpgrade?.Invoke();
 
         /*
         cardSO.attackDamage += 10;
@@ -129,6 +144,15 @@ public class UpgradeCard : MonoBehaviour
         neededUpgradeMoney += 15;
 
         SaveCardData();
+    }
+
+    private void CheckMaxLevel()
+    {
+        if(currentLevel == maxLevel)
+        {
+            maxLevelObj.SetActive(true);
+            levelCheckBox.SetActive(false);
+        }
     }
 
     private void LevelUp()
@@ -148,9 +172,13 @@ public class UpgradeCard : MonoBehaviour
         }
     }
 
+    private void MaxLevel()
+    {
+        maxLevel = cardSO.artWorks.Length;
+    }
+
     private void GetCardData()
     {
-
         currentLevel = cardSO.level;
         nextLevel = cardSO.nextLevel;
         levelUpCounter = cardSO.levelUpCounter;
@@ -165,7 +193,7 @@ public class UpgradeCard : MonoBehaviour
 
     private void CheckUpgradeButtonInteractable()
     {
-        if (GameManager.Instance.currentMoney >= cardSO.neededUpgradeMoney)
+        if (GameManager.Instance.currentMoney >= cardSO.neededUpgradeMoney && currentLevel != maxLevel)
         {
             GetComponentInChildren<Button>().interactable = true;
 
@@ -186,6 +214,7 @@ public class UpgradeCard : MonoBehaviour
             transform.DOScale(1.2f, 0.1f);
         });
     }
+
     private void SaveCardData()
     {
         PlayerPrefs.SetInt("CurrentCardLevel" + gameObject.name, currentLevel);

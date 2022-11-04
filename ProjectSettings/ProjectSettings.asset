@@ -686,6 +686,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
     1: AMPLIFY_SHADER_EDITOR
+    4: MOREMOUNTAINS_NICEVIBRATIONS
     7: MOREMOUNTAINS_NICEVIBRATIONS
   additionalCompilerArguments: {}
   platformArchitecture: {}

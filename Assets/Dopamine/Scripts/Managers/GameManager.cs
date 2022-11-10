@@ -238,6 +238,4 @@ public class GameManager : Singleton<GameManager>
 
         selectTutorialHand.SetActive(false);
     }
-
-
 }

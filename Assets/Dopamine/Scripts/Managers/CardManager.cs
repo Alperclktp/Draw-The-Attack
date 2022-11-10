@@ -4,25 +4,16 @@ using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
 using MoreMountains.NiceVibrations;
+using NaughtyAttributes;
 
 public class CardManager : Singleton<CardManager>
 {
     public List<Card> cardList = new List<Card>();
 
-    [Header("Mana Settings")]
-    public float currentMana;
-    public int maxMana;
-
     [Space(5)]
     [SerializeField] private Card selectedCard;
 
     [SerializeField] private GameObject soldierSpawnHolder;
-
-    [Header("UI Elements")]
-    [SerializeField] private Slider manaSliderBar;
-
-    [SerializeField] private Text currentManaText;
-    [SerializeField] private Text maxManaText;
 
     [Header("Card Colors")]
     [SerializeField] private Color defaultColor;
@@ -37,17 +28,10 @@ public class CardManager : Singleton<CardManager>
         {
             cardList[i].GetComponent<Image>().color = defaultColor;
         }
-
-        currentMana = maxMana;
-
-        manaSliderBar.maxValue = maxMana;
-        manaSliderBar.value = maxMana;
     }
 
     private void Update()
     {
-        CheckMana();
-
         CheckCardInteractable();
 
         if (selectedCard != null)
@@ -62,7 +46,7 @@ public class CardManager : Singleton<CardManager>
     {
         foreach (Card card in cardList)
         {
-            if (currentMana >= card.currentManaCost)
+            if (GameManager.Instance.currentMana >= card.currentManaCost)
             {
                 card.GetComponent<Button>().interactable = true;
             }
@@ -86,7 +70,7 @@ public class CardManager : Singleton<CardManager>
 
         }
 
-        if (currentMana >= card.currentManaCost)
+        if (GameManager.Instance.currentMana >= card.currentManaCost)
         {
             selectedCard = card;
 
@@ -96,6 +80,11 @@ public class CardManager : Singleton<CardManager>
 
             //card.transform.DOScale(1.15f, 0.2f);
             card.transform.DOScale(1.3f, 0.2f);
+
+            if (GameManager.Instance.tutorial)
+            {
+                GameManager.Instance.DrawCardTutorialHand();
+            }
         }
         else
         {
@@ -114,7 +103,7 @@ public class CardManager : Singleton<CardManager>
 
         if (spawnIntervalTimer <= 0)
         {
-            if (selectedCard != null && selectedCard.IsSelected && currentMana > 0 && Input.GetMouseButton(0))
+            if (selectedCard != null && selectedCard.IsSelected && GameManager.Instance.currentMana > 0 && Input.GetMouseButton(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -128,13 +117,13 @@ public class CardManager : Singleton<CardManager>
 
                         GameManager.Instance.soldierList.Add(obj);
 
-                        currentMana -= selectedCard.currentManaCost;
+                        GameManager.Instance.currentMana -= selectedCard.currentManaCost;
 
                         spawnIntervalTimer = 0.04f;
 
                         Destroy(VFXManager.SpawnEffect(VFXType.CARD_SPAWN_EFFECT, obj.transform.position + new Vector3(0, 1, 0), Quaternion.identity), 1);
 
-                        Debug.Log("Spawned the: " + selectedCard.name);
+                        //Debug.Log("Spawned the: " + selectedCard.name);
 
                         GameManager.Instance.tutorial = false;
 
@@ -145,32 +134,12 @@ public class CardManager : Singleton<CardManager>
                     }
                 }
             }
-            else if(selectedCard != null && currentMana < selectedCard.currentManaCost && Input.GetMouseButton(0))
+            else if(selectedCard != null && GameManager.Instance.currentMana < selectedCard.currentManaCost && Input.GetMouseButton(0))
             {
-                manaSliderBar.GetComponent<Animator>().SetTrigger("EnergyBarAlert");
+                GameManager.Instance.manaSliderBar.GetComponent<Animator>().SetTrigger("EnergyBarAlert");
 
                 //The warning animation is triggered even though we have enough mana  *********************** *********************** ***********************                                                     
             }
-        }
-    }
-
-    private void CheckMana()
-    {
-        manaSliderBar.value = currentMana;
-
-        manaSliderBar.maxValue = maxMana;
-
-        currentManaText.text = currentMana.ToString();
-        maxManaText.text = maxMana.ToString();
-
-        if (currentMana <= 0)
-        {
-            currentMana = 0;
-        }
-
-        if (currentMana >= maxMana)
-        {
-            currentMana = maxMana;
         }
     }
 }

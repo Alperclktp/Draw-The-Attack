@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4991d03152e85045a876f20d35f09d2, type: 3}
   m_Name: Giant
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 7049744727307906149, guid: 41196501978beec469ee2c475481be5a, type: 3}
+  currentCardPrefab: {fileID: 321147215079448460, guid: 5cf8a4ba57d9e5f419d1aeebc2b10cc5, type: 3}
+  cardPrefabs:
+  - {fileID: 321147215079448460, guid: 5cf8a4ba57d9e5f419d1aeebc2b10cc5, type: 3}
+  - {fileID: 4567030349438160701, guid: e702eb2edbdcbc348855c56f57a020f3, type: 3}
+  - {fileID: 1176503493586339510, guid: b9a50873dfd113d4982e8467f9df7ec1, type: 3}
   level: 1
   nextLevel: 2
   levelUpCounter: 0
@@ -23,10 +27,12 @@ MonoBehaviour:
   attackDamage: 25
   attackPerSpeed: 2.5
   movementSpeed: 1.5
-  health: 100
-  neededUpgradeMoney: 25
+  health: 150
+  neededUpgradeMoney: 40
   artwork: {fileID: 21300000, guid: 2bf93502b66649d42bc08ed2f5d50b89, type: 3}
   artWorks:
-  - {fileID: -6891281137675852587, guid: 74a82799c259a2b4e8f9a8cabbd285aa, type: 3}
-  - {fileID: 3289362460971025206, guid: 74a82799c259a2b4e8f9a8cabbd285aa, type: 3}
-  - {fileID: 8810691533844074065, guid: 74a82799c259a2b4e8f9a8cabbd285aa, type: 3}
+  - {fileID: 21300000, guid: ab5dca1dc08405c459be6ffc3186f5dd, type: 3}
+  - {fileID: 21300000, guid: ab5dca1dc08405c459be6ffc3186f5dd, type: 3}
+  - {fileID: 21300000, guid: 63c049a6278048141b2f9d136a9b9856, type: 3}
+  - {fileID: 21300000, guid: 63c049a6278048141b2f9d136a9b9856, type: 3}
+  - {fileID: 21300000, guid: 5aab7fec4939c204daf32b54c41df387, type: 3}

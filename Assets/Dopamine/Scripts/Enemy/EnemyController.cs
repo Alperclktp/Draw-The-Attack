@@ -154,7 +154,7 @@ public class EnemyController : BaseAttackController
 
     private void AddToMana(int amount)
     {
-        CardManager.Instance.currentMana += amount;
+        GameManager.Instance.currentMana += amount;
 
         //CardManager.Instance.currentMana += Mathf.Lerp(CardManager.Instance.currentMana, amount, Time.deltaTime);
 

@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour
     [Button("Delete Save")]
     public void DeleteSave()
     {
-        PlayerPrefs.DeleteKey("CurrentLevel");
+        //PlayerPrefs.DeleteKey("CurrentLevel");
 
         GameManager.Instance.RestartGame();
     }

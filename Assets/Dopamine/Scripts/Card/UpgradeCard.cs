@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using NaughtyAttributes;
 using MoreMountains.NiceVibrations;
 
+[DefaultExecutionOrder(-1)]
 public class UpgradeCard : MonoBehaviour
 {
     public CardSO cardSO;
@@ -24,9 +25,14 @@ public class UpgradeCard : MonoBehaviour
     [SerializeField] private GameObject levelCheckBox;
     [SerializeField] private GameObject maxLevelObj;
 
+    [SerializeField] private GameObject currentLevelBox;
+    [SerializeField] private GameObject nextLevelBox;
+
+    [SerializeField] private GameObject upgradeUpArrow;
+
     [Header("Read Only Values")]
     [ReadOnly] [SerializeField] private int currentLevel = 1;
-    [ReadOnly] [SerializeField] private int nextLevel;
+    [ReadOnly] public int nextLevel; 
     [ReadOnly] [SerializeField] private int maxLevel;
     [ReadOnly] [SerializeField] private int levelUpCounter;
     [ReadOnly] [SerializeField] private int currentHealth;
@@ -36,12 +42,17 @@ public class UpgradeCard : MonoBehaviour
 
     [ReadOnly] [SerializeField] private Color moneyDefaultColor;
     [ReadOnly] [SerializeField] private Color moneyAlphaColor;
+    [ReadOnly] [SerializeField] private Color neededTextDefaultColor;
+    [ReadOnly] [SerializeField] private Color neededTextAlphaColor;
 
-    [SerializeField] private Image[] levelBoxes;
+    public List<GameObject> levelBoxes;
+
 
     private void Start()
     {
         MaxLevel();
+
+        LoadCardData();
 
         if (PlayerPrefs.GetInt("CurrentLevel") == 0)
         {
@@ -50,7 +61,7 @@ public class UpgradeCard : MonoBehaviour
             SaveCardData();
         }
 
-        LoadCardData();
+        
 
         //Debug.Log(PlayerPrefs.GetInt("CurrentCardLevel") + gameObject.name);    
 
@@ -80,11 +91,11 @@ public class UpgradeCard : MonoBehaviour
         else
         {
             neededUpgradeMoneyText.text = "MAX";
-        }
+        }   
 
         if (levelUpCounter <= 0)
         {
-            for (int i = 0; i < levelBoxes.Length; i++)
+            for (int i = 0; i < levelBoxes.Count; i++)
             {
                 levelBoxes[i].GetComponent<Image>().color = Color.white;
             }
@@ -95,6 +106,27 @@ public class UpgradeCard : MonoBehaviour
             levelBoxes[i].GetComponent<Image>().color = Color.green;
         }
 
+        /*
+        for (int i = 0; i < cardSO.cardPrefabs.Length; i++)
+        {
+            cardSO.currentCardPrefab = cardSO.cardPrefabs[currentLevel -1];
+        }
+        */
+
+        //Test
+        if (currentLevel == 1)
+        {
+            cardSO.currentCardPrefab = cardSO.cardPrefabs[0];
+
+        }
+        else if (currentLevel == 3)
+        {
+            cardSO.currentCardPrefab = cardSO.cardPrefabs[1];
+        }
+        else if (currentLevel == 5)
+        {
+            cardSO.currentCardPrefab = cardSO.cardPrefabs[2];
+        }
     }
 
     [Button("Reset Card Level")]
@@ -115,7 +147,7 @@ public class UpgradeCard : MonoBehaviour
 
         SaveCardDataSO();
 
-        if (cardSO.levelUpCounter >= 3)
+        if (cardSO.levelUpCounter >= GetComponentInChildren<LevelCheckBoxGenerator>().levelBoxesCount)
         {
             LevelUp();
             SaveCardDataSO();
@@ -141,7 +173,7 @@ public class UpgradeCard : MonoBehaviour
 
         GameManager.Instance.DecreaseMoney(neededUpgradeMoney);
 
-        neededUpgradeMoney += 15;
+        neededUpgradeMoney += 75;
 
         SaveCardData();
     }
@@ -152,6 +184,8 @@ public class UpgradeCard : MonoBehaviour
         {
             maxLevelObj.SetActive(true);
             levelCheckBox.SetActive(false);
+            currentLevelBox.SetActive(false);
+            nextLevelBox.SetActive(false);
         }
     }
 
@@ -169,6 +203,9 @@ public class UpgradeCard : MonoBehaviour
         for (int i = 0; i < 1; i++)
         {
             artWorkImage.sprite = cardSO.artWorks[currentLevel -1];
+
+            GetComponentInChildren<LevelCheckBoxGenerator>().AddBoxes(+1);
+            //GetComponentInChildren<LevelCheckBoxGenerator>().levelBoxesCount += 1;
         }
     }
 
@@ -198,12 +235,21 @@ public class UpgradeCard : MonoBehaviour
             GetComponentInChildren<Button>().interactable = true;
 
             moneyIcon.color = moneyDefaultColor;
+
+            neededUpgradeMoneyText.color = neededTextDefaultColor;
+
+            upgradeUpArrow.SetActive(true);
         }
         else
         {
             GetComponentInChildren<Button>().interactable = false;
 
             moneyIcon.color = moneyAlphaColor;
+
+            neededUpgradeMoneyText.color = neededTextAlphaColor;
+
+            upgradeUpArrow.SetActive(false);
+
         }
     }
 
@@ -225,8 +271,13 @@ public class UpgradeCard : MonoBehaviour
         PlayerPrefs.SetFloat("CurrentAttackDamage" + gameObject.name, currentAttackDamage);
 
         PlayerPrefs.SetInt("NeededUpgradeMoney" + gameObject.name, neededUpgradeMoney);
-    }
 
+        PlayerPrefs.SetInt("LevelBoxCount" + gameObject.name, levelCheckBox.GetComponent<LevelCheckBoxGenerator>().levelBoxesCount);
+
+
+        //print($"S {levelCheckBox.GetComponent<LevelCheckBoxGenerator>().levelBoxesCount}");
+
+    }
     private void SaveCardDataSO()
     {
         cardSO.level = currentLevel;
@@ -251,5 +302,11 @@ public class UpgradeCard : MonoBehaviour
         currentAttackDamage = PlayerPrefs.GetFloat("CurrentAttackDamage" + gameObject.name);
 
         neededUpgradeMoney = PlayerPrefs.GetInt("NeededUpgradeMoney" + gameObject.name, neededUpgradeMoney);
+
+        int _levelBoxCount = PlayerPrefs.GetInt("LevelBoxCount" + gameObject.name);
+
+        levelCheckBox.GetComponent<LevelCheckBoxGenerator>().SetBoxes(_levelBoxCount == 0 ? 3 : _levelBoxCount);
+
+        //levelCheckBox.GetComponent<LevelCheckBoxGenerator>().levelBoxesCount = levelBoxCount == 0 ? 3 : levelBoxCount;
     }
 }

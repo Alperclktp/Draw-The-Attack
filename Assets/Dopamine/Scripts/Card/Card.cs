@@ -9,7 +9,7 @@ public class Card : MonoBehaviour
 
     [HideInInspector] public GameObject cardObj;
 
-    [HideInInspector] public GameObject cardPrefab;
+    public GameObject cardPrefab;
     public bool IsSelected { get; set; }
 
     [Header("Card Data")]
@@ -34,9 +34,14 @@ public class Card : MonoBehaviour
         currentCardIcon.sprite = cardArt;
     }
 
+    private void Update()
+    {
+        cardPrefab = cardSO.currentCardPrefab;
+    }
+
     private void GetCardData()
     {
-        cardPrefab = cardSO.cardPrefab;
+        cardPrefab = cardSO.currentCardPrefab;
 
         currentID = cardSO.ID;
 

@@ -22,9 +22,12 @@ public class SoldierController : BaseAttackController
     [Header("Follow Settings")]
     public float sensingDistance;
     public float stoppingDistance;
+    public float towerStoppingDistance = 4.25f;
     public float lookRotateSpeed;
 
     public override string damageableID { get { return typeof(SoldierController).Name; } }
+
+    private Rigidbody rb;
 
     private void Awake()
     {
@@ -40,6 +43,7 @@ public class SoldierController : BaseAttackController
 
         agent.stoppingDistance = stoppingDistance;
 
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -70,6 +74,8 @@ public class SoldierController : BaseAttackController
         InýtAnimation();
 
         CheckEnemyList();
+
+        rb.isKinematic = (!canMove || agent.isStopped);
     }
 
     private void LateUpdate()
@@ -149,7 +155,12 @@ public class SoldierController : BaseAttackController
         {
             agent.stoppingDistance = stoppingDistance;
 
-            if (Vector3.Distance(transform.position, new Vector3(nearestTarget.position.x, transform.position.y, nearestTarget.position.z)) > stoppingDistance)
+            bool move = Vector3.Distance(transform.position, new Vector3(nearestTarget.position.x, transform.position.y, nearestTarget.position.z)) >= stoppingDistance;
+
+            if (nearestTarget == TowerManager.Instance.transform)
+                move = Vector3.Distance(transform.position, new Vector3(nearestTarget.position.x, transform.position.y, nearestTarget.position.z)) >= towerStoppingDistance;
+
+            if (move)
             {
                 //transform.position = Vector3.MoveTowards(transform.position, nearestTarget.position, currentSpeed * Time.deltaTime);
 

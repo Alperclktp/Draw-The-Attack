@@ -5,6 +5,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using MoreMountains.NiceVibrations;
+using NaughtyAttributes;
 
 public enum GameState
 {
@@ -29,9 +30,13 @@ public class GameManager : Singleton<GameManager>
 
     public bool levelComplete;
 
-    public int currentLevel;
+    public int level, currentLevel;
 
     public int currentMoney;
+
+    [Header("Mana Settings")]
+    public int currentMana;
+    public int maxMana;
 
     [Header("UI Elements")]
     public GameObject upgradeManagerPanel;
@@ -40,11 +45,18 @@ public class GameManager : Singleton<GameManager>
     public GameObject restartButton;
     public GameObject nextLevelButton;
     public GameObject moneyPanel;
+
+    public Slider manaSliderBar;
+
+    public Text currentManaText;
+    public Text maxManaText;
+
     public GameObject spawnAreaIndicator;
-    public GameObject tutorialHand;
+    public GameObject selectTutorialHand;
+    public GameObject drawCardTutorialHand;
 
     public Text currentMoneyText;
-    public Text tapToSpawnText;
+    public Text drawToCardText;
 
     public bool tutorial;
 
@@ -53,6 +65,11 @@ public class GameManager : Singleton<GameManager>
         GetMoney();
 
         currentMoneyText.text = "$" + currentMoney.ToString();
+
+        currentMana = maxMana;
+
+        manaSliderBar.maxValue = maxMana;
+        manaSliderBar.value = maxMana;
     }
 
     private void Update()
@@ -60,13 +77,15 @@ public class GameManager : Singleton<GameManager>
         currentMoneyText.text = "$" + currentMoney.ToString();
 
         SetMoney();
+
+        CheckMana();
     }
 
     public void StartGame() 
     {
         gameState = GameState.START;
 
-        TowerManager.Instance.canSpawn = true;
+        TowerManager.Instance.canSpawn = true;                  //---CAN SPAWN ENEMY CONTROL--
 
         StartCoroutine(TowerManager.Instance.IEEnemySpawner());
 
@@ -81,6 +100,11 @@ public class GameManager : Singleton<GameManager>
         Tutorial();
 
         GetLevelHardness();
+
+        level = PlayerPrefs.GetInt("Level");
+
+        maxMana += level * 20;
+        currentMana = maxMana;
     }
 
     public void FailLevel()
@@ -104,12 +128,16 @@ public class GameManager : Singleton<GameManager>
 
     public void NextLevel() 
     {
-        int currentLevel;
+        level++;
+        PlayerPrefs.SetInt("Level", level);
+
         currentLevel = PlayerPrefs.GetInt("CurrentLevel");
         currentLevel++;
         PlayerPrefs.SetInt("CurrentLevel", currentLevel);
 
-        currentMoney += 250; 
+        EanrMoney(Random.Range(750,800)); //Amount of money to be earned
+
+        IncreaseMaxMana(20);
 
         MMVibrationManager.Haptic(HapticTypes.Success, true, this);
 
@@ -126,9 +154,12 @@ public class GameManager : Singleton<GameManager>
         currentMoney = PlayerPrefs.GetInt("CurrentMoney");
     }
 
+
     public void GetLevelHardness()
     {
-        TowerManager.Instance.levelDifficulty.SetHardness(LevelManager.Instance.levelSOTemplate.levels[PlayerPrefs.GetInt("CurrentLevel")].hardness);
+        try {
+        TowerManager.Instance.levelDifficulty.SetHardness(LevelManager.Instance.levelSOTemplate.levels[PlayerPrefs.GetInt("CurrentLevel")].hardness);       //---HARDNESS CONTROL---
+        } catch { }
     }
 
     public void MoneySpendAnimation()
@@ -139,6 +170,17 @@ public class GameManager : Singleton<GameManager>
         });
     }
 
+
+    public void EanrMoney(int amount)
+    {
+        currentMoney += amount;
+    }
+
+    public void IncreaseMaxMana(int amount)
+    {
+        maxMana += amount;
+    }
+
     public void DecreaseMoney(int amount)
     {
         currentMoney -= amount;
@@ -146,26 +188,56 @@ public class GameManager : Singleton<GameManager>
         SetMoney();
     }
 
+    private void CheckMana()
+    {
+        manaSliderBar.value = currentMana;
+
+        manaSliderBar.maxValue = maxMana;
+
+        currentManaText.text = currentMana.ToString();
+        maxManaText.text = maxMana.ToString();
+
+        if (currentMana <= 0)
+        {
+            currentMana = 0;
+        }
+
+        if (currentMana >= maxMana)
+        {
+            currentMana = maxMana;
+        }
+    }
     public void Tutorial()
     {
         if (tutorial)
         {
-            tapToSpawnText.gameObject.SetActive(true);
-            spawnAreaIndicator.SetActive(true);
-            Invoke("OnTutorialHandEnable", 1f);
+            Invoke("OnTutorialSelectCardHand", 1f);
             
         }
         else
         {
-            tapToSpawnText.gameObject.SetActive(false);
+            drawToCardText.gameObject.SetActive(false);
             spawnAreaIndicator.SetActive(false);
-            tutorialHand.SetActive(false);
-
+            drawCardTutorialHand.SetActive(false);
+            selectTutorialHand.SetActive(false);
         }
     }
 
-    private void OnTutorialHandEnable()
+    private void OnTutorialSelectCardHand()
     {
-        tutorialHand.SetActive(true);
+        selectTutorialHand.SetActive(true);
     }
+
+    public void DrawCardTutorialHand()
+    {  
+        drawCardTutorialHand.SetActive(true);
+
+        spawnAreaIndicator.SetActive(true);
+
+        drawToCardText.gameObject.SetActive(true);
+
+        selectTutorialHand.SetActive(false);
+    }
+
+
 }

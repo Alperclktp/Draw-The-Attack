@@ -432,6 +432,7 @@ MonoBehaviour:
   currentSpeed: 2
   sensingDistance: 8
   stoppingDistance: 6
+  towerStoppingDistance: 10
   lookRotateSpeed: 10
 --- !u!195 &331659735
 NavMeshAgent:

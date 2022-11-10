@@ -6,7 +6,9 @@ using UnityEngine;
 public class CardSO : ScriptableObject
 {
     [Header("Prefab")]
-    public GameObject cardPrefab;
+    public GameObject currentCardPrefab;
+
+    public GameObject[] cardPrefabs;
 
     [Header("Card Properties")]
 
@@ -45,6 +47,5 @@ public class CardSO : ScriptableObject
     public Sprite ArtWork { get { return artwork; } }
 
     public Sprite[] artWorks;
-
 
 }

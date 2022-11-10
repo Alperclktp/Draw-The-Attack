@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4991d03152e85045a876f20d35f09d2, type: 3}
   m_Name: Archer
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 2177802553464792623, guid: f7128dbf183ecb04289dea63805bb1ce, type: 3}
+  currentCardPrefab: {fileID: 8959699786675555609, guid: 286396db49f4c9e439f482fc46df582a, type: 3}
+  cardPrefabs:
+  - {fileID: 8959699786675555609, guid: 286396db49f4c9e439f482fc46df582a, type: 3}
+  - {fileID: 4979994561002094068, guid: 5658153b52e6d6b40b128806251f101b, type: 3}
+  - {fileID: 4551094089952526236, guid: 398688b8c2dd15140b6ba24119c961cd, type: 3}
   level: 1
   nextLevel: 2
   levelUpCounter: 0
@@ -24,9 +28,11 @@ MonoBehaviour:
   attackPerSpeed: 3
   movementSpeed: 2
   health: 100
-  neededUpgradeMoney: 10
+  neededUpgradeMoney: 30
   artwork: {fileID: 21300000, guid: a4efd78c5f85717489bad70c3f139dfe, type: 3}
   artWorks:
-  - {fileID: 1169904239960526026, guid: 74a82799c259a2b4e8f9a8cabbd285aa, type: 3}
-  - {fileID: 4500443609616619295, guid: 74a82799c259a2b4e8f9a8cabbd285aa, type: 3}
-  - {fileID: 2442293499424707035, guid: 74a82799c259a2b4e8f9a8cabbd285aa, type: 3}
+  - {fileID: 21300000, guid: 70367bb557c21a7449d39a8cd8aa44cb, type: 3}
+  - {fileID: 21300000, guid: 70367bb557c21a7449d39a8cd8aa44cb, type: 3}
+  - {fileID: 21300000, guid: 134d9b7503b196c4fbdf25977c8d1336, type: 3}
+  - {fileID: 21300000, guid: 134d9b7503b196c4fbdf25977c8d1336, type: 3}
+  - {fileID: 21300000, guid: c2540d269b74fd544a57105d1adaff37, type: 3}

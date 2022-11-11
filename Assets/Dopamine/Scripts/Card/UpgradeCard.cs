@@ -20,6 +20,7 @@ public class UpgradeCard : MonoBehaviour
     [SerializeField] private Text neededUpgradeMoneyText;
 
     [SerializeField] private Image artWorkImage;
+    [SerializeField] private Image cardIcon;
     [SerializeField] private Image moneyIcon;
 
     [SerializeField] private GameObject levelCheckBox;
@@ -60,8 +61,6 @@ public class UpgradeCard : MonoBehaviour
             SaveCardDataSO();
             SaveCardData();
         }
-
-        
 
         //Debug.Log(PlayerPrefs.GetInt("CurrentCardLevel") + gameObject.name);    
 
@@ -117,7 +116,6 @@ public class UpgradeCard : MonoBehaviour
         if (currentLevel == 1)
         {
             cardSO.currentCardPrefab = cardSO.cardPrefabs[0];
-
         }
         else if (currentLevel == 3)
         {
@@ -202,7 +200,8 @@ public class UpgradeCard : MonoBehaviour
 
         for (int i = 0; i < 1; i++)
         {
-            artWorkImage.sprite = cardSO.artWorks[currentLevel -1];
+            artWorkImage.sprite = cardSO.artWorks[currentLevel - 1];
+            cardIcon.sprite = cardSO.artWorks[currentLevel - 1];
 
             GetComponentInChildren<LevelCheckBoxGenerator>().AddBoxes(+1);
             //GetComponentInChildren<LevelCheckBoxGenerator>().levelBoxesCount += 1;
@@ -226,6 +225,7 @@ public class UpgradeCard : MonoBehaviour
         neededUpgradeMoney = cardSO.neededUpgradeMoney;
 
         artWorkImage.sprite = cardSO.artWorks[currentLevel - 1];
+        cardIcon.sprite = cardSO.artWorks[currentLevel - 1];
     }
 
     private void CheckUpgradeButtonInteractable()
@@ -290,6 +290,7 @@ public class UpgradeCard : MonoBehaviour
         cardSO.neededUpgradeMoney = neededUpgradeMoney;
 
         artWorkImage.sprite = cardSO.artWorks[currentLevel - 1];
+        cardIcon.sprite = cardSO.artWorks[currentLevel - 1];
     }
 
     private void LoadCardData()

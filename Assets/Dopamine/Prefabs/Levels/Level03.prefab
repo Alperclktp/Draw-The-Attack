@@ -750,7 +750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1290,7 +1290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1551,7 +1551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5096,6 +5096,7 @@ MonoBehaviour:
   currentAttackDamageText: {fileID: 8471227372560110398}
   neededUpgradeMoneyText: {fileID: 8471227372054816979}
   artWorkImage: {fileID: 8471227373867378152}
+  cardIcon: {fileID: 216398124311501186}
   moneyIcon: {fileID: 8471227371783469541}
   levelCheckBox: {fileID: 8471227371757636413}
   maxLevelObj: {fileID: 8471227372600908187}
@@ -7038,6 +7039,7 @@ MonoBehaviour:
   currentAttackDamageText: {fileID: 1001644028918194740}
   neededUpgradeMoneyText: {fileID: 1001644027883186064}
   artWorkImage: {fileID: 1001644027972368390}
+  cardIcon: {fileID: 846513927286765072}
   moneyIcon: {fileID: 1001644027460959401}
   levelCheckBox: {fileID: 1001644027030691878}
   maxLevelObj: {fileID: 631170160044434768}
@@ -9008,6 +9010,7 @@ MonoBehaviour:
   currentAttackDamageText: {fileID: 8471227371750167812}
   neededUpgradeMoneyText: {fileID: 8471227373399851926}
   artWorkImage: {fileID: 8471227373183270919}
+  cardIcon: {fileID: 216398124311501307}
   moneyIcon: {fileID: 8471227373314776687}
   levelCheckBox: {fileID: 8471227373706201734}
   maxLevelObj: {fileID: 8471227371813623334}

@@ -31,7 +31,7 @@ public class CardManager : Singleton<CardManager>
     }
 
     private void Update()
-    {
+    {   
         CheckCardInteractable();
 
         if (selectedCard != null)

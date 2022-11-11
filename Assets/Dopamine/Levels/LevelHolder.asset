@@ -29,7 +29,7 @@ MonoBehaviour:
     hardness: 2
     isLoop: 1
   - level: {fileID: 7571210482828230374, guid: 6ad9995544ca6a8479c54200c23bc37d, type: 3}
-    hardness: 2
+    hardness: 3
     isLoop: 1
   - level: {fileID: 3313093318629505410, guid: 2b08d1cd8b356e34cb5ddd47c8d75412, type: 3}
     hardness: 3

@@ -31,6 +31,8 @@ public class EnemyController : BaseAttackController
     public GameObject enemyCanvas;
     //public Text giveToManaCountText;
 
+    private Vector3 targetOffset;
+
     public override string damageableID { get { return typeof(EnemyController).Name; } }
 
     private void Awake()
@@ -51,6 +53,7 @@ public class EnemyController : BaseAttackController
 
         //giveToManaCountText.text = "+" + amountToGiveMana.ToString();
 
+        targetOffset = Vector3.right * Random.Range(-10, 10);
     }
 
     private void Update()
@@ -98,7 +101,7 @@ public class EnemyController : BaseAttackController
     {
         //transform.position = Vector3.MoveTowards(transform.position, GameManager.Instance.endLinePosition.position, currentSpeed * Time.deltaTime);
 
-        agent.SetDestination(GameManager.Instance.failLinePosition.position);
+        agent.SetDestination(GameManager.Instance.failLinePosition.position + targetOffset);
 
         //agent.isStopped = false;
 

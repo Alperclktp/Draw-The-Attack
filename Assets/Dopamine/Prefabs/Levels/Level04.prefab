@@ -3651,9 +3651,9 @@ MonoBehaviour:
     - Archer
     - Giant
     m_values:
-    - {fileID: 3195566690026147400, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
-    - {fileID: 7491645478653324961, guid: 8c0f572011d6ede4692778503bab23cf, type: 3}
-    - {fileID: 8216808974713176166, guid: 5f1a0b63405a33943981584d1fe30546, type: 3}
+    - {fileID: 3929569608997315865, guid: 83993ed884b4b414e9f1fe22c63e5434, type: 3}
+    - {fileID: 3738343799396791932, guid: 038e328a8fa6b0a4f9b61b3acb25ff8d, type: 3}
+    - {fileID: 6173875875473080128, guid: ed682e57920782544b0b2117d7550f71, type: 3}
   currentTowerHealth: 1000
   secondsBetweenSpawn: 1
   canSpawn: 0

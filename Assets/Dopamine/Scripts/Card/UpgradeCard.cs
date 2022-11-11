@@ -171,6 +171,8 @@ public class UpgradeCard : MonoBehaviour
 
         GameManager.Instance.DecreaseMoney(neededUpgradeMoney);
 
+        GameManager.Instance.upgradeTutorialHand.SetActive(false);
+
         neededUpgradeMoney += 75;
 
         SaveCardData();

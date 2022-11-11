@@ -29,7 +29,7 @@ MonoBehaviour:
   movementSpeed: 2
   health: 100
   neededUpgradeMoney: 30
-  artwork: {fileID: 21300000, guid: 30bf50c07906db84a9542f00fa2e6be4, type: 3}
+  artwork: {fileID: 21300000, guid: 50ec3093211696d4282cd0a0c3811724, type: 3}
   artWorks:
   - {fileID: 21300000, guid: 50ec3093211696d4282cd0a0c3811724, type: 3}
   - {fileID: 21300000, guid: 50ec3093211696d4282cd0a0c3811724, type: 3}

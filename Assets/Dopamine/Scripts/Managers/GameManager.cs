@@ -54,6 +54,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject spawnAreaIndicator;
     public GameObject selectTutorialHand;
     public GameObject drawCardTutorialHand;
+    public GameObject upgradeTutorialHand;
 
     public Text currentMoneyText;
     public Text drawToCardText;
@@ -70,6 +71,23 @@ public class GameManager : Singleton<GameManager>
 
         manaSliderBar.maxValue = maxMana;
         manaSliderBar.value = maxMana;
+
+        level = PlayerPrefs.GetInt("Level");
+
+        if (level == 2)
+        {
+            Invoke("OnUpgradeTutorialCardHand", 1f);
+        }
+        else if(level > 2)
+        {
+            upgradeTutorialHand.SetActive(false);
+            upgradeTutorialHand.SetActive(false);
+        }
+        else
+        {
+            upgradeManagerPanel.SetActive(false);
+            upgradeTutorialHand.SetActive(false);
+        }
     }
 
     private void Update()
@@ -101,8 +119,6 @@ public class GameManager : Singleton<GameManager>
 
         GetLevelHardness();
 
-        level = PlayerPrefs.GetInt("Level");
-
         maxMana += level * 20;
         currentMana = maxMana;
     }
@@ -114,6 +130,8 @@ public class GameManager : Singleton<GameManager>
         TowerManager.Instance.canSpawn = false;
 
         cardPanel.SetActive(false);
+
+        selectTutorialHand.SetActive(false);
 
         restartButton.SetActive(true);
     }
@@ -226,6 +244,11 @@ public class GameManager : Singleton<GameManager>
     private void OnTutorialSelectCardHand()
     {
         selectTutorialHand.SetActive(true);
+    }
+
+    private void OnUpgradeTutorialCardHand()
+    {
+        upgradeTutorialHand.SetActive(true);
     }
 
     public void DrawCardTutorialHand()

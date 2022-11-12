@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: m_toon_simple 2
-  m_Shader: {fileID: 4800000, guid: edea84d81fe76db4eb90f1682ea2d95c, type: 3}
+  m_Shader: {fileID: 4800000, guid: 5c0e4862c1b85754ba94403df6ef6287, type: 3}
   m_ShaderKeywords: _EMISSION _USEAMBIENTLIGHT_ON _USEOUTLINE_ON _USEREFLECTIONPROBES_ON
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -40,6 +40,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Diffuse:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emission1:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -117,6 +121,8 @@ Material:
     - _OutlineColorBleed: 0
     - _OutlineWidth: 0.0013
     - _Parallax: 0.02
+    - _RampSmoothing: 0.1
+    - _RampThreshold: 0.5
     - _ReflectionDesaturation: 1
     - _ReflectionIntensity: 0.756
     - _SmoothnessTextureChannel: 0
@@ -127,9 +133,15 @@ Material:
     - _UseOutline: 1
     - _UseReflectionProbes: 1
     - _ZWrite: 1
+    - __dummy__: 0
+    - __outline_gui_dummy__: 0
     m_Colors:
     - _Color: {r: 0.011764725, g: 0.8392157, b: 0.116393186, a: 1}
+    - _Emission: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     - _HDREmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColorVertex: {r: 0, g: 0, b: 0, a: 1}
+    - _SColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []

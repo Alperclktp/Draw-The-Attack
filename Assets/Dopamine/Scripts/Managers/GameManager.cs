@@ -58,6 +58,7 @@ public class GameManager : Singleton<GameManager>
 
     public Text currentMoneyText;
     public Text drawToCardText;
+    public Text currentLevelText;
 
     public bool tutorial;
 
@@ -65,14 +66,18 @@ public class GameManager : Singleton<GameManager>
     {
         GetMoney();
 
+        level = PlayerPrefs.GetInt("Level");
+
         currentMoneyText.text = "$" + currentMoney.ToString();
+
+        currentLevelText.text = $"Level {level + 1}";
 
         currentMana = maxMana;
 
         manaSliderBar.maxValue = maxMana;
         manaSliderBar.value = maxMana;
 
-        level = PlayerPrefs.GetInt("Level");
+        currentLevelText.gameObject.SetActive(true);
 
         if (level == 2)
         {
@@ -114,6 +119,8 @@ public class GameManager : Singleton<GameManager>
         startButton.SetActive(false);
 
         moneyPanel.SetActive(false);
+
+        currentLevelText.gameObject.SetActive(false);
 
         Tutorial();
 

@@ -101,6 +101,8 @@ public class GameManager : Singleton<GameManager>
 
         SetMoney();
 
+        CheckMoney();
+
         CheckMana();
     }
 
@@ -232,6 +234,15 @@ public class GameManager : Singleton<GameManager>
             currentMana = maxMana;
         }
     }
+
+    private void CheckMoney()
+    {
+        if(currentMoney <= 0)
+        {
+            currentMoney = 0;
+        }
+    }
+
     public void Tutorial()
     {
         if (tutorial)

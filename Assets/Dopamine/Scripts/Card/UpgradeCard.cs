@@ -54,6 +54,7 @@ public class UpgradeCard : MonoBehaviour
         MaxLevel();
 
         LoadCardData();
+        GetCardData();
 
         if (PlayerPrefs.GetInt("CurrentLevel") == 0)
         {

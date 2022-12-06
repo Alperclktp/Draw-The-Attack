@@ -6897,7 +6897,7 @@ MonoBehaviour:
   currentLevel: 1
   currentMoney: 0
   currentMana: 0
-  maxMana: 340
+  maxMana: 80
   upgradeManagerPanel: {fileID: 7571210482050554784}
   cardPanel: {fileID: 7571210482164540926}
   startButton: {fileID: 7571210481883410301}
@@ -8760,7 +8760,7 @@ MonoBehaviour:
     - {fileID: 3738343799396791932, guid: 038e328a8fa6b0a4f9b61b3acb25ff8d, type: 3}
     - {fileID: 6173875875473080128, guid: ed682e57920782544b0b2117d7550f71, type: 3}
   currentTowerHealth: 1000
-  secondsBetweenSpawn: 1
+  secondsBetweenSpawn: 0.5
   canSpawn: 0
   levelDifficulty:
     warrior: 16
@@ -13907,7 +13907,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 134706, guid: f4f6b630159e6b34386dec2579f250b2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 165880, guid: f4f6b630159e6b34386dec2579f250b2, type: 3}
       propertyPath: m_Name
@@ -13919,23 +13919,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 196596, guid: f4f6b630159e6b34386dec2579f250b2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 471166, guid: f4f6b630159e6b34386dec2579f250b2, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 471166, guid: f4f6b630159e6b34386dec2579f250b2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 14.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 471166, guid: f4f6b630159e6b34386dec2579f250b2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.792087
+      objectReference: {fileID: 0}
+    - target: {fileID: 471166, guid: f4f6b630159e6b34386dec2579f250b2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 471166, guid: f4f6b630159e6b34386dec2579f250b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.0083786
       objectReference: {fileID: 0}
     - target: {fileID: 471166, guid: f4f6b630159e6b34386dec2579f250b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.237897
+      value: 2.43
       objectReference: {fileID: 0}
     - target: {fileID: 471166, guid: f4f6b630159e6b34386dec2579f250b2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.009999
+      value: 5.86
       objectReference: {fileID: 0}
     - target: {fileID: 471166, guid: f4f6b630159e6b34386dec2579f250b2, type: 3}
       propertyPath: m_LocalRotation.w

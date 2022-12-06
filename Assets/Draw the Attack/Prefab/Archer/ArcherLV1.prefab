@@ -1033,7 +1033,7 @@ MonoBehaviour:
   canGoTower: 0
   currentHealth: 100
   currentSpeed: 2
-  sensingDistance: 8
+  sensingDistance: 20
   stoppingDistance: 5
   towerStoppingDistance: 8
   lookRotateSpeed: 10

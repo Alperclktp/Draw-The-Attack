@@ -93,6 +93,8 @@ public class GameManager : Singleton<GameManager>
             upgradeManagerPanel.SetActive(false);
             upgradeTutorialHand.SetActive(false);
         }
+
+        //currentMoney = 2000; TEST 
     }
 
     private void Update()
@@ -124,11 +126,13 @@ public class GameManager : Singleton<GameManager>
 
         currentLevelText.gameObject.SetActive(false);
 
+        upgradeTutorialHand.SetActive(false);
+
         Tutorial();
 
         GetLevelHardness();
 
-        maxMana += level * 20;
+        maxMana += level * 10;
         currentMana = maxMana;
     }
 
@@ -162,9 +166,9 @@ public class GameManager : Singleton<GameManager>
         currentLevel++;
         PlayerPrefs.SetInt("CurrentLevel", currentLevel);
 
-        EanrMoney(Random.Range(750,800)); //Amount of money to be earned
+        EanrMoney(Random.Range(100,125)); //Amount of money to be earned
 
-        IncreaseMaxMana(20);
+        IncreaseMaxMana(10);
 
         MMVibrationManager.Haptic(HapticTypes.Success, true, this);
 
@@ -180,7 +184,6 @@ public class GameManager : Singleton<GameManager>
     {
         currentMoney = PlayerPrefs.GetInt("CurrentMoney");
     }
-
 
     public void GetLevelHardness()
     {

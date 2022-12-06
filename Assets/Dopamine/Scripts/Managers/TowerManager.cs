@@ -221,7 +221,7 @@ public class LevelDifficulty
                 break;
             case 2: //Hardness 2
 
-                warrior = 36;
+                warrior = 54;
 
                 //If we want to spawn enemies according to the player's max mana value, turn this code on.
                 // ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
@@ -229,7 +229,7 @@ public class LevelDifficulty
                 enemyCardSO[0].attackDamage = cardManager.cardList[0].cardSO.attackDamage / 2f; //Enemy warrior power /2 Soldier attack power
                 enemyCardSO[0].health = (int)(cardManager.cardList[0].cardSO.health / 2f); //Enemy warrior health /3 Soldier health;
 
-                archer = 8;
+                archer = 12;
 
                 //If we want to spawn enemies according to the player's max mana value, turn this code on.
                 // ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
@@ -237,7 +237,7 @@ public class LevelDifficulty
                 enemyCardSO[1].attackDamage = cardManager.cardList[1].cardSO.attackDamage / 2f; //Enemy archer power /2 Archer attack power
                 enemyCardSO[1].health = (int)(cardManager.cardList[1].cardSO.health / 2f); //Enemy archer health /2 Archer health;
 
-                giant = 6;
+                giant = 8;
 
                 //If we want to spawn enemies according to the player's max mana value, turn this code on.
                 // ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
@@ -248,7 +248,7 @@ public class LevelDifficulty
                 break;
             case 3: //Hardness 3
 
-                warrior = 54;
+                warrior = 81;
 
                 //If we want to spawn enemies according to the player's max mana value, turn this code on.
                 // ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
@@ -256,7 +256,7 @@ public class LevelDifficulty
                 enemyCardSO[0].attackDamage = cardManager.cardList[0].cardSO.attackDamage / 1.5f; //Enemy warrior attack power /1.5 Soldier attack power
                 enemyCardSO[0].health = (int)(cardManager.cardList[0].cardSO.health / 1.5f); //Enemy warrior health /1.5 Soldier health;
 
-                archer = 12;
+                archer = 16;
 
                 //If we want to spawn enemies according to the player's max mana value, turn this code on.
                 // ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
@@ -265,7 +265,7 @@ public class LevelDifficulty
                 enemyCardSO[1].health = (int)(cardManager.cardList[1].cardSO.health / 1.5f); //Enemy archer health /1.5 Archer health;
 
 
-                giant = 6;
+                giant = 10;
 
                 //If we want to spawn enemies according to the player's max mana value, turn this code on.
                 // ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓

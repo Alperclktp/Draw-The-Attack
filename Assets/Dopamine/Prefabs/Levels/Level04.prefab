@@ -1915,7 +1915,7 @@ MonoBehaviour:
   currentLevel: 1
   currentMoney: 0
   currentMana: 0
-  maxMana: 340
+  maxMana: 80
   upgradeManagerPanel: {fileID: 3313093318925573316}
   cardPanel: {fileID: 3313093318773088922}
   startButton: {fileID: 3313093317416118297}
@@ -3867,7 +3867,7 @@ MonoBehaviour:
     - {fileID: 3738343799396791932, guid: 038e328a8fa6b0a4f9b61b3acb25ff8d, type: 3}
     - {fileID: 6173875875473080128, guid: ed682e57920782544b0b2117d7550f71, type: 3}
   currentTowerHealth: 1000
-  secondsBetweenSpawn: 1
+  secondsBetweenSpawn: 0.5
   canSpawn: 0
   levelDifficulty:
     warrior: 16

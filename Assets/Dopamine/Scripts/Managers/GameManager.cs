@@ -79,6 +79,15 @@ public class GameManager : Singleton<GameManager>
 
         currentLevelText.gameObject.SetActive(true);
 
+        if(level == 0)
+        {
+            maxMana = 60;
+        }
+        else
+        {   
+            maxMana = 60;
+        }
+
         if (level == 2)
         {
             Invoke("OnUpgradeTutorialCardHand", 1f);
@@ -94,7 +103,6 @@ public class GameManager : Singleton<GameManager>
             upgradeTutorialHand.SetActive(false);
         }
 
-        //currentMoney = 2000; TEST 
     }
 
     private void Update()
@@ -132,7 +140,7 @@ public class GameManager : Singleton<GameManager>
 
         GetLevelHardness();
 
-        maxMana += level * 10;
+        maxMana += level * level;
         currentMana = maxMana;
     }
 
@@ -147,6 +155,10 @@ public class GameManager : Singleton<GameManager>
         selectTutorialHand.SetActive(false);
 
         restartButton.SetActive(true);
+
+        EarnMoney(Random.Range(3, 6));
+
+        MMVibrationManager.Haptic(HapticTypes.Failure, true, this);
     }
 
     public void RestartGame()
@@ -166,7 +178,7 @@ public class GameManager : Singleton<GameManager>
         currentLevel++;
         PlayerPrefs.SetInt("CurrentLevel", currentLevel);
 
-        EanrMoney(Random.Range(100,125)); //Amount of money to be earned
+        EarnMoney(Random.Range(5,10)); //Amount of money to be earned
 
         IncreaseMaxMana(10);
 
@@ -188,8 +200,10 @@ public class GameManager : Singleton<GameManager>
     public void GetLevelHardness()
     {
         try {
-        TowerManager.Instance.levelDifficulty.SetHardness(LevelManager.Instance.levelSOTemplate.levels[PlayerPrefs.GetInt("CurrentLevel")].hardness);       //---HARDNESS CONTROL---
-        } catch { }
+        TowerManager.Instance.levelDifficulty.SetHardness();       //---HARDNESS CONTROL---
+        //TowerManager.Instance.levelDifficulty.SetHardness(LevelManager.Instance.levelSOTemplate.levels[PlayerPrefs.GetInt("CurrentLevel")].hardness);       //---HARDNESS CONTROL---
+        }
+        catch { }
     }
 
     public void MoneySpendAnimation()
@@ -201,7 +215,7 @@ public class GameManager : Singleton<GameManager>
     }
 
 
-    public void EanrMoney(int amount)
+    public void EarnMoney(int amount)
     {
         currentMoney += amount;
     }

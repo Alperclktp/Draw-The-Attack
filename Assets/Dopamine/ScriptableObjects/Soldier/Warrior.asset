@@ -22,7 +22,10 @@ MonoBehaviour:
   levelUpCounter: 0
   id: 1
   name: WARRIOR
-  description: An unstoppable warrior!
+  description: 'An unstoppable warrior!
+
+
+    he he hee :>'
   manaCost: 3
   attackDamage: 10
   attackPerSpeed: 3

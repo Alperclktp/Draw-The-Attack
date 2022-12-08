@@ -12214,9 +12214,9 @@ MonoBehaviour:
   secondsBetweenSpawn: 0.5
   canSpawn: 0
   levelDifficulty:
-    warrior: 16
-    archer: 3
-    giant: 1
+    warrior: 32
+    archer: 6
+    giant: 2
     enemyCardSO:
     - {fileID: 11400000, guid: e7e2595f4b7ed934bb17453f4b7708fe, type: 2}
     - {fileID: 11400000, guid: 2339a5cbc4e78784c80cbe78ea0d0006, type: 2}

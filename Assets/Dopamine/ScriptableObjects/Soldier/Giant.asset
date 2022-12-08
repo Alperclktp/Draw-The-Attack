@@ -24,7 +24,7 @@ MonoBehaviour:
   name: GIANT
   description: An unstoppable giant!
   manaCost: 32
-  attackDamage: 25
+  attackDamage: 15
   attackPerSpeed: 2.5
   movementSpeed: 1.5
   health: 150

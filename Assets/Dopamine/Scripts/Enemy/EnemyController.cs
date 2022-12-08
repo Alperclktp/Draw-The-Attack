@@ -148,6 +148,8 @@ public class EnemyController : BaseAttackController
         Destroy(VFXManager.SpawnEffect(VFXType.EXPLOSION_EFFECT, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity), 1);
 
         Destroy(this.gameObject);
+
+        GameManager.Instance.EarnMoney(GameManager.Instance.level + 1);
     }
 
     private void RemoveEnemyFromList()
@@ -157,7 +159,7 @@ public class EnemyController : BaseAttackController
 
     private void AddToMana(int amount)
     {
-        GameManager.Instance.currentMana += amount;
+        GameManager.Instance.currentMana += 1 + Mathf.FloorToInt(GameManager.Instance.level * 0.25f); //amount;
 
         //CardManager.Instance.currentMana += Mathf.Lerp(CardManager.Instance.currentMana, amount, Time.deltaTime);
 

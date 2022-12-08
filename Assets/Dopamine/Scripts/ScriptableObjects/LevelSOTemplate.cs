@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelHolder", menuName = "Create Level Holder", order = 1)]
 public class LevelSOTemplate : ScriptableObject
 {
+    public float hardnessPerLevel;
     public List<LevelController> levels;
 } 
 
@@ -12,9 +13,6 @@ public class LevelSOTemplate : ScriptableObject
 public class LevelController
 {
     public GameObject level;
-
-    [Range(0,3)]
-    public int hardness;
 
     public bool isLoop;
 }

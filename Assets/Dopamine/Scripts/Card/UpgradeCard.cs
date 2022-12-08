@@ -54,6 +54,7 @@ public class UpgradeCard : MonoBehaviour
         MaxLevel();
 
         LoadCardData();
+
         GetCardData();
 
         if (PlayerPrefs.GetInt("CurrentLevel") == 0)
@@ -196,8 +197,8 @@ public class UpgradeCard : MonoBehaviour
         levelUpCounter = 0;
         nextLevel += 1;
 
-        currentAttackDamage += 10;
-        currentHealth += 10;
+        currentAttackDamage += 5;
+        currentHealth += 7;
 
         MMVibrationManager.Haptic(HapticTypes.MediumImpact, true, this);
 

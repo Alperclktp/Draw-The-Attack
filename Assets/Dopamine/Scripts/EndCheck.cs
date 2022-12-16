@@ -17,6 +17,11 @@ public class EndCheck : MonoBehaviour
             {
                 Destroy(GameManager.Instance.enemyList[i].gameObject);
             }
+
+            for (int i = 0; i < GameManager.Instance.soldierList.Count; i++)
+            {
+                Destroy(GameManager.Instance.soldierList[i].gameObject);
+            }
         }   
     }
 }

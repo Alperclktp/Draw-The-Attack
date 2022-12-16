@@ -18,7 +18,7 @@ public class TowerManager : BaseAttackController
     [Header("Tower Stats")]
     public float currentTowerHealth;
 
-    [SerializeField] private float secondsBetweenSpawn;
+    public float secondsBetweenSpawn;
 
     [Space(5)]
     public bool canSpawn;

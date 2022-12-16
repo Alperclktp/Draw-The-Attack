@@ -54,6 +54,10 @@ public class EnemyController : BaseAttackController
         //giveToManaCountText.text = "+" + amountToGiveMana.ToString();
 
         targetOffset = Vector3.right * Random.Range(-10, 10);
+
+
+        print($"Your enemy card health is {enemyCardSO.health}");
+        print($"Your enemy card damage is {enemyCardSO.attackDamage}");
     }
 
     private void Update()

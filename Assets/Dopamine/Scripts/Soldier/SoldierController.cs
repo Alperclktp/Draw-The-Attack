@@ -45,6 +45,10 @@ public class SoldierController : BaseAttackController
         agent.stoppingDistance = stoppingDistance;
 
         rb = GetComponent<Rigidbody>();
+
+        print($"Your card health is {cardSO.health}");
+        print($"Your card damage is {cardSO.attackDamage}");
+
     }
 
     private void Update()

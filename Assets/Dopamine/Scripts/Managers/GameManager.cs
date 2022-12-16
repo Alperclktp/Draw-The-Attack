@@ -79,12 +79,12 @@ public class GameManager : Singleton<GameManager>
 
         currentLevelText.gameObject.SetActive(true);
 
-        if(level == 0)
+        if (level == 0)
         {
             maxMana = 60;
         }
         else
-        {   
+        {
             maxMana = 60;
         }
 
@@ -92,7 +92,7 @@ public class GameManager : Singleton<GameManager>
         {
             Invoke("OnUpgradeTutorialCardHand", 1f);
         }
-        else if(level > 2)
+        else if (level > 2)
         {
             upgradeTutorialHand.SetActive(false);
             upgradeTutorialHand.SetActive(false);
@@ -114,9 +114,14 @@ public class GameManager : Singleton<GameManager>
         CheckMoney();
 
         CheckMana();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            TowerManager.Instance.currentTowerHealth = 0;
+
+
     }
 
-    public void StartGame() 
+    public void StartGame()
     {
         gameState = GameState.START;
 
@@ -169,7 +174,7 @@ public class GameManager : Singleton<GameManager>
         MMVibrationManager.Haptic(HapticTypes.Failure, true, this);
     }
 
-    public void NextLevel() 
+    public void NextLevel()
     {
         level++;
         PlayerPrefs.SetInt("Level", level);
@@ -178,7 +183,7 @@ public class GameManager : Singleton<GameManager>
         currentLevel++;
         PlayerPrefs.SetInt("CurrentLevel", currentLevel);
 
-        EarnMoney(Random.Range(5,10)); //Amount of money to be earned
+        EarnMoney(Random.Range(5, 10)); //Amount of money to be earned
 
         IncreaseMaxMana(10);
 
@@ -199,16 +204,17 @@ public class GameManager : Singleton<GameManager>
 
     public void GetLevelHardness()
     {
-        try {
-        TowerManager.Instance.levelDifficulty.SetHardness();       //---HARDNESS CONTROL---
-        //TowerManager.Instance.levelDifficulty.SetHardness(LevelManager.Instance.levelSOTemplate.levels[PlayerPrefs.GetInt("CurrentLevel")].hardness);       //---HARDNESS CONTROL---
+        try
+        {
+            TowerManager.Instance.levelDifficulty.SetHardness();       //---HARDNESS CONTROL---
+                                                                       //TowerManager.Instance.levelDifficulty.SetHardness(LevelManager.Instance.levelSOTemplate.levels[PlayerPrefs.GetInt("CurrentLevel")].hardness);       //---HARDNESS CONTROL---
         }
         catch { }
     }
 
     public void MoneySpendAnimation()
     {
-        moneyPanel.transform.DOScale(1.02f, 0.1f).OnComplete(() => 
+        moneyPanel.transform.DOScale(1.02f, 0.1f).OnComplete(() =>
         {
             moneyPanel.transform.DOScale(1f, 0.1f);
         });
@@ -254,7 +260,7 @@ public class GameManager : Singleton<GameManager>
 
     private void CheckMoney()
     {
-        if(currentMoney <= 0)
+        if (currentMoney <= 0)
         {
             currentMoney = 0;
         }
@@ -265,7 +271,7 @@ public class GameManager : Singleton<GameManager>
         if (tutorial)
         {
             Invoke("OnTutorialSelectCardHand", 1f);
-            
+
         }
         else
         {
@@ -287,7 +293,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void DrawCardTutorialHand()
-    {  
+    {
         drawCardTutorialHand.SetActive(true);
 
         spawnAreaIndicator.SetActive(true);

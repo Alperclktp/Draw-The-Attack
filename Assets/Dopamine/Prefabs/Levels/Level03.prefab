@@ -1575,7 +1575,7 @@ PrefabInstance:
     - target: {fileID: 1586302867745977393, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 0e68e5cf8b2a49b42ae004c4d47ad888, type: 2}
+      objectReference: {fileID: 23800000, guid: 488f63d7384b50d48b1b5f3653160fbf, type: 2}
     - target: {fileID: 8316161875421722742, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
       propertyPath: m_Name
       value: Level03

@@ -20,4 +20,4 @@ MonoBehaviour:
   attackDamage: 10
   attackPerSpeed: 3
   movementSpeed: 2
-  health: 25
+  health: 100

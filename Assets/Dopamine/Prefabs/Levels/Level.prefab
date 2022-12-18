@@ -11894,6 +11894,10 @@ PrefabInstance:
       propertyPath: enemySpawnHolder
       value: 
       objectReference: {fileID: 8316161876709898839}
+    - target: {fileID: 799334262607361006, guid: 72a053d1f02dcfb46a67b9856b31a123, type: 3}
+      propertyPath: currentTower2Health
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 799334262607361007, guid: 72a053d1f02dcfb46a67b9856b31a123, type: 3}
       propertyPath: m_RootOrder
       value: 11

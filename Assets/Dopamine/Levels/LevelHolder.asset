@@ -12,26 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d257f2e1ef180b940ad26a969d04e8fe, type: 3}
   m_Name: LevelHolder
   m_EditorClassIdentifier: 
-  hardnessPerLevel: 0.2
+  hardnessPerLevel: 0.25
   levels:
-  - level: {fileID: 7308039444851374464, guid: d4dea1dc102839c4a9bae57f32aadd36, type: 3}
-    hardness: 1
+  - level: {fileID: 260459397138268453, guid: 49957faa010fd3949af56e7063682699, type: 3}
     isLoop: 1
-  - level: {fileID: 7308039444851374464, guid: d4dea1dc102839c4a9bae57f32aadd36, type: 3}
-    hardness: 1
+  - level: {fileID: 260459397138268453, guid: 49957faa010fd3949af56e7063682699, type: 3}
     isLoop: 1
-  - level: {fileID: 1474036695574800783, guid: c420f4f2489b8cf4bb8623300c6eb261, type: 3}
-    hardness: 1
+  - level: {fileID: 8268538517423140132, guid: 87d351edf6396c64086dabcf81679835, type: 3}
     isLoop: 1
-  - level: {fileID: 1474036695574800783, guid: c420f4f2489b8cf4bb8623300c6eb261, type: 3}
-    hardness: 2
+  - level: {fileID: 8268538517423140132, guid: 87d351edf6396c64086dabcf81679835, type: 3}
     isLoop: 1
-  - level: {fileID: 7571210482828230374, guid: 6ad9995544ca6a8479c54200c23bc37d, type: 3}
-    hardness: 2
+  - level: {fileID: 2170132842695451888, guid: 9b5b4326baf68024d8a09f4db72e873a, type: 3}
     isLoop: 1
-  - level: {fileID: 7571210482828230374, guid: 6ad9995544ca6a8479c54200c23bc37d, type: 3}
-    hardness: 3
+  - level: {fileID: 2170132842695451888, guid: 9b5b4326baf68024d8a09f4db72e873a, type: 3}
     isLoop: 1
-  - level: {fileID: 3313093318629505410, guid: 2b08d1cd8b356e34cb5ddd47c8d75412, type: 3}
-    hardness: 3
+  - level: {fileID: 2842469439611618143, guid: 9b1c0d95b7e502745a3f45bb598e771a, type: 3}
     isLoop: 1

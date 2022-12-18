@@ -578,7 +578,7 @@ MonoBehaviour:
   canGoEndLine: 1
   currentHealth: 125
   currentSpeed: 2
-  sensingDistance: 8
+  sensingDistance: 7
   stoppingDistance: 6
   lookRotateSpeed: 10
   amountToGiveMana: 1

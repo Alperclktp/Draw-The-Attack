@@ -280,7 +280,7 @@ public class EnemyController : BaseAttackController
         currentHealth = enemyCardSO.health;
     }
 
-    public override void TakeDamage(float damage)
+    public override void TakeDamage(float damage, Vector3? pos = null)
     {
         currentHealth -= damage;
     }

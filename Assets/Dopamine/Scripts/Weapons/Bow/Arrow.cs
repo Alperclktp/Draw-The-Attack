@@ -28,7 +28,7 @@ public class Arrow : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        IDamageable hit = other.GetComponent<IDamageable>();
+        IDamageable hit = other.GetComponentInParent<IDamageable>();
 
         if (hit != null)
         {
@@ -37,7 +37,7 @@ public class Arrow : MonoBehaviour
                 return;
             }
 
-            hit.TakeDamage(currentArrowAttackDamage);
+            hit.TakeDamage(currentArrowAttackDamage, transform.position);
 
             GetHitVFX(other);
 

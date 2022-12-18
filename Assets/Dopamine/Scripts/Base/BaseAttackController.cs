@@ -12,6 +12,6 @@ public abstract class BaseAttackController : MonoBehaviour, IDamageable
 
     public abstract string damageableID { get; }
 
-    public abstract void TakeDamage(float damage);
+    public abstract void TakeDamage(float damage, Vector3? pos = null);
 
 }

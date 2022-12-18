@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,14 +10,14 @@ public class EndCheck : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            TowerManager.Instance.canSpawn = false;
+
             GameManager.Instance.enemyList.RemoveAt(0);
 
             GameManager.Instance.FailLevel();
 
-            for (int i = 0; i < GameManager.Instance.enemyList.Count; i++)
-            {
-                Destroy(GameManager.Instance.enemyList[i].gameObject);
-            }
+            foreach (var item in GameManager.Instance.enemyList.Where(_ => !_.name.Contains("Tower")))
+                Destroy(item);
 
             for (int i = 0; i < GameManager.Instance.soldierList.Count; i++)
             {

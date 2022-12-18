@@ -17,7 +17,7 @@ public class WeaponController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IDamageable hit = other.GetComponent<IDamageable>();
+        IDamageable hit = other.GetComponentInParent<IDamageable>();
 
         if (hit != null)
         {
@@ -26,7 +26,7 @@ public class WeaponController : MonoBehaviour
                 return;
             }
 
-            hit.TakeDamage(baseAttackController.currentAttackDamage);
+            hit.TakeDamage(baseAttackController.currentAttackDamage, transform.position);
 
             GetHitVFX(other);
         }

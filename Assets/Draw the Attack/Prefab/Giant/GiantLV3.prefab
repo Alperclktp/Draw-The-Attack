@@ -324,14 +324,15 @@ MonoBehaviour:
   currentPerAttackSpeed: 0
   cardSO: {fileID: 11400000, guid: 9b0ae091cbec1904191f9f59b16f5f6d, type: 2}
   anim: {fileID: 0}
+  ignoreEnemies: 1
   canMove: 1
   canAttack: 0
   canGoTower: 0
   currentHealth: 200
   currentSpeed: 1.5
-  sensingDistance: 20
+  sensingDistance: 8
   stoppingDistance: 1.5
-  towerStoppingDistance: 4.25
+  towerStoppingDistance: 0.75
   lookRotateSpeed: 10
 --- !u!114 &6856087394408594575
 MonoBehaviour:

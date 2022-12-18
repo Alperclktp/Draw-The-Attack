@@ -1,5 +1,6 @@
 using MoreMountains.NiceVibrations;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -11,6 +12,9 @@ public class SoldierController : BaseAttackController
     [HideInInspector] public Animator anim;
 
     private NavMeshAgent agent;
+
+
+    [SerializeField] private bool ignoreEnemies;
 
     [SerializeField] private bool canMove;
     [SerializeField] private bool canAttack;
@@ -92,7 +96,8 @@ public class SoldierController : BaseAttackController
 
     private void MoveTower()
     {
-        agent.SetDestination(new Vector3(GameManager.Instance.towerPosition.position.x, 0, GameManager.Instance.towerPosition.position.z));
+        nearestTarget = TowerManager.NearestTower(transform.position);
+        agent.SetDestination(Vector3.Scale(TowerManager.NearestTower(transform.position).position, new Vector3(1, 0, 1)));
 
         //agent.isStopped = false;
 
@@ -119,7 +124,14 @@ public class SoldierController : BaseAttackController
 
         Vector3 currentPosition = transform.position;
 
-        foreach (GameObject obj in GameManager.Instance.enemyList)
+        List<GameObject> enemyList = GameManager.Instance.enemyList;
+
+        enemyList = enemyList.Where(_ => _ != null).ToList();
+
+        if (ignoreEnemies)
+            enemyList = enemyList.Where(_ => _.name.Contains("Tower")).ToList();
+
+        foreach (GameObject obj in enemyList)
         {
             float dist = Vector3.Distance(obj.transform.position, currentPosition);
 
@@ -129,6 +141,7 @@ public class SoldierController : BaseAttackController
                 minDist = dist;
             }
         }
+
         return nearestTarget;
     }
 
@@ -158,12 +171,18 @@ public class SoldierController : BaseAttackController
     {
         if (nearestTarget != null)
         {
-            agent.stoppingDistance = stoppingDistance;
+            float stopDist = stoppingDistance;
 
-            bool move = Vector3.Distance(transform.position, new Vector3(nearestTarget.position.x, transform.position.y, nearestTarget.position.z)) >= stoppingDistance;
 
-            if (nearestTarget == TowerManager.Instance.transform)
-                move = Vector3.Distance(transform.position, new Vector3(nearestTarget.position.x, transform.position.y, nearestTarget.position.z)) >= towerStoppingDistance;
+            if (nearestTarget.parent == TowerManager.Instance.transform) {
+
+                stopDist = towerStoppingDistance;
+                nearestTarget = nearestTarget.Find("GoTowerPosition");
+            }
+
+            bool move = Vector3.Distance(transform.position, new Vector3(nearestTarget.position.x, transform.position.y, nearestTarget.position.z)) >= stopDist;
+
+            agent.stoppingDistance = stopDist - 0.1f;
 
             if (move)
             {
@@ -219,7 +238,7 @@ public class SoldierController : BaseAttackController
 
     private void LookAtTower()
     {
-        transform.LookAt(GameManager.Instance.towerPosition);
+        transform.LookAt(TowerManager.NearestTower(transform.position));
     }
 
     private void InýtAnimation()
@@ -275,7 +294,7 @@ public class SoldierController : BaseAttackController
         currentHealth = cardSO.health;
     }
 
-    public override void TakeDamage(float damage)
+    public override void TakeDamage(float damage, Vector3?pos = null)
     {
         currentHealth -= damage;
     }

@@ -17,6 +17,10 @@ public enum GameState
 }
 public class GameManager : Singleton<GameManager>
 {
+    const bool SPAWN_ENEMIES = true;
+
+    /////////////////////////////////////////////////////
+
     public List<GameObject> soldierList = new List<GameObject>();
 
     public List<GameObject> enemyList = new List<GameObject>();
@@ -116,9 +120,14 @@ public class GameManager : Singleton<GameManager>
         CheckMana();
 
         if (Input.GetKeyDown(KeyCode.Space))
-            TowerManager.Instance.currentTowerHealth = 0;
+        {
+            //TowerManager.Instance.currentTowerHealth = 0;
 
+            TowerManager.Instance.transform.GetChild(0).GetComponentInParent<TowerManager>().currentTower1Health = 0;
+            TowerManager.Instance.transform.GetChild(1).GetComponentInParent<TowerManager>().currentTower2Health = 0;
+            TowerManager.Instance.transform.GetChild(2).GetComponentInParent<TowerManager>().currentTower3Health = 0;
 
+        }
     }
 
     public void StartGame()
@@ -127,7 +136,8 @@ public class GameManager : Singleton<GameManager>
 
         TowerManager.Instance.canSpawn = true;                  //---CAN SPAWN ENEMY CONTROL--
 
-        StartCoroutine(TowerManager.Instance.IEEnemySpawner());
+        if (SPAWN_ENEMIES)
+            StartCoroutine(TowerManager.Instance.IEEnemySpawner());
 
         upgradeManagerPanel.SetActive(false);
 

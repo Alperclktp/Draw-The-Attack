@@ -836,9 +836,9 @@ MonoBehaviour:
   canGoTower: 0
   currentHealth: 100
   currentSpeed: 2
-  sensingDistance: 20
+  sensingDistance: 2
   stoppingDistance: 1.5
-  towerStoppingDistance: 4.25
+  towerStoppingDistance: 0.75
   lookRotateSpeed: 10
 --- !u!195 &3597250956335457637
 NavMeshAgent:

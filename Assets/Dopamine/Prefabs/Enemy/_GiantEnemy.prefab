@@ -661,7 +661,7 @@ MonoBehaviour:
   canGoEndLine: 1
   currentHealth: 125
   currentSpeed: 1.5
-  sensingDistance: 5
+  sensingDistance: 2
   stoppingDistance: 1.5
   lookRotateSpeed: 10
   amountToGiveMana: 1
@@ -1162,6 +1162,10 @@ PrefabInstance:
     - target: {fileID: 4972400268652535580, guid: 810c2b1346231da47aa92b64c651cf59, type: 3}
       propertyPath: m_Name
       value: WarHammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219513867414288173, guid: 810c2b1346231da47aa92b64c651cf59, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 810c2b1346231da47aa92b64c651cf59, type: 3}

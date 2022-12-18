@@ -663,7 +663,7 @@ MonoBehaviour:
   canGoEndLine: 1
   currentHealth: 125
   currentSpeed: 2
-  sensingDistance: 5
+  sensingDistance: 2
   stoppingDistance: 1.5
   lookRotateSpeed: 10
   amountToGiveMana: 1
@@ -1168,6 +1168,10 @@ PrefabInstance:
     - target: {fileID: 3545219583973336677, guid: 007c82ffdd5980c49bb54bd68a3a6a94, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 126.086
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516047219817171141, guid: 007c82ffdd5980c49bb54bd68a3a6a94, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 007c82ffdd5980c49bb54bd68a3a6a94, type: 3}

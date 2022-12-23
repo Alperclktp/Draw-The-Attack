@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,13 +56,18 @@ public class GameManager : Singleton<GameManager>
     public Text currentManaText;
     public Text maxManaText;
 
+    [Header("Tutorial UI")]
     public GameObject spawnAreaIndicator;
     public GameObject selectTutorialHand;
+    public GameObject selectTutorialHand2;
+    public GameObject selectTutorialHand3;
     public GameObject drawCardTutorialHand;
     public GameObject upgradeTutorialHand;
 
     public Text currentMoneyText;
-    public Text drawToCardText;
+    public Text drawToCardText1;
+    public Text drawToCardText2;
+    public Text drawToCardText3;
     public Text currentLevelText;
 
     public bool tutorial;
@@ -86,10 +92,12 @@ public class GameManager : Singleton<GameManager>
         if (level == 0)
         {
             maxMana = 60;
+            tutorial = true;
         }
         else
         {
             maxMana = 60;
+            tutorial = false;
         }
 
         if (level == 2)
@@ -152,7 +160,7 @@ public class GameManager : Singleton<GameManager>
 
         upgradeTutorialHand.SetActive(false);
 
-        Tutorial();
+        StartCoroutine(NewTutorial());
 
         GetLevelHardness();
 
@@ -277,40 +285,128 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void Tutorial()
-    {
-        if (tutorial)
-        {
-            Invoke("OnTutorialSelectCardHand", 1f);
-
-        }
-        else
-        {
-            drawToCardText.gameObject.SetActive(false);
-            spawnAreaIndicator.SetActive(false);
-            drawCardTutorialHand.SetActive(false);
-            selectTutorialHand.SetActive(false);
-        }
-    }
-
-    private void OnTutorialSelectCardHand()
-    {
-        selectTutorialHand.SetActive(true);
-    }
-
     private void OnUpgradeTutorialCardHand()
     {
         upgradeTutorialHand.SetActive(true);
     }
 
-    public void DrawCardTutorialHand()
+    const bool CONSTANT_SPAWN_AREA_INDICATOR = false; // <-- BU PÝÇÝ AÇINCA YEÞÝL KAREMSÝ SPAWN BOKU HEP AÇIK OLUYO
+                                                     //     false OLUNCA SADECE SPAWN ETTÝRÝRKEN YANIYO
+    private IEnumerator NewTutorial()
     {
-        drawCardTutorialHand.SetActive(true);
+        if (CONSTANT_SPAWN_AREA_INDICATOR)
+            spawnAreaIndicator.SetActive(true);
 
-        spawnAreaIndicator.SetActive(true);
+        if (tutorial)
+        {
+            SetCards(false, false, false);
 
-        drawToCardText.gameObject.SetActive(true);
+            CardManager.Instance.onTutorial = true;
 
-        selectTutorialHand.SetActive(false);
+            yield return new WaitForSeconds(0.65f);
+
+            SetCards(true, false, false);
+            selectTutorialHand.SetActive(true);
+
+            yield return new WaitUntil(() => IsCardselected(0));
+
+            CardManager.Instance.tutorialLock = false;
+            SetCards(false, false, false);
+            selectTutorialHand.SetActive(false);
+            drawCardTutorialHand.SetActive(true);
+            drawToCardText1.gameObject.SetActive(true);
+
+            if (!CONSTANT_SPAWN_AREA_INDICATOR)
+                spawnAreaIndicator.SetActive(true);
+
+            yield return new WaitUntil(() => SoliderCount("Warrior") >= 10);
+
+            CardManager.Instance.tutorialLock = true;
+            SetCards(false, true, false);
+            selectTutorialHand2.SetActive(true);
+            drawCardTutorialHand.SetActive(false);
+            drawToCardText1.gameObject.SetActive(false);
+            DisableCard(0);
+
+            if (!CONSTANT_SPAWN_AREA_INDICATOR)
+                spawnAreaIndicator.SetActive(false);
+
+
+            yield return new WaitUntil(() => IsCardselected(1));
+
+            CardManager.Instance.tutorialLock = false;
+            SetCards(false, false, false);
+            selectTutorialHand2.SetActive(false);
+            drawCardTutorialHand.SetActive(true);
+            drawToCardText2.gameObject.SetActive(true);
+
+            if (!CONSTANT_SPAWN_AREA_INDICATOR)
+                spawnAreaIndicator.SetActive(true);
+
+            yield return new WaitUntil(() => SoliderCount("Archer") >= 7);
+
+            CardManager.Instance.tutorialLock = true;
+            SetCards(false, false, true);
+            selectTutorialHand3.SetActive(true);
+            drawCardTutorialHand.SetActive(false);
+            drawToCardText1.gameObject.SetActive(false);
+            DisableCard(1);
+
+            if (!CONSTANT_SPAWN_AREA_INDICATOR)
+                spawnAreaIndicator.SetActive(false);
+
+            yield return new WaitUntil(() => IsCardselected(2));
+
+            CardManager.Instance.tutorialLock = false;
+            SetCards(false, false, false);
+            selectTutorialHand3.SetActive(false);
+            drawCardTutorialHand.SetActive(true);
+
+            if (!CONSTANT_SPAWN_AREA_INDICATOR)
+                spawnAreaIndicator.SetActive(true);
+
+            yield return new WaitUntil(() => SoliderCount("Giant") >= 3);
+
+            SetCards(true, true, true);
+            drawCardTutorialHand.SetActive(false);
+            DisableCard(2);
+
+            if (!CONSTANT_SPAWN_AREA_INDICATOR)
+                spawnAreaIndicator.SetActive(false);
+
+            CardManager.Instance.onTutorial = false;
+
+            bool IsAnySoldier(string soldier) { return FindObjectsOfType<SoldierController>().Any(_ => _.name.Contains(soldier)); }
+            bool IsCardselected(int index) { return CardManager.Instance.cardList[index].IsSelected; }
+
+            int SoliderCount(string soldier) { return FindObjectsOfType<SoldierController>().Where(_ => _.name.Contains(soldier)).Count(); }
+
+            void SetCards(bool card0, bool card1, bool card2)
+            {
+                CardManager.Instance.cardList[0].GetComponent<Button>().enabled = card0;
+                CardManager.Instance.cardList[1].GetComponent<Button>().enabled = card1;
+                CardManager.Instance.cardList[2].GetComponent<Button>().enabled = card2;
+            }
+
+            void DisableCard(int index)
+            {
+                CardManager.Instance.cardList[index].GetComponent<Image>().color = CardManager.Instance.defaultColor;
+
+                CardManager.Instance.cardList[index].IsSelected = false;
+
+                //cardList[i].transform.DOScale(1.05f, 0.2f);
+                CardManager.Instance.cardList[index].transform.DOScale(1.2f, 0.2f);
+                CardManager.Instance.selectedCard = null;
+            }
+        }
+
+        if (!CONSTANT_SPAWN_AREA_INDICATOR)
+        {
+            while (true)
+            {
+                spawnAreaIndicator.SetActive(CardManager.Instance.cardList.Any(_ => _.IsSelected));
+                yield return null;
+            }
+        }
     }
 }

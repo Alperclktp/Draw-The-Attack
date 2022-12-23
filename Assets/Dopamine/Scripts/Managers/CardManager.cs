@@ -11,12 +11,12 @@ public class CardManager : Singleton<CardManager>
     public List<Card> cardList = new List<Card>();
 
     [Space(5)]
-    [SerializeField] private Card selectedCard;
+    [SerializeField] public Card selectedCard;
 
     [SerializeField] private GameObject soldierSpawnHolder;
 
     [Header("Card Colors")]
-    [SerializeField] private Color defaultColor;
+    [SerializeField] public Color defaultColor;
     [SerializeField] private Color selectedColor;
     //[SerializeField] private Color unselectedColor;
 
@@ -83,7 +83,7 @@ public class CardManager : Singleton<CardManager>
 
             if (GameManager.Instance.tutorial)
             {
-                GameManager.Instance.DrawCardTutorialHand();
+                //GameManager.Instance.DrawCardTutorialHand();
             }
         }
         else
@@ -96,6 +96,8 @@ public class CardManager : Singleton<CardManager>
     {
         MMVibrationManager.Haptic(HapticTypes.Selection, true, this);
     }
+
+    [HideInInspector] public bool tutorialLock, onTutorial;
 
     private void SpawnCard(Card selectedCard)
     {
@@ -111,13 +113,17 @@ public class CardManager : Singleton<CardManager>
                 {
                     if (hit.collider != null && !hit.collider.CompareTag("Soldier") && !hit.collider.CompareTag("Enemy") && hit.collider.CompareTag("Ground"))
                     {
+
+                        if (tutorialLock)
+                            return;
+
                         GameObject obj = Instantiate(selectedCard.cardPrefab, hit.point, selectedCard.cardPrefab.transform.rotation);
 
                         obj.transform.parent = soldierSpawnHolder.transform;
 
                         GameManager.Instance.soldierList.Add(obj);
 
-                        GameManager.Instance.currentMana -= selectedCard.currentManaCost;
+                        GameManager.Instance.currentMana -= onTutorial ? 1 : selectedCard.currentManaCost;
 
                         spawnIntervalTimer = 0.04f;
 
@@ -125,9 +131,9 @@ public class CardManager : Singleton<CardManager>
 
                         //Debug.Log("Spawned the: " + selectedCard.name);
 
-                        GameManager.Instance.tutorial = false;
-
-                        GameManager.Instance.Tutorial();
+                        //GameManager.Instance.tutorial = false;
+                        //GameManager.Instance.Tutorial();
+                        //GameManager.Instance.Tutorial2();
 
                         MMVibrationManager.Haptic(HapticTypes.Selection, true, this);
 

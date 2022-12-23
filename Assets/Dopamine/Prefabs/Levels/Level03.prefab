@@ -1572,6 +1572,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 856831500672326312, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
+      propertyPath: m_Text
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 856831500672326314, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.51569974
+      objectReference: {fileID: 0}
+    - target: {fileID: 856831500672326314, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 47.543
+      objectReference: {fileID: 0}
+    - target: {fileID: 856831500672326314, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -23.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1586302867745977393, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
       propertyPath: m_NavMeshData
       value: 

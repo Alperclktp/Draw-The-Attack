@@ -596,7 +596,7 @@ GameObject:
   - component: {fileID: 6055116812897963801}
   - component: {fileID: 7118684266677735421}
   - component: {fileID: 6055116812897963803}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: GiantLV2
   m_TagString: Soldier
   m_Icon: {fileID: 0}

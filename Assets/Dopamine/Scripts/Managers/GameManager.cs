@@ -290,8 +290,8 @@ public class GameManager : Singleton<GameManager>
         upgradeTutorialHand.SetActive(true);
     }
 
-    const bool CONSTANT_SPAWN_AREA_INDICATOR = false; // <-- BU PÝÇÝ AÇINCA YEÞÝL KAREMSÝ SPAWN BOKU HEP AÇIK OLUYO
-                                                     //     false OLUNCA SADECE SPAWN ETTÝRÝRKEN YANIYO
+    const bool CONSTANT_SPAWN_AREA_INDICATOR = false; 
+                                                     
     private IEnumerator NewTutorial()
     {
         if (CONSTANT_SPAWN_AREA_INDICATOR)
@@ -349,7 +349,7 @@ public class GameManager : Singleton<GameManager>
             SetCards(false, false, true);
             selectTutorialHand3.SetActive(true);
             drawCardTutorialHand.SetActive(false);
-            drawToCardText1.gameObject.SetActive(false);
+            drawToCardText2.gameObject.SetActive(false);
             DisableCard(1);
 
             if (!CONSTANT_SPAWN_AREA_INDICATOR)
@@ -361,6 +361,8 @@ public class GameManager : Singleton<GameManager>
             SetCards(false, false, false);
             selectTutorialHand3.SetActive(false);
             drawCardTutorialHand.SetActive(true);
+            drawToCardText3.gameObject.SetActive(true);
+
 
             if (!CONSTANT_SPAWN_AREA_INDICATOR)
                 spawnAreaIndicator.SetActive(true);
@@ -369,6 +371,7 @@ public class GameManager : Singleton<GameManager>
 
             SetCards(true, true, true);
             drawCardTutorialHand.SetActive(false);
+            drawToCardText3.gameObject.SetActive(false);
             DisableCard(2);
 
             if (!CONSTANT_SPAWN_AREA_INDICATOR)

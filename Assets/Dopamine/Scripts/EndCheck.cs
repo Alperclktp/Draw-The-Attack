@@ -16,7 +16,7 @@ public class EndCheck : MonoBehaviour
 
             GameManager.Instance.FailLevel();
 
-            foreach (var item in GameManager.Instance.enemyList.Where(_ => !_.name.Contains("Tower")))
+            foreach (var item in GameManager.Instance.enemyList.Where(_ => _ != null && !_.name.Contains("Tower")))
                 Destroy(item);
 
             for (int i = 0; i < GameManager.Instance.soldierList.Count; i++)

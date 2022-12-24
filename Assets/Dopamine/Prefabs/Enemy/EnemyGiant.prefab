@@ -1180,7 +1180,7 @@ MonoBehaviour:
   nearestTarget: {fileID: 0}
   currentAttackDamage: 25
   currentPerAttackSpeed: 0
-  enemyCardSO: {fileID: 11400000, guid: 2339a5cbc4e78784c80cbe78ea0d0006, type: 2}
+  enemyCardSO: {fileID: 11400000, guid: fab6b29f7137e8f45a14643de0ac6d3c, type: 2}
   anim: {fileID: 0}
   canMove: 1
   canAttack: 0

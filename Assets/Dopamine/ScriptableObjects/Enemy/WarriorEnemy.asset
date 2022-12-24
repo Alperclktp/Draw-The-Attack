@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500001bf12d1d4243a822280e8aeb6c3, type: 3}
   m_Name: WarriorEnemy
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 3195566690026147400, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
+  cardPrefab: {fileID: 3929569608997315865, guid: 83993ed884b4b414e9f1fe22c63e5434, type: 3}
   level: 1
   id: 0
   name: WarriorEnemy
   description: "\t\t\t\t"
-  attackDamage: 10
+  attackDamage: 4
   attackPerSpeed: 3
   movementSpeed: 2
-  health: 100
+  health: 40

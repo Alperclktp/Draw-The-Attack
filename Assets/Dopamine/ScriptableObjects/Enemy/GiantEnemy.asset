@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500001bf12d1d4243a822280e8aeb6c3, type: 3}
   m_Name: GiantEnemy
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 3195566690026147400, guid: c76ccfab6fd07a146bbe37c3c19ef1b0, type: 3}
+  cardPrefab: {fileID: 6173875875473080128, guid: ed682e57920782544b0b2117d7550f71, type: 3}
   level: 1
   id: 0
-  name: WarriorEnemy
+  name: GiantEnemy
   description: "\t\t\t\t"
-  attackDamage: 20
+  attackDamage: 45.733334
   attackPerSpeed: 2.5
   movementSpeed: 1.5
-  health: 150
+  health: 1029

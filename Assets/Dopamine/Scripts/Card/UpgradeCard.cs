@@ -70,6 +70,7 @@ public class UpgradeCard : MonoBehaviour
 
         nextLevel = currentLevel + 1;
 
+        SaveCardData(); //Test 
         SaveCardDataSO();
     }
 
@@ -197,8 +198,8 @@ public class UpgradeCard : MonoBehaviour
         levelUpCounter = 0;
         nextLevel += 1;
 
-        currentAttackDamage += 3;
-        currentHealth += 6;
+        currentAttackDamage += 10;
+        currentHealth += 10;
 
         MMVibrationManager.Haptic(HapticTypes.MediumImpact, true, this);
 

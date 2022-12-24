@@ -135,7 +135,6 @@ public class GameManager : Singleton<GameManager>
             TowerManager.Instance.transform.GetChild(0).GetComponentInParent<TowerManager>().currentTower1Health = 0;
             TowerManager.Instance.transform.GetChild(1).GetComponentInParent<TowerManager>().currentTower2Health = 0;
             TowerManager.Instance.transform.GetChild(2).GetComponentInParent<TowerManager>().currentTower3Health = 0;
-
         }
     }
 
@@ -160,11 +159,11 @@ public class GameManager : Singleton<GameManager>
 
         upgradeTutorialHand.SetActive(false);
 
-        StartCoroutine(NewTutorial());
+        StartCoroutine(Tutorial());
 
         GetLevelHardness();
 
-        maxMana += level * level;
+        maxMana += level * level / (int)2.5f; //Test mana.
         currentMana = maxMana;
     }
 
@@ -271,7 +270,7 @@ public class GameManager : Singleton<GameManager>
             currentMana = 0;
         }
 
-        if (currentMana >= maxMana)
+         if (currentMana >= maxMana)
         {
             currentMana = maxMana;
         }
@@ -292,7 +291,7 @@ public class GameManager : Singleton<GameManager>
 
     const bool CONSTANT_SPAWN_AREA_INDICATOR = false; 
                                                      
-    private IEnumerator NewTutorial()
+    private IEnumerator Tutorial()
     {
         if (CONSTANT_SPAWN_AREA_INDICATOR)
             spawnAreaIndicator.SetActive(true);

@@ -10,7 +10,7 @@ public class TowerManager : BaseAttackController
 {
     public static TowerManager Instance;
 
-    [SerializeField] private Transform[] enemySpawnPoints;
+    [SerializeField] private List<Transform> enemySpawnPoints;
 
     [SerializeField] private GameObject enemySpawnHolder;
 
@@ -35,7 +35,7 @@ public class TowerManager : BaseAttackController
     public Text currentTowerHealth2Text;
     public Text currentTowerHealth3Text;
 
-    public static Transform NearestTower (Vector3 pos) { return Instance.GetComponentsInChildren<Transform>().Where(_ => _.name.Length == 6 && _.name != "Towers" && _.name.StartsWith("Tower")).OrderBy(_ => Vector3.Distance(pos, _.position)).First(); }
+    public static Transform NearestTower(Vector3 pos) { return Instance.GetComponentsInChildren<Transform>().Where(_ => _.name.Length == 6 && _.name != "Towers" && _.name.StartsWith("Tower")).OrderBy(_ => Vector3.Distance(pos, _.position)).First(); }
 
     public override string damageableID { get { return typeof(TowerManager).Name; } }
 
@@ -57,13 +57,18 @@ public class TowerManager : BaseAttackController
 
     private void EnemySpawner(string value)
     {
-        if (canSpawn && GameManager.Instance.towerPosition != null)
+        if (canSpawn)
         {
-            GameObject obj = Instantiate(enemyPrefabs[value], enemySpawnPoints[Random.Range(0, enemySpawnPoints.Length)].transform.position, enemyPrefabs[value].transform.rotation);
+            List<Transform> _enemySpawnPoints = enemySpawnPoints.Where(_ => _ != null).ToList();
 
-            obj.transform.parent = enemySpawnHolder.transform;
+            if (_enemySpawnPoints.Count > 0)
+            {
+                GameObject obj = Instantiate(enemyPrefabs[value], _enemySpawnPoints[Random.Range(0, _enemySpawnPoints.Count)].transform.position, enemyPrefabs[value].transform.rotation);
 
-            AddToEnemyList(obj);
+                obj.transform.parent = enemySpawnHolder.transform;
+
+                AddToEnemyList(obj);
+            }
         }
     }
 
@@ -102,18 +107,23 @@ public class TowerManager : BaseAttackController
 
     private void CheckHealth()
     {
-        for (int i = 0; i < 3; i++) {
+        if (currentTower1Health <= 0) currentTower1Health = 0;
+        if (currentTower2Health <= 0) currentTower2Health = 0;
+        if (currentTower3Health <= 0) currentTower3Health = 0;
 
+        for (int i = 0; i < 3; i++)
+        {
             float towerHealth = i == 0 ? currentTower1Health : i == 1 ? currentTower2Health : currentTower3Health;
             string towerName = $"Tower{i + 1}";
 
-            if (towerHealth <= 0 && transform.GetComponentsInChildren<Transform>().Any(_ => _.name == towerName))
+            if (towerHealth <= 0 && transform.GetComponentsInChildren<Transform>().Any(_ => _.name == towerName) && towerName != null)
             {
                 GetExplosionVFX(transform.GetComponentsInChildren<Transform>().First(_ => _.name == towerName));
                 Destroy(transform.Find(towerName).gameObject);
+                enemySpawnPoints[i] = null; //
             }
         }
-        
+
         if (totalHealth <= 0)
         {
             GameManager.Instance.gameState = GameState.COMPLATE;
@@ -157,7 +167,8 @@ public class TowerManager : BaseAttackController
     {
         int closestTowerIndex = int.Parse(NearestTower((Vector3)pos).name.Substring(5, 1));
 
-        switch (closestTowerIndex) {
+        switch (closestTowerIndex)
+        {
             case 1: currentTower1Health -= (int)damage; break;
             case 2: currentTower2Health -= (int)damage; break;
             case 3: currentTower3Health -= (int)damage; break;
@@ -218,17 +229,17 @@ public class LevelDifficulty
 
         float hardness = 1 + GameManager.Instance.level * LevelManager.Instance.levelSOTemplate.hardnessPerLevel;
 
-        warrior = Mathf.FloorToInt(48 * hardness);
+        warrior = Mathf.FloorToInt(22.5f * hardness);
         enemyCardSO[0].attackDamage = cardManager.cardList[0].cardSO.attackDamage / 2.5f * hardness;
         enemyCardSO[0].health = (int)(cardManager.cardList[0].cardSO.health / 2.5f * hardness);
 
-        archer = Mathf.FloorToInt(10 * hardness);
+        archer = Mathf.FloorToInt(7.5f * hardness);
         enemyCardSO[1].attackDamage = cardManager.cardList[1].cardSO.attackDamage / 2.5f * hardness;
         enemyCardSO[1].health = (int)(cardManager.cardList[1].cardSO.health / 2.5f * hardness);
 
-        giant = Mathf.FloorToInt(4 * hardness); 
-        enemyCardSO[2].attackDamage = cardManager.cardList[2].cardSO.attackDamage / 1 * hardness;
-        enemyCardSO[2].health = (int)(cardManager.cardList[2].cardSO.health / 1 * hardness);
+        giant = Mathf.FloorToInt(1.5f * hardness);
+        enemyCardSO[2].attackDamage = (float)(cardManager.cardList[2].cardSO.attackDamage / 3 * hardness);
+        enemyCardSO[2].health = (int)(cardManager.cardList[2].cardSO.health / 3 * hardness);
 
         return;
 

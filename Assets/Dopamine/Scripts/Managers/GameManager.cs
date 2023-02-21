@@ -238,7 +238,6 @@ public class GameManager : Singleton<GameManager>
         });
     }
 
-
     public void EarnMoney(int amount)
     {
         currentMoney += amount;

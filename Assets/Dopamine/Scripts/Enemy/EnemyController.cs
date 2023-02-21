@@ -78,6 +78,8 @@ public class EnemyController : BaseAttackController
         CheckSoldierList();
 
         InýtAnimation();
+
+        print("Current Money: " + GameManager.Instance.currentMoney);
     }
 
     private void OnEnable()

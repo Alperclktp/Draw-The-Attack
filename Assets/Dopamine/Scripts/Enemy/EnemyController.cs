@@ -79,7 +79,7 @@ public class EnemyController : BaseAttackController
 
         InýtAnimation();
 
-        print("Current Money: " + GameManager.Instance.currentMoney);
+        //print("Current Money: " + GameManager.Instance.currentMoney);
     }
 
     private void OnEnable()

@@ -1,5 +1,5 @@
 // Toony Colors Pro+Mobile 2
-// (c) 2014-2020 Jean Moreno
+// (c) 2014-2021 Jean Moreno
 
 using System.Collections.Generic;
 using System.IO;
@@ -28,19 +28,19 @@ namespace ToonyColorsPro
 		//--------------------------------------------------------------------------------------------------
 		// UNPACK SHADERS
 
-		[MenuItem(MENU_PATH + "Unpack Shaders/Rim (Desktop)", false, 800)]
+		[MenuItem(MENU_PATH + "Unpack Shaders (legacy)/Rim (Desktop)", false, 800)]
 		static void UnpackRim() { UnpackShaders("rim desktop"); }
-		[MenuItem(MENU_PATH + "Unpack Shaders/Rim (Mobile)", false, 800)]
+		[MenuItem(MENU_PATH + "Unpack Shaders (legacy)/Rim (Mobile)", false, 800)]
 		static void UnpackRimMobile() { UnpackShaders("rim mobile"); }
-		[MenuItem(MENU_PATH + "Unpack Shaders/Reflection (Desktop)", false, 800)]
+		[MenuItem(MENU_PATH + "Unpack Shaders (legacy)/Reflection (Desktop)", false, 800)]
 		static void UnpackReflectionDesktop() { UnpackShaders("reflection desktop"); }
-		[MenuItem(MENU_PATH + "Unpack Shaders/Matcap (Mobile)", false, 800)]
+		[MenuItem(MENU_PATH + "Unpack Shaders (legacy)/Matcap (Mobile)", false, 800)]
 		static void UnpackMatcapMobile() { UnpackShaders("matcap mobile"); }
-		[MenuItem(MENU_PATH + "Unpack Shaders/All Shaders (Mobile)", false, 800)]
+		[MenuItem(MENU_PATH + "Unpack Shaders (legacy)/All Shaders (Mobile)", false, 800)]
 		static void UnpackAllMobile() { UnpackShaders("mobile"); }
-		[MenuItem(MENU_PATH + "Unpack Shaders/All Shaders (Desktop)", false, 800)]
+		[MenuItem(MENU_PATH + "Unpack Shaders (legacy)/All Shaders (Desktop)", false, 800)]
 		static void UnpackAllDesktop() { UnpackShaders("desktop"); }
-		[MenuItem(MENU_PATH + "Unpack Shaders/All Shaders", false, 800)]
+		[MenuItem(MENU_PATH + "Unpack Shaders (legacy)/All Shaders", false, 800)]
 		static void UnpackAll() { UnpackShaders(""); }
 
 		private static void UnpackShaders(string filter)
@@ -114,9 +114,9 @@ namespace ToonyColorsPro
 						user = true;
 					(o as Material).shaderKeywords = user ? new[] { "USER" } : new string[0];
 					if ((o as Material).shader != null && (o as Material).shader.name.Contains("Mobile"))
-						(o as Material).shader = Shader.Find("Toony Colors Pro 2/Mobile");
+						(o as Material).shader = Shader.Find("Toony Colors Pro 2/Legacy/Mobile");
 					else
-						(o as Material).shader = Shader.Find("Toony Colors Pro 2/Desktop");
+						(o as Material).shader = Shader.Find("Toony Colors Pro 2/Legacy/Desktop");
 					Debug.Log("[TCP2] Keywords reset for " + o.name);
 				}
 			}

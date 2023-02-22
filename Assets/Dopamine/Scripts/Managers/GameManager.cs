@@ -391,7 +391,7 @@ public class GameManager : Singleton<GameManager>
 
             void DisableCard(int index)
             {
-                CardManager.Instance.cardList[index].GetComponent<Image>().color = CardManager.Instance.defaultColor;
+                //CardManager.Instance.cardList[index].GetComponent<Image>().color = CardManager.Instance.defaultColor;
 
                 CardManager.Instance.cardList[index].IsSelected = false;
 

@@ -16,8 +16,8 @@ public class CardManager : Singleton<CardManager>
     [SerializeField] private GameObject soldierSpawnHolder;
 
     [Header("Card Colors")]
-    [SerializeField] public Color defaultColor;
-    [SerializeField] private Color selectedColor;
+    //[SerializeField] public Color defaultColor;
+    //[SerializeField] private Color selectedColor;
     //[SerializeField] private Color unselectedColor;
 
     private float spawnIntervalTimer = 0.04f;
@@ -26,7 +26,7 @@ public class CardManager : Singleton<CardManager>
     {
         for (int i = 0; i < cardList.Count; i++)
         {
-            cardList[i].GetComponent<Image>().color = defaultColor;
+            //cardList[i].GetComponent<Image>().color = defaultColor;
         }
     }
 
@@ -61,7 +61,7 @@ public class CardManager : Singleton<CardManager>
     {
         for (int i = 0; i < cardList.Count; i++) // Deselect operation
         {
-            cardList[i].GetComponent<Image>().color = defaultColor;
+            //cardList[i].GetComponent<Image>().color = defaultColor;
 
             cardList[i].IsSelected = false;
 
@@ -74,7 +74,7 @@ public class CardManager : Singleton<CardManager>
         {
             selectedCard = card;
 
-            card.cardObj.GetComponent<Image>().color = selectedColor; // Select operation
+            //card.cardObj.GetComponent<Image>().color = selectedColor; // Select operation
 
             card.IsSelected = true;
 

@@ -1,5 +1,5 @@
 // Toony Colors Pro+Mobile 2
-// (c) 2014-2020 Jean Moreno
+// (c) 2014-2021 Jean Moreno
 
 using System;
 using System.Collections.Generic;
@@ -347,7 +347,24 @@ namespace ToonyColorsPro
 
 			//--------------------------------------------------------------------------------------------------------------------------------
 
-			public static Mesh CreateSmoothedMesh(Mesh originalMesh, string format, bool vcolors, bool vtangents, bool uv2, bool overwriteMesh)
+			public enum SmoothedNormalsChannel
+			{
+				VertexColors,
+				Tangents,
+				UV1,
+				UV2,
+				UV3,
+				UV4
+			}
+
+			public enum SmoothedNormalsUVType
+			{
+				FullXYZ,
+				CompressedXY,
+				CompressedZW
+			}
+
+			public static Mesh CreateSmoothedMesh(Mesh originalMesh, string format, SmoothedNormalsChannel smoothedNormalsChannel, SmoothedNormalsUVType uvType, bool overwriteMesh)
 			{
 				if (originalMesh == null)
 				{
@@ -359,7 +376,21 @@ namespace ToonyColorsPro
 				var newMesh = overwriteMesh ? originalMesh : new Mesh();
 				if (!overwriteMesh)
 				{
-					//			EditorUtility.CopySerialized(originalMesh, newMesh);
+					var originalAssetPath = AssetDatabase.GetAssetPath(originalMesh);
+					ModelImporter originalImporter = null;
+					bool restoreOptimizeGameObjects = false;
+					if (!string.IsNullOrEmpty(originalAssetPath))
+					{
+						originalImporter = AssetImporter.GetAtPath(originalAssetPath) as ModelImporter;
+
+						if (originalImporter != null && originalImporter.optimizeGameObjects)
+						{
+							originalImporter.optimizeGameObjects = false;
+							AssetDatabase.ImportAsset(originalAssetPath, ImportAssetOptions.ForceSynchronousImport);
+							restoreOptimizeGameObjects = true;
+						}
+					}
+
 					newMesh.vertices = originalMesh.vertices;
 					newMesh.normals = originalMesh.normals;
 					newMesh.tangents = originalMesh.tangents;
@@ -372,14 +403,25 @@ namespace ToonyColorsPro
 					newMesh.bindposes = originalMesh.bindposes;
 					newMesh.boneWeights = originalMesh.boneWeights;
 
-					//Only available from Unity 5.3 onward
 					if (originalMesh.blendShapeCount > 0)
+					{
 						CopyBlendShapes(originalMesh, newMesh);
+					}
 
 					newMesh.subMeshCount = originalMesh.subMeshCount;
 					if (newMesh.subMeshCount > 1)
+					{
 						for (var i = 0; i < newMesh.subMeshCount; i++)
+						{
 							newMesh.SetTriangles(originalMesh.GetTriangles(i), i);
+						}
+					}
+
+					if (restoreOptimizeGameObjects)
+					{
+						originalImporter.optimizeGameObjects = true;
+						AssetDatabase.ImportAsset(originalAssetPath, ImportAssetOptions.ForceSynchronousImport);
+					}
 				}
 
 				//--------------------------------
@@ -439,7 +481,7 @@ namespace ToonyColorsPro
 				//--------------------------------
 				// Store in Vertex Colors
 
-				if (vcolors)
+				if (smoothedNormalsChannel == SmoothedNormalsChannel.VertexColors)
 				{
 					//Assign averaged normals to colors
 					var colors = new Color32[newMesh.vertexCount];
@@ -457,7 +499,7 @@ namespace ToonyColorsPro
 				//--------------------------------
 				// Store in Tangents
 
-				if (vtangents)
+				if (smoothedNormalsChannel == SmoothedNormalsChannel.Tangents)
 				{
 					//Assign averaged normals to tangent
 					var tangents = new Vector4[newMesh.vertexCount];
@@ -469,31 +511,81 @@ namespace ToonyColorsPro
 				}
 
 				//--------------------------------
-				// Store in UV2
+				// Store in UVs
 
-				if (uv2)
+				if (smoothedNormalsChannel == SmoothedNormalsChannel.UV1 || smoothedNormalsChannel == SmoothedNormalsChannel.UV2 || smoothedNormalsChannel == SmoothedNormalsChannel.UV3 || smoothedNormalsChannel == SmoothedNormalsChannel.UV4)
 				{
-					//Assign averaged normals to UV2 (x,y to uv2.x and z to uv2.y)
-					var uvs2 = new Vector2[newMesh.vertexCount];
-					for (var i = 0; i < newMesh.vertexCount; i++)
+					int uvIndex = -1;
+
+					switch (smoothedNormalsChannel)
 					{
-						var x = averageNormals[i].x * 0.5f + 0.5f;
-						var y = averageNormals[i].y * 0.5f + 0.5f;
-						var z = averageNormals[i].z * 0.5f + 0.5f;
-
-						//pack x,y to uv2.x
-						x = Mathf.Round(x*15);
-						y = Mathf.Round(y*15);
-						var packed = Vector2.Dot(new Vector2(x, y), new Vector2((float)(1.0/(255.0/16.0)), (float)(1.0/255.0)));
-
-						//store to UV2
-						uvs2[i].x = packed;
-						uvs2[i].y = z;
+						case SmoothedNormalsChannel.UV1: uvIndex = 0; break;
+						case SmoothedNormalsChannel.UV2: uvIndex = 1; break;
+						case SmoothedNormalsChannel.UV3: uvIndex = 2; break;
+						case SmoothedNormalsChannel.UV4: uvIndex = 3; break;
+						default: Debug.LogError("Invalid smoothed normals UV channel: " + smoothedNormalsChannel); break;
 					}
-					newMesh.uv2 = uvs2;
+
+					if (uvType == SmoothedNormalsUVType.FullXYZ)
+					{
+						//Assign averaged normals directly to UV fully (xyz)
+						newMesh.SetUVs(uvIndex, new List<Vector3>(averageNormals));
+					}
+					else
+					{
+						if (uvType == SmoothedNormalsUVType.CompressedXY)
+						{
+							//Assign averaged normals to UV compressed (x,y to uv.x and z to uv.y)
+							var uvs = new List<Vector2>(newMesh.vertexCount);
+							for (var i = 0; i < newMesh.vertexCount; i++)
+							{
+								float x, y;
+								GetCompressedSmoothedNormals(averageNormals[i], out x, out y);
+								var v2 = new Vector2(x, y);
+								uvs.Add(v2);
+							}
+							newMesh.SetUVs(uvIndex, uvs);
+						}
+						else if (uvType == SmoothedNormalsUVType.CompressedZW)
+						{
+							//Assign averaged normals to UV compressed (x,y to uv.z and z to uv.w)
+							List<Vector4> existingUvs = new List<Vector4>();
+							newMesh.GetUVs(uvIndex, existingUvs);
+							if (existingUvs.Count == 0)
+							{
+								existingUvs.AddRange(new Vector4[newMesh.vertexCount]);
+							}
+							var uvs = new List<Vector4>(newMesh.vertexCount);
+							for (var i = 0; i < newMesh.vertexCount; i++)
+							{
+								float x, y;
+								GetCompressedSmoothedNormals(averageNormals[i], out x, out y);
+								var v4 = existingUvs[i];
+								v4.z = x;
+								v4.w = y;
+								uvs.Add(v4);
+							}
+							newMesh.SetUVs(uvIndex, uvs);
+						}
+					}
 				}
 
 				return newMesh;
+			}
+
+			static void GetCompressedSmoothedNormals(Vector3 smoothedNormal, out float x, out float y)
+			{
+				var _x = smoothedNormal.x * 0.5f + 0.5f;
+				var _y = smoothedNormal.y * 0.5f + 0.5f;
+				var _z = smoothedNormal.z * 0.5f + 0.5f;
+
+				//pack x,y to uv2.x
+				_x = Mathf.Round(_x*15);
+				_y = Mathf.Round(_y*15);
+				var packed = Vector2.Dot(new Vector2(_x, _y), new Vector2((float)(1.0/(255.0/16.0)), (float)(1.0/255.0)));
+
+				x = packed;
+				y = _z;
 			}
 
 			//Only available from Unity 5.3 onward

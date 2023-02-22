@@ -73,6 +73,11 @@ Shader "Hidden/Toony Colors Pro 2/Standard PBS Outline (Specular)"
 		_ZSmooth("Z Correction", Range(-3.0,3.0)) = -0.5
 		_Offset1("Z Offset 1", Float) = 0
 		_Offset2("Z Offset 2", Float) = 0
+		
+		[TCP2MaterialKeywordEnumNoPrefix(Regular, _, Vertex Colors, TCP2_COLORS_AS_NORMALS, Tangents, TCP2_TANGENT_AS_NORMALS, UV1, TCP2_UV1_AS_NORMALS, UV2, TCP2_UV2_AS_NORMALS, UV3, TCP2_UV3_AS_NORMALS, UV4, TCP2_UV4_AS_NORMALS)]
+		_NormalsSource ("Outline Normals Source", Float) = 0
+		[TCP2MaterialKeywordEnumNoPrefix(Full XYZ, TCP2_UV_NORMALS_FULL, Compressed XY, _, Compressed ZW, TCP2_UV_NORMALS_ZW)]
+		_NormalsUVType ("UV Data Type", Float) = 0
 	}
 
 	CGINCLUDE

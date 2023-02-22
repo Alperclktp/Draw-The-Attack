@@ -5,6 +5,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 
 public class TowerManager : BaseAttackController
 {
@@ -31,9 +32,9 @@ public class TowerManager : BaseAttackController
     public LevelDifficulty levelDifficulty;
 
     [Header("UI Elements")]
-    public Text currentTowerHealth1Text;
-    public Text currentTowerHealth2Text;
-    public Text currentTowerHealth3Text;
+    public TMP_Text currentTowerHealth1Text;
+    public TMP_Text currentTowerHealth2Text;
+    public TMP_Text currentTowerHealth3Text;
 
     public static Transform NearestTower(Vector3 pos) { return Instance.GetComponentsInChildren<Transform>().Where(_ => _.name.Length == 6 && _.name != "Towers" && _.name.StartsWith("Tower")).OrderBy(_ => Vector3.Distance(pos, _.position)).First(); }
 

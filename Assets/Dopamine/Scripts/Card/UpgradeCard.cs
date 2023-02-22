@@ -260,9 +260,9 @@ public class UpgradeCard : MonoBehaviour
 
     private void UpgradeCardAnimation()
     {
-        transform.DOScale(1.17f, 0.1f).OnComplete(() =>
+        transform.DOScale(0.95f, 0.1f).OnComplete(() =>
         {
-            transform.DOScale(1.2f, 0.1f);
+            transform.DOScale(0.91161f, 0.1f);
         });
     }
 

@@ -405,9 +405,9 @@ TextureImporter:
       name: UI-atlas_16
       rect:
         serializedVersion: 2
-        x: 972
+        x: 986
         y: 2
-        width: 1076
+        width: 1058
         height: 839
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

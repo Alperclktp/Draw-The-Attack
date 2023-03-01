@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500001bf12d1d4243a822280e8aeb6c3, type: 3}
   m_Name: ArcherEnemy
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 3738343799396791932, guid: 038e328a8fa6b0a4f9b61b3acb25ff8d, type: 3}
+  cardPrefab: {fileID: 7812390290311557999, guid: 969fdc5a4d827714b92e49bd612c469c, type: 3}
   level: 1
   id: 0
   name: ArcherEnemy

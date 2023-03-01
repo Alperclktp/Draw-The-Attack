@@ -50,8 +50,8 @@ public class SoldierController : BaseAttackController
 
         rb = GetComponent<Rigidbody>();
 
-        print($"Your card health is {cardSO.health}");
-        print($"Your card damage is {cardSO.attackDamage}");
+        //print($"Your card health is {cardSO.health}");
+        //print($"Your card damage is {cardSO.attackDamage}");
 
     }
 

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4991d03152e85045a876f20d35f09d2, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
-  currentCardPrefab: {fileID: 5824243057512442207, guid: 515cb94588dcbae4fbd8f2f7e208ea3e, type: 3}
+  currentCardPrefab: {fileID: 4487534154398921419, guid: fc88b6b038e4fc94da6ffe745ffc72a8, type: 3}
   cardPrefabs:
-  - {fileID: 5824243057512442207, guid: 515cb94588dcbae4fbd8f2f7e208ea3e, type: 3}
-  - {fileID: 1907621888172944556, guid: 793e72953bf49784ba90e37c4bd2ec15, type: 3}
-  - {fileID: 5288599470234496404, guid: 0e95ac25970806643a5af08d025036a0, type: 3}
+  - {fileID: 4487534154398921419, guid: fc88b6b038e4fc94da6ffe745ffc72a8, type: 3}
+  - {fileID: 7961947941119073126, guid: fdfc8ebdb9895e94ba962054b6585871, type: 3}
+  - {fileID: 5808634577902896386, guid: 95253b2e0f3884c449869487bfdfcb2f, type: 3}
   level: 1
   nextLevel: 2
   levelUpCounter: 0

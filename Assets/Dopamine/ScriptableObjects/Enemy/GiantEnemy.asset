@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500001bf12d1d4243a822280e8aeb6c3, type: 3}
   m_Name: GiantEnemy
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 6173875875473080128, guid: ed682e57920782544b0b2117d7550f71, type: 3}
+  cardPrefab: {fileID: 2492198202327290950, guid: 658ad7883239e284db67f895737868c5, type: 3}
   level: 1
   id: 0
   name: GiantEnemy

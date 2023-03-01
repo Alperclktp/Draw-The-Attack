@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4991d03152e85045a876f20d35f09d2, type: 3}
   m_Name: Giant
   m_EditorClassIdentifier: 
-  currentCardPrefab: {fileID: 321147215079448460, guid: 5cf8a4ba57d9e5f419d1aeebc2b10cc5, type: 3}
+  currentCardPrefab: {fileID: 2492198202327290950, guid: 04563cdbb4b4aa74c82dc1454c474e19, type: 3}
   cardPrefabs:
-  - {fileID: 321147215079448460, guid: 5cf8a4ba57d9e5f419d1aeebc2b10cc5, type: 3}
-  - {fileID: 4567030349438160701, guid: e702eb2edbdcbc348855c56f57a020f3, type: 3}
-  - {fileID: 1176503493586339510, guid: b9a50873dfd113d4982e8467f9df7ec1, type: 3}
+  - {fileID: 2492198202327290950, guid: 04563cdbb4b4aa74c82dc1454c474e19, type: 3}
+  - {fileID: 1390840106222822120, guid: f26af6aeb7b0c2d4b9c36a3050b48d30, type: 3}
+  - {fileID: 2135240206905776238, guid: 2bde77c9c8050c2468a5770141e31127, type: 3}
   level: 1
   nextLevel: 2
   levelUpCounter: 0

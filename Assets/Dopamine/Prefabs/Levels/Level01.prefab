@@ -1000,6 +1000,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -1.2373962
       objectReference: {fileID: 0}
+    - target: {fileID: 731475095326334128, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 731475095326334128, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.797
+      objectReference: {fileID: 0}
     - target: {fileID: 795471596128377307, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -1063,6 +1071,14 @@ PrefabInstance:
     - target: {fileID: 3696299930687193103, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
       propertyPath: m_Name
       value: DrawToSoldierText
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840787837956909442, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 3840787837956909442, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.23
       objectReference: {fileID: 0}
     - target: {fileID: 4090415401275335637, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1315,6 +1331,14 @@ PrefabInstance:
     - target: {fileID: 8316161876393954623, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
       propertyPath: m_LocalPosition.z
       value: 2.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316161876473955921, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316161876473955921, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.797
       objectReference: {fileID: 0}
     - target: {fileID: 8316161876540313903, guid: 67654243d96e44f4591b3708160c18f2, type: 3}
       propertyPath: tutorial

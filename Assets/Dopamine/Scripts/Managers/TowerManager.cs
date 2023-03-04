@@ -158,9 +158,9 @@ public class TowerManager : BaseAttackController
 
     public void TowerHıtAnimation(Transform tower)
     {
-        tower.DOLocalRotate(new Vector3(0, 180, 0.3f), 0.1f).OnComplete(() =>
+        tower.DORotate(new Vector3(0, 180, 0.3f), 0.1f).OnComplete(() =>
         {
-            tower.DOLocalRotate(new Vector3(0, 180, -0.3f), 0.1f);
+            tower.DORotate(new Vector3(0, 180, -0.3f), 0.1f);
         });
     }
 

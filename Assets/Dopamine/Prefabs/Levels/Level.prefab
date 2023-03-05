@@ -203,7 +203,7 @@ MonoBehaviour:
   currentAttackDamageText: {fileID: 1367693322}
   neededUpgradeMoneyText: {fileID: 203739427}
   artWorkImage: {fileID: 1891776937}
-  cardIcon: {fileID: 9037324975488534303}
+  cardIcon: {fileID: 4090415401275336351}
   moneyIcon: {fileID: 795040328}
   levelCheckBox: {fileID: 735514667}
   maxLevelObj: {fileID: 414677616}
@@ -894,7 +894,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.49, y: -232.8}
+  m_AnchoredPosition: {x: -0.49, y: -319}
   m_SizeDelta: {x: 164.6343, y: 43.2561}
   m_Pivot: {x: 0.5, y: 0.50000024}
 --- !u!222 &414677620
@@ -1387,7 +1387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: efc804d9ecb7f0442b37726ad8585657, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab5dca1dc08405c459be6ffc3186f5dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2133,7 +2133,7 @@ MonoBehaviour:
   currentAttackDamageText: {fileID: 1211664391}
   neededUpgradeMoneyText: {fileID: 1409967242}
   artWorkImage: {fileID: 541847524}
-  cardIcon: {fileID: 9037324975488534303}
+  cardIcon: {fileID: 4090415401275336422}
   moneyIcon: {fileID: 1404294268}
   levelCheckBox: {fileID: 1374238190}
   maxLevelObj: {fileID: 1415216271}
@@ -3239,7 +3239,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.48999023, y: -232.8}
+  m_AnchoredPosition: {x: -0.48999023, y: -319.00003}
   m_SizeDelta: {x: 164.6343, y: 43.2561}
   m_Pivot: {x: 0.5, y: 0.50000024}
 --- !u!222 &1415216275
@@ -3785,7 +3785,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: efc804d9ecb7f0442b37726ad8585657, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70367bb557c21a7449d39a8cd8aa44cb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4360,7 +4360,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.48999023, y: -232.8}
+  m_AnchoredPosition: {x: -0.48999023, y: -319.00003}
   m_SizeDelta: {x: 164.6343, y: 43.2561}
   m_Pivot: {x: 0.5, y: 0.50000024}
 --- !u!222 &1349104140002698188
@@ -5815,7 +5815,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: efc804d9ecb7f0442b37726ad8585657, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 50ec3093211696d4282cd0a0c3811724, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10006,11 +10006,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 100
-    m_Right: 5
+    m_Left: 0
+    m_Right: 0
     m_Top: -80
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_Spacing: -100
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1

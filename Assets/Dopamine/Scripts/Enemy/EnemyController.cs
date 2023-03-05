@@ -190,6 +190,8 @@ public class EnemyController : BaseAttackController
             }
             else
             {
+                agent.SetDestination(transform.position);
+
                 LookAtSoldier();
 
                 canMove = false;

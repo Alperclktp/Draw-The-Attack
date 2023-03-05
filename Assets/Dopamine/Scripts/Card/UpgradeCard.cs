@@ -48,27 +48,30 @@ public class UpgradeCard : MonoBehaviour
 
     public List<GameObject> levelBoxes;
 
+    private void Awake()
+    {
+        cardSO.level = 1;
+        cardSO.nextLevel = 2;
+        cardSO.attackDamage = cardSO.defaultAttackDamage;
+        cardSO.health = cardSO.defaultHealth;
+        cardSO.neededUpgradeMoney = cardSO.defaultNeededUpgradeMoney;
+        cardSO.levelUpCounter = 0;
+        cardSO.currentCardPrefab = cardSO.cardPrefabs[0];
+    }
 
     private void Start()
     {
         MaxLevel();
-
-        LoadCardData();
-
         GetCardData();
+        LoadCardData();
 
         if (PlayerPrefs.GetInt("CurrentLevel") == 0)
         {
-            GetCardData();
             SaveCardDataSO();
             SaveCardData();
         }
 
         //Debug.Log(PlayerPrefs.GetInt("CurrentCardLevel") + gameObject.name);    
-
-        currentLevel = PlayerPrefs.GetInt("CurrentCardLevel" + gameObject.name);
-
-        nextLevel = currentLevel + 1;
 
         SaveCardData(); //Test 
         SaveCardDataSO();
@@ -213,6 +216,8 @@ public class UpgradeCard : MonoBehaviour
         }
     }
 
+    //int clampedLvl => Mathf.FloorToInt(Mathf.Clamp(currentLevel - 1, 0, Mathf.Infinity));
+
     private void MaxLevel()
     {
         maxLevel = cardSO.artWorks.Length;
@@ -226,7 +231,6 @@ public class UpgradeCard : MonoBehaviour
 
         currentHealth = cardSO.health;
         currentAttackDamage = cardSO.attackDamage;
-
         neededUpgradeMoney = cardSO.neededUpgradeMoney;
 
         artWorkImage.sprite = cardSO.artWorks[currentLevel - 1];
@@ -260,9 +264,9 @@ public class UpgradeCard : MonoBehaviour
 
     private void UpgradeCardAnimation()
     {
-        transform.DOScale(0.95f, 0.1f).OnComplete(() =>
+        transform.DOScale(0.85f, 0.1f).OnComplete(() =>
         {
-            transform.DOScale(0.91161f, 0.1f);
+            transform.DOScale(0.8f, 0.1f);
         });
     }
 
@@ -300,12 +304,15 @@ public class UpgradeCard : MonoBehaviour
 
     private void LoadCardData()
     {       
-        currentLevel = PlayerPrefs.GetInt("CurrentCardLevel" + gameObject.name);
-        nextLevel = PlayerPrefs.GetInt("NextLevel" + gameObject.name);
-        levelUpCounter = PlayerPrefs.GetInt("LevelUpCounter" + gameObject.name);
+        currentLevel = PlayerPrefs.GetInt("CurrentCardLevel" + gameObject.name, currentLevel);
+        nextLevel = currentLevel + 1;
 
-        currentHealth = PlayerPrefs.GetInt("CurrentHealth" + gameObject.name);
-        currentAttackDamage = PlayerPrefs.GetFloat("CurrentAttackDamage" + gameObject.name);
+        //nextLevel = PlayerPrefs.GetInt("NextLevel" + gameObject.name, currentLevel);
+
+        levelUpCounter = PlayerPrefs.GetInt("LevelUpCounter" + gameObject.name, levelUpCounter);
+
+        currentHealth = PlayerPrefs.GetInt("CurrentHealth" + gameObject.name, currentHealth);
+        currentAttackDamage = PlayerPrefs.GetFloat("CurrentAttackDamage" + gameObject.name, currentAttackDamage);
 
         neededUpgradeMoney = PlayerPrefs.GetInt("NeededUpgradeMoney" + gameObject.name, neededUpgradeMoney);
 

@@ -16,6 +16,8 @@ public enum GameState
     FAIL,
     COMPLATE
 }
+
+[DefaultExecutionOrder(-2)]
 public class GameManager : Singleton<GameManager>
 {
     const bool SPAWN_ENEMIES = true;
@@ -135,6 +137,11 @@ public class GameManager : Singleton<GameManager>
             TowerManager.Instance.transform.GetChild(0).GetComponentInParent<TowerManager>().currentTower1Health = 0;
             TowerManager.Instance.transform.GetChild(1).GetComponentInParent<TowerManager>().currentTower2Health = 0;
             TowerManager.Instance.transform.GetChild(2).GetComponentInParent<TowerManager>().currentTower3Health = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            currentMoney = 999999;
         }
     }
 

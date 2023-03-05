@@ -24,7 +24,7 @@ MonoBehaviour:
   name: GIANT
   description: An unstoppable giant!
   manaCost: 32
-  attackDamage: 20
+  attackDamage: 40
   attackPerSpeed: 2.5
   movementSpeed: 1.5
   health: 450
@@ -36,3 +36,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 63c049a6278048141b2f9d136a9b9856, type: 3}
   - {fileID: 21300000, guid: 63c049a6278048141b2f9d136a9b9856, type: 3}
   - {fileID: 21300000, guid: 5aab7fec4939c204daf32b54c41df387, type: 3}
+  defaultLevel: 1
+  defaultAttackDamage: 40
+  defaultHealth: 450
+  defaultNeededUpgradeMoney: 40

@@ -48,4 +48,8 @@ public class CardSO : ScriptableObject
 
     public Sprite[] artWorks;
 
+    [Header("Default Values")]
+    public int defaultAttackDamage;
+    public int defaultHealth;
+    public int defaultNeededUpgradeMoney;
 }

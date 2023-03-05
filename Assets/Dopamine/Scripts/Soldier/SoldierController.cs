@@ -131,7 +131,9 @@ public class SoldierController : BaseAttackController
         if (ignoreEnemies)
             enemyList = enemyList.Where(_ => _.name.Contains("Tower")).ToList();
 
-        foreach (GameObject obj in enemyList)
+        const float senseXRange = 2;
+
+        foreach (GameObject obj in enemyList.Where(_ => _.transform.position.x > transform.position.x - senseXRange && _.transform.position.x < transform.position.x + senseXRange))
         {
             float dist = Vector3.Distance(obj.transform.position, currentPosition);
 
@@ -198,6 +200,8 @@ public class SoldierController : BaseAttackController
             }
             else
             {
+                agent.SetDestination(transform.position);
+
                 LookAtEnemy();
 
                 canMove = false;

@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
 using MoreMountains.NiceVibrations;
-using NaughtyAttributes;
 
 public class CardManager : Singleton<CardManager>
 {

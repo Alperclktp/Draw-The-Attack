@@ -29,14 +29,13 @@ MonoBehaviour:
   movementSpeed: 2
   health: 100
   neededUpgradeMoney: 30
-  artwork: {fileID: 21300000, guid: 70367bb557c21a7449d39a8cd8aa44cb, type: 3}
+  artwork: {fileID: -495245896, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   artWorks:
-  - {fileID: 21300000, guid: 70367bb557c21a7449d39a8cd8aa44cb, type: 3}
-  - {fileID: 21300000, guid: 70367bb557c21a7449d39a8cd8aa44cb, type: 3}
-  - {fileID: 21300000, guid: 134d9b7503b196c4fbdf25977c8d1336, type: 3}
-  - {fileID: 21300000, guid: 134d9b7503b196c4fbdf25977c8d1336, type: 3}
-  - {fileID: 21300000, guid: c2540d269b74fd544a57105d1adaff37, type: 3}
-  defaultLevel: 1
+  - {fileID: -495245896, guid: 41abe786708949a49a96772fce3d074d, type: 3}
+  - {fileID: -495245896, guid: 41abe786708949a49a96772fce3d074d, type: 3}
+  - {fileID: 1037152371, guid: 41abe786708949a49a96772fce3d074d, type: 3}
+  - {fileID: 1037152371, guid: 41abe786708949a49a96772fce3d074d, type: 3}
+  - {fileID: 1124180854, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   defaultAttackDamage: 10
   defaultHealth: 100
   defaultNeededUpgradeMoney: 30

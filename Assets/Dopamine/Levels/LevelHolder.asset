@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d257f2e1ef180b940ad26a969d04e8fe, type: 3}
   m_Name: LevelHolder
   m_EditorClassIdentifier: 
-  hardnessPerLevel: 0.3
+  hardnessPerLevel: 0.25
   levels:
   - level: {fileID: 260459397138268453, guid: 49957faa010fd3949af56e7063682699, type: 3}
     isLoop: 1

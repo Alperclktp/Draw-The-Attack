@@ -137,7 +137,7 @@ public class TowerManager : BaseAttackController
 
             GameManager.Instance.selectTutorialHand.SetActive(false);
 
-            Debug.Log("You Won!");
+            //Debug.Log("You Won!");
 
             for (int i = 0; i < GameManager.Instance.enemyList.Count; i++)
             {

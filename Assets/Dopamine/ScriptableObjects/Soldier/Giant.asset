@@ -27,8 +27,10 @@ MonoBehaviour:
   attackDamage: 40
   attackPerSpeed: 2.5
   movementSpeed: 1.5
-  health: 450
+  health: 800
   neededUpgradeMoney: 40
+  addAttackDamage: 10
+  addHealth: 50
   artwork: {fileID: -29529210, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   artWorks:
   - {fileID: -29529210, guid: 41abe786708949a49a96772fce3d074d, type: 3}
@@ -37,5 +39,5 @@ MonoBehaviour:
   - {fileID: 1917402195, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   - {fileID: 1725877812, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   defaultAttackDamage: 40
-  defaultHealth: 450
+  defaultHealth: 800
   defaultNeededUpgradeMoney: 40

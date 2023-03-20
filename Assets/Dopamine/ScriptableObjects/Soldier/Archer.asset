@@ -29,6 +29,8 @@ MonoBehaviour:
   movementSpeed: 2
   health: 100
   neededUpgradeMoney: 30
+  addAttackDamage: 10
+  addHealth: 10
   artwork: {fileID: -495245896, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   artWorks:
   - {fileID: -495245896, guid: 41abe786708949a49a96772fce3d074d, type: 3}

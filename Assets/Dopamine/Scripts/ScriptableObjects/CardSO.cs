@@ -42,6 +42,9 @@ public class CardSO : ScriptableObject
 
     public int neededUpgradeMoney;
 
+    public int addAttackDamage;
+    public int addHealth;
+
     [Header("Card UI")]
     [SerializeField] private Sprite artwork;
     public Sprite ArtWork { get { return artwork; } }

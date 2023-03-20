@@ -201,8 +201,8 @@ public class UpgradeCard : MonoBehaviour
         levelUpCounter = 0;
         nextLevel += 1;
 
-        currentAttackDamage += 10;
-        currentHealth += 10;
+        currentAttackDamage += cardSO.addAttackDamage;
+        currentHealth += cardSO.addHealth;
 
         MMVibrationManager.Haptic(HapticTypes.MediumImpact, true, this);
 

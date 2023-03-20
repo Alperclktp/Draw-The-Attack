@@ -170,7 +170,7 @@ public class GameManager : Singleton<GameManager>
 
         GetLevelHardness();
 
-        maxMana += level * level / (int)2.5f; //Test mana.
+        maxMana += level * level / (int) 1f; //Test mana.
         currentMana = maxMana;
     }
 

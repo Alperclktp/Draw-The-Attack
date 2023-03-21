@@ -54,6 +54,7 @@ public class TowerManager : BaseAttackController
         if (currentTowerHealth1Text) currentTowerHealth1Text.text = currentTower1Health.ToString();
         if (currentTowerHealth2Text) currentTowerHealth2Text.text = currentTower2Health.ToString();
         if (currentTowerHealth3Text) currentTowerHealth3Text.text = currentTower3Health.ToString();
+
     }
 
     private void EnemySpawner(string value)
@@ -227,6 +228,7 @@ public class LevelDifficulty
     public void SetHardness()
     {
         CardManager cardManager = CardManager.Instance;
+        TowerManager towerManager = TowerManager.Instance;
 
         float hardness = 1 + GameManager.Instance.level * LevelManager.Instance.levelSOTemplate.hardnessPerLevel;
 

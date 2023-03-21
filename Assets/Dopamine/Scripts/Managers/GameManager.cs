@@ -117,6 +117,7 @@ public class GameManager : Singleton<GameManager>
             upgradeTutorialHand.SetActive(false);
         }
 
+        //SetTowerHealth();
     }
 
 
@@ -170,7 +171,8 @@ public class GameManager : Singleton<GameManager>
 
         GetLevelHardness();
 
-        maxMana += level * level / (int) 1f; //Test mana.
+        maxMana += level * 15; //Test mana.
+        //maxMana += level * level / (int) 1f; //Test mana.
         currentMana = maxMana;
     }
 
@@ -215,6 +217,17 @@ public class GameManager : Singleton<GameManager>
         MMVibrationManager.Haptic(HapticTypes.Success, true, this);
 
         RestartGame();
+    }
+
+    public void SetTowerHealth()
+    {
+        TowerManager towerManager = TowerManager.Instance;
+
+        float hardness = 1 + level * LevelManager.Instance.levelSOTemplate.hardnessPerLevel;
+
+        towerManager.currentTower1Health = 300 * hardness;
+        towerManager.currentTower2Health = 500 * hardness;
+        towerManager.currentTower3Health = 300 * hardness;
     }
 
     public void SetMoney()

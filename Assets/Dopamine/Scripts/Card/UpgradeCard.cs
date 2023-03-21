@@ -123,11 +123,11 @@ public class UpgradeCard : MonoBehaviour
         {
             cardSO.currentCardPrefab = cardSO.cardPrefabs[0];
         }
-        else if (currentLevel == 3)
+        else if (currentLevel == 2)
         {
             cardSO.currentCardPrefab = cardSO.cardPrefabs[1];
         }
-        else if (currentLevel == 5)
+        else if (currentLevel == 4)
         {
             cardSO.currentCardPrefab = cardSO.cardPrefabs[2];
         }

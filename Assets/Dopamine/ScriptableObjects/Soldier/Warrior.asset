@@ -24,8 +24,7 @@ MonoBehaviour:
   name: WARRIOR
   description: 'An unstoppable warrior!
 
-
-    he he hee :>'
+'
   manaCost: 3
   attackDamage: 10
   attackPerSpeed: 3
@@ -37,9 +36,9 @@ MonoBehaviour:
   artwork: {fileID: -1292810736, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   artWorks:
   - {fileID: -1292810736, guid: 41abe786708949a49a96772fce3d074d, type: 3}
-  - {fileID: -1292810736, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   - {fileID: 1797838761, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   - {fileID: 1797838761, guid: 41abe786708949a49a96772fce3d074d, type: 3}
+  - {fileID: -1989864625, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   - {fileID: -1989864625, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   defaultAttackDamage: 10
   defaultHealth: 100

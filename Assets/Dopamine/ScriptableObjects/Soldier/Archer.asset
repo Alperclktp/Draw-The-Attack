@@ -34,9 +34,9 @@ MonoBehaviour:
   artwork: {fileID: -495245896, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   artWorks:
   - {fileID: -495245896, guid: 41abe786708949a49a96772fce3d074d, type: 3}
-  - {fileID: -495245896, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   - {fileID: 1037152371, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   - {fileID: 1037152371, guid: 41abe786708949a49a96772fce3d074d, type: 3}
+  - {fileID: 1124180854, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   - {fileID: 1124180854, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   defaultAttackDamage: 10
   defaultHealth: 100

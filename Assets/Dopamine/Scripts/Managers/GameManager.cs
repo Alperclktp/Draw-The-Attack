@@ -44,7 +44,7 @@ public class GameManager : Singleton<GameManager>
     [Header("Mana Settings")]
     public int currentMana;
     public int maxMana;
-    [ReadOnly] public int limitedMaxMana = 105;
+    [ReadOnly] public int limitedMaxMana;
 
     [Header("UI Elements")]
     public GameObject upgradeManagerPanel;
@@ -120,6 +120,7 @@ public class GameManager : Singleton<GameManager>
             upgradeManagerPanel.SetActive(false);
             upgradeTutorialHand.SetActive(false);
         }
+
         //SetTowerHealth();
     }
 
@@ -187,7 +188,7 @@ public class GameManager : Singleton<GameManager>
         {
             if (!PlayerPrefs.HasKey("MaxedLevel"))
             {
-                PlayerPrefs.SetInt("MaxedLevel", currentLevel);
+                PlayerPrefs.SetInt("MaxedLevel", level);
             }
         }
 

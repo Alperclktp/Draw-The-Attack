@@ -9,6 +9,7 @@ public class LevelSOTemplate : ScriptableObject
     public List<LevelController> levels;
 } 
 
+
 [System.Serializable]
 public class LevelController
 {

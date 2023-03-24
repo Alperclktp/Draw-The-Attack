@@ -80,7 +80,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: (+50)
+  m_Text: (+90)
 --- !u!114 &60195623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1131,7 +1131,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 125
+  m_Text: 1000
 --- !u!114 &457740542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12138,6 +12138,7 @@ MonoBehaviour:
   currentMoney: 0
   currentMana: 0
   maxMana: 80
+  limitedMaxMana: 0
   upgradeManagerPanel: {fileID: 8316161875130621232}
   cardPanel: {fileID: 8316161875011789678}
   startButton: {fileID: 8316161876371646957}
@@ -12159,6 +12160,7 @@ MonoBehaviour:
   drawToCardText3: {fileID: 6348146402050300816}
   currentLevelText: {fileID: 6606769341600361224}
   tutorial: 1
+  canManaUpgrade: 0
 --- !u!1 &8316161876540902149
 GameObject:
   m_ObjectHideFlags: 0

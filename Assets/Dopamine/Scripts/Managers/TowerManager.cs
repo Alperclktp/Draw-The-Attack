@@ -232,6 +232,11 @@ public class LevelDifficulty
 
         float hardness = 1 + GameManager.Instance.level * LevelManager.Instance.levelSOTemplate.hardnessPerLevel;
 
+        if (PlayerPrefs.HasKey("MaxedLevel"))
+        {
+            hardness = 1 + PlayerPrefs.GetInt("MaxedLevel") * LevelManager.Instance.levelSOTemplate.hardnessPerLevel;
+        }
+
         warrior = Mathf.FloorToInt(22.5f * hardness);
         enemyCardSO[0].attackDamage = cardManager.cardList[0].cardSO.attackDamage / 2.5f * hardness;
         enemyCardSO[0].health = (int)(cardManager.cardList[0].cardSO.health / 2.5f * hardness);

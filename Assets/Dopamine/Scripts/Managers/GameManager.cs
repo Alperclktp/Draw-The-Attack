@@ -44,6 +44,7 @@ public class GameManager : Singleton<GameManager>
     [Header("Mana Settings")]
     public int currentMana;
     public int maxMana;
+    [ReadOnly] public int limitedMaxMana = 105;
 
     [Header("UI Elements")]
     public GameObject upgradeManagerPanel;
@@ -74,6 +75,8 @@ public class GameManager : Singleton<GameManager>
 
     public bool tutorial;
 
+    public bool canManaUpgrade;
+
     private void Start()
     {
         GetMoney();
@@ -89,6 +92,8 @@ public class GameManager : Singleton<GameManager>
         manaSliderBar.maxValue = maxMana;
         manaSliderBar.value = maxMana;
 
+        limitedMaxMana = 600;
+
         currentLevelText.gameObject.SetActive(true);
 
         if (level == 0)
@@ -101,7 +106,6 @@ public class GameManager : Singleton<GameManager>
             maxMana = 60;
             tutorial = false;
         }
-
         if (level == 2)
         {
             Invoke("OnUpgradeTutorialCardHand", 1f);
@@ -116,7 +120,6 @@ public class GameManager : Singleton<GameManager>
             upgradeManagerPanel.SetActive(false);
             upgradeTutorialHand.SetActive(false);
         }
-
         //SetTowerHealth();
     }
 
@@ -144,6 +147,12 @@ public class GameManager : Singleton<GameManager>
         {
             currentMoney = 999999;
         }
+
+        if(maxMana >= limitedMaxMana)
+        {
+            maxMana = limitedMaxMana;
+            //LevelManager.Instance.levelSOTemplate.hardnessPerLevel = 0;
+        }
     }
 
     public void StartGame()
@@ -169,9 +178,21 @@ public class GameManager : Singleton<GameManager>
 
         StartCoroutine(Tutorial());
 
+        if (maxMana < limitedMaxMana)
+        {
+            maxMana += level * 15;
+        }
+
+        if (maxMana >= limitedMaxMana)
+        {
+            if (!PlayerPrefs.HasKey("MaxedLevel"))
+            {
+                PlayerPrefs.SetInt("MaxedLevel", currentLevel);
+            }
+        }
+
         GetLevelHardness();
 
-        maxMana += level * 15; //Test mana.
         //maxMana += level * level / (int) 1f; //Test mana.
         currentMana = maxMana;
     }

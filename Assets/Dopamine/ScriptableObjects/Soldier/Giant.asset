@@ -30,7 +30,7 @@ MonoBehaviour:
   health: 800
   neededUpgradeMoney: 40
   addAttackDamage: 10
-  addHealth: 50
+  addHealth: 90
   artwork: {fileID: -29529210, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   artWorks:
   - {fileID: -29529210, guid: 41abe786708949a49a96772fce3d074d, type: 3}
@@ -39,5 +39,5 @@ MonoBehaviour:
   - {fileID: 1725877812, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   - {fileID: 1725877812, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   defaultAttackDamage: 40
-  defaultHealth: 800
+  defaultHealth: 1000
   defaultNeededUpgradeMoney: 40

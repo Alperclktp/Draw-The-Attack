@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 2135240206905776238, guid: 2bde77c9c8050c2468a5770141e31127, type: 3}
   level: 1
   nextLevel: 2
-  levelUpCounter: 0
+  levelUpCounter: 1
   id: 3
   name: GIANT
   description: An unstoppable giant!
@@ -27,7 +27,7 @@ MonoBehaviour:
   attackDamage: 40
   attackPerSpeed: 2.5
   movementSpeed: 1.5
-  health: 800
+  health: 1000
   neededUpgradeMoney: 40
   addAttackDamage: 10
   addHealth: 90

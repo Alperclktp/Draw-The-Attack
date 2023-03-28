@@ -25,7 +25,7 @@ MonoBehaviour:
   description: An unstoppable archer!
   manaCost: 8
   attackDamage: 10
-  attackPerSpeed: 3
+  attackPerSpeed: 2
   movementSpeed: 2
   health: 100
   neededUpgradeMoney: 30

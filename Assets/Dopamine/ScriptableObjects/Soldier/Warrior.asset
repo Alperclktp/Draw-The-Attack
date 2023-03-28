@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 5808634577902896386, guid: 95253b2e0f3884c449869487bfdfcb2f, type: 3}
   level: 1
   nextLevel: 2
-  levelUpCounter: 0
+  levelUpCounter: 1
   id: 1
   name: WARRIOR
   description: 'An unstoppable warrior!
@@ -28,11 +28,11 @@ MonoBehaviour:
   manaCost: 3
   attackDamage: 10
   attackPerSpeed: 3
-  movementSpeed: 2
+  movementSpeed: 3
   health: 100
-  neededUpgradeMoney: 30
-  addAttackDamage: 10
-  addHealth: 10
+  neededUpgradeMoney: 105
+  addAttackDamage: 20
+  addHealth: 20
   artwork: {fileID: -1292810736, guid: 41abe786708949a49a96772fce3d074d, type: 3}
   artWorks:
   - {fileID: -1292810736, guid: 41abe786708949a49a96772fce3d074d, type: 3}

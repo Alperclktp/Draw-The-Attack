@@ -200,6 +200,8 @@ MonoBehaviour:
   currentLevelBoxText: {fileID: 1480815258}
   nextLevelBoxText: {fileID: 585362236}
   currentHealthText: {fileID: 345812330}
+  currentAddHealthText: {fileID: 123319282}
+  currentAddAttackText: {fileID: 537079544}
   currentAttackDamageText: {fileID: 1367693322}
   neededUpgradeMoneyText: {fileID: 203739427}
   artWorkImage: {fileID: 1891776937}
@@ -2324,6 +2326,8 @@ MonoBehaviour:
   currentLevelBoxText: {fileID: 1014636459}
   nextLevelBoxText: {fileID: 490298306}
   currentHealthText: {fileID: 457740543}
+  currentAddHealthText: {fileID: 60195624}
+  currentAddAttackText: {fileID: 396899712}
   currentAttackDamageText: {fileID: 1211664391}
   neededUpgradeMoneyText: {fileID: 1409967242}
   artWorkImage: {fileID: 541847524}
@@ -11572,6 +11576,8 @@ MonoBehaviour:
   currentLevelBoxText: {fileID: 1701282125982074089}
   nextLevelBoxText: {fileID: 1701282124792215140}
   currentHealthText: {fileID: 1701282126043156834}
+  currentAddHealthText: {fileID: 1701282124943517814}
+  currentAddAttackText: {fileID: 1701282125911821044}
   currentAttackDamageText: {fileID: 1701282124886680740}
   neededUpgradeMoneyText: {fileID: 1701282125795729664}
   artWorkImage: {fileID: 1701282125836713622}

@@ -16,6 +16,8 @@ public class UpgradeCard : MonoBehaviour
     [SerializeField] private Text currentLevelBoxText;
     [SerializeField] private Text nextLevelBoxText;
     [SerializeField] private Text currentHealthText;
+    [SerializeField] private Text currentAddHealthText;
+    [SerializeField] private Text currentAddAttackText;
     [SerializeField] private Text currentAttackDamageText;
     [SerializeField] private Text neededUpgradeMoneyText;
 
@@ -88,6 +90,9 @@ public class UpgradeCard : MonoBehaviour
         nextLevelBoxText.text = nextLevel.ToString();
         currentHealthText.text = currentHealth.ToString();
         currentAttackDamageText.text = currentAttackDamage.ToString();
+
+        currentAddHealthText.text = "(+" + cardSO.addHealth.ToString() + ")";
+        currentAddAttackText.text = "(+" + cardSO.addAttackDamage.ToString() + ")";
 
         if(currentLevel != maxLevel)
         {

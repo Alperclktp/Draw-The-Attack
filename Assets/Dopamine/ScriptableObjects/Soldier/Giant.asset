@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 2135240206905776238, guid: 2bde77c9c8050c2468a5770141e31127, type: 3}
   level: 1
   nextLevel: 2
-  levelUpCounter: 1
+  levelUpCounter: 0
   id: 3
   name: GIANT
   description: An unstoppable giant!

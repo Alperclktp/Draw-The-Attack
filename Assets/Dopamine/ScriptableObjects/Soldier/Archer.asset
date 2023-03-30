@@ -12,23 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4991d03152e85045a876f20d35f09d2, type: 3}
   m_Name: Archer
   m_EditorClassIdentifier: 
-  currentCardPrefab: {fileID: 8364730918640245573, guid: 5cb750ac17d123442a49ede5c48d06cc, type: 3}
+  currentCardPrefab: {fileID: 658013186337954152, guid: 5afd681306d125f4aa595d7f7fb06843, type: 3}
   cardPrefabs:
   - {fileID: 8364730918640245573, guid: 5cb750ac17d123442a49ede5c48d06cc, type: 3}
   - {fileID: 658013186337954152, guid: 5afd681306d125f4aa595d7f7fb06843, type: 3}
   - {fileID: 5059289719062038283, guid: 65b59998e7f59ca4191103840772132b, type: 3}
-  level: 1
-  nextLevel: 2
-  levelUpCounter: 0
+  level: 2
+  nextLevel: 3
+  levelUpCounter: 2
   id: 2
   name: ARCHER
   description: An unstoppable archer!
   manaCost: 8
-  attackDamage: 10
-  attackPerSpeed: 2
+  attackDamage: 20
+  attackPerSpeed: 3
   movementSpeed: 2
-  health: 100
-  neededUpgradeMoney: 30
+  health: 110
+  neededUpgradeMoney: 405
   addAttackDamage: 10
   addHealth: 10
   artwork: {fileID: -495245896, guid: 41abe786708949a49a96772fce3d074d, type: 3}

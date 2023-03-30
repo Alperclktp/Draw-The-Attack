@@ -230,16 +230,37 @@ public class LevelDifficulty
         CardManager cardManager = CardManager.Instance;
         TowerManager towerManager = TowerManager.Instance;
 
-        float hardness = 1 + GameManager.Instance.level * LevelManager.Instance.levelSOTemplate.hardnessPerLevel;
+         float hardness = 1 + GameManager.Instance.level * LevelManager.Instance.levelSOTemplate.hardnessPerLevel;
 
-        if (PlayerPrefs.HasKey("MaxedLevel"))
-        {
-            hardness = 1 + PlayerPrefs.GetInt("MaxedLevel") * LevelManager.Instance.levelSOTemplate.hardnessPerLevel;
-        }
+         if (PlayerPrefs.HasKey("MaxedLevel"))
+         {
+             hardness = 1 + PlayerPrefs.GetInt("MaxedLevel") * LevelManager.Instance.levelSOTemplate.hardnessPerLevel;
+         }
+
+         //int level = GameManager.Instance.level;
+      //int hardnessLevel = 0;
+
+      //switch (level % 2) {
+      //    case 1:
+      //        hardnessLevel = level / 2 + 1;
+      //        break;
+      //    case 0:
+      //        hardnessLevel = level / 2;
+      //        break;
+      //    default:
+      //        Debug.LogError("Invalid level!");
+      //        break;
+      //}
+      //
+      //float hardness = 1 + hardnessLevel * LevelManager.Instance.levelSOTemplate.hardnessPerLevel;
+
+       Debug.Log("Hardness: " + hardness);
+        
 
         warrior = Mathf.FloorToInt(22.5f * hardness);
         enemyCardSO[0].attackDamage = cardManager.cardList[0].cardSO.attackDamage / 2.5f * hardness;
         enemyCardSO[0].health = (int)(cardManager.cardList[0].cardSO.health / 2.5f * hardness);
+        Debug.Log("hardness : " + hardness + "enemy warrior attack : " + enemyCardSO[0].attackDamage + " health : " + enemyCardSO[0].health );
 
         archer = Mathf.FloorToInt(7.5f * hardness);
         enemyCardSO[1].attackDamage = cardManager.cardList[1].cardSO.attackDamage / 2.5f * hardness;

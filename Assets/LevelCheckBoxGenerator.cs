@@ -8,18 +8,51 @@ public class LevelCheckBoxGenerator : MonoBehaviour
     public Image levelBox;
 
     private UpgradeCard upgradeCard;
+    private HorizontalLayoutGroup hlg;
 
     public int levelBoxesCount;
     public float sizePerLevel;
 
+    private bool refresh;
+
     private void Awake()
     {
         upgradeCard = GetComponentInParent<UpgradeCard>();
+        hlg = GetComponent<HorizontalLayoutGroup>();
     }
 
     private void Update()
     {
+
+        hlg.enabled = false;
+
+        if (refresh)
+        {
+
+            foreach (var item in GetComponentsInChildren<Image>())
+            {
+                item.enabled = false;
+            }
+        }
+    }
+
+    private void LateUpdate()
+    {
+        hlg.enabled = true;
+
+        if (refresh)
+        {
+
+            foreach (var item in GetComponentsInChildren<Image>())
+            {
+                item.enabled = true;
+            }
+
+            refresh = false;
+        }
+
         SizePerLevel();
+
     }
 
     private void SizePerLevel()
@@ -53,5 +86,7 @@ public class LevelCheckBoxGenerator : MonoBehaviour
 
             upgradeCard.levelBoxes.Add(obj);
         }
+
+        refresh = true;
     }
 }

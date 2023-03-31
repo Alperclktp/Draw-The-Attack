@@ -4,8 +4,8 @@ using AppsFlyerSDK;
 
 public class AppsFlyerController : MonoBehaviour
 {
-    [SerializeField] protected private string devkey = "KEY";
-    [SerializeField] protected private string appid = "APP_ID";
+    [SerializeField] private string devkey = "KEY";
+    [SerializeField] private string appid = "APP_ID";
 
     void Start()
     {

@@ -17,14 +17,5 @@ public class AppsFlyerController : MonoBehaviour
         AppsFlyer.initSDK(devkey, appid);
 
         AppsFlyer.startSDK();
-
-        if(devkey == "KEY" && appid == "APP_ID")
-        {
-            Debug.LogError("You entered invalid key and ID for AppsFlyer SDK, please check again.");
-        }
-        else
-        {
-            Debug.Log("AppsFlyer SDK activated successfully!");
-        }
     }
 }

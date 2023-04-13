@@ -149,7 +149,7 @@ public class GameManager : Singleton<GameManager>
             currentMoney = 999999;
         }
 
-        if(maxMana >= limitedMaxMana)
+        if (maxMana >= limitedMaxMana)
         {
             maxMana = limitedMaxMana;
             //LevelManager.Instance.levelSOTemplate.hardnessPerLevel = 0;
@@ -196,7 +196,17 @@ public class GameManager : Singleton<GameManager>
 
         //maxMana += level * level / (int) 1f; //Test mana.
         currentMana = maxMana;
+
+        AppMetrica.Instance.ReportEvent("level_started", new Dictionary<string, object>
+        {
+            { "level_number", level }
+        });
+
+        AppMetrica.Instance.SendEventsBuffer();
+
+        Debug.Log("Level Started");
     }
+
 
     public void FailLevel()
     {
@@ -239,6 +249,15 @@ public class GameManager : Singleton<GameManager>
         MMVibrationManager.Haptic(HapticTypes.Success, true, this);
 
         RestartGame();
+
+        AppMetrica.Instance.ReportEvent("level_finished", new Dictionary<string, object>
+        {
+            { "level_number", level }
+        });
+  
+        AppMetrica.Instance.SendEventsBuffer();
+
+        Debug.Log("Level Finished");
     }
 
     public void SetTowerHealth()
@@ -311,7 +330,7 @@ public class GameManager : Singleton<GameManager>
             currentMana = 0;
         }
 
-         if (currentMana >= maxMana)
+        if (currentMana >= maxMana)
         {
             currentMana = maxMana;
         }
@@ -330,8 +349,8 @@ public class GameManager : Singleton<GameManager>
         upgradeTutorialHand.SetActive(true);
     }
 
-    const bool CONSTANT_SPAWN_AREA_INDICATOR = false; 
-                                                     
+    const bool CONSTANT_SPAWN_AREA_INDICATOR = false;
+
     private IEnumerator Tutorial()
     {
         if (CONSTANT_SPAWN_AREA_INDICATOR)

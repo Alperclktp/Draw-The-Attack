@@ -249,7 +249,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Dopamine/Keystore_Dopamine_DTA.keystore
+  AndroidKeystoreName: C:/Projects/Draw- The - Attack Files/KS/Keystore_Dopamine_DTA.keystore
   AndroidKeyaliasName: dopamine
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0

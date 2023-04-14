@@ -204,7 +204,7 @@ public class GameManager : Singleton<GameManager>
 
         AppMetrica.Instance.SendEventsBuffer();
 
-        Debug.Log("Level Started");
+        Debug.Log("Level Started : " + level);
     }
 
 
@@ -257,7 +257,7 @@ public class GameManager : Singleton<GameManager>
   
         AppMetrica.Instance.SendEventsBuffer();
 
-        Debug.Log("Level Finished");
+        Debug.Log("Level Finished " + level);
     }
 
     public void SetTowerHealth()

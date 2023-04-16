@@ -35,7 +35,6 @@ public class TowerManager : BaseAttackController
     public TMP_Text currentTowerHealth1Text;
     public TMP_Text currentTowerHealth2Text;
     public TMP_Text currentTowerHealth3Text;
-
     public static Transform NearestTower(Vector3 pos) { return Instance.GetComponentsInChildren<Transform>().Where(_ => _.name.Length == 6 && _.name != "Towers" && _.name.StartsWith("Tower")).OrderBy(_ => Vector3.Distance(new Vector3(pos.x, 0, 0), new Vector3(_.position.x, 0, 0))).First(); }
 
     public override string damageableID { get { return typeof(TowerManager).Name; } }
@@ -128,15 +127,25 @@ public class TowerManager : BaseAttackController
 
         if (totalHealth <= 0)
         {
-            GameManager.Instance.gameState = GameState.COMPLATE;
+            GameManager gameManager = GameManager.Instance;
 
-            GameManager.Instance.levelComplete = true;
+           gameManager.gameState = GameState.COMPLATE;
 
-            GameManager.Instance.nextLevelButton.SetActive(true);
+           gameManager.levelComplete = true;
 
-            GameManager.Instance.cardPanel.SetActive(false);
+           gameManager.nextLevelButton.SetActive(true);
 
-            GameManager.Instance.selectTutorialHand.SetActive(false);
+           gameManager.restartGameButton.SetActive(false);
+
+           gameManager.cardPanel.SetActive(false);
+
+           gameManager.selectTutorialHand.SetActive(false);
+
+            if (!GameManager.Instance.isFinishReported)
+            {
+                gameManager.AppMetricaReportFinishEvent();
+                gameManager.isFinishReported = true;
+            }
 
             //Debug.Log("You Won!");
 

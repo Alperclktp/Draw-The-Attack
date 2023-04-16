@@ -12149,6 +12149,7 @@ MonoBehaviour:
   cardPanel: {fileID: 8316161875011789678}
   startButton: {fileID: 8316161876371646957}
   restartButton: {fileID: 8316161876565427401}
+  restartGameButton: {fileID: 2651660820445185286}
   nextLevelButton: {fileID: 3362725056742628895}
   moneyPanel: {fileID: 8316161876567548091}
   manaSliderBar: {fileID: 8316161875168790672}
@@ -12167,6 +12168,7 @@ MonoBehaviour:
   currentLevelText: {fileID: 6606769341600361224}
   tutorial: 1
   canManaUpgrade: 0
+  isFinishReported: 0
 --- !u!1 &8316161876540902149
 GameObject:
   m_ObjectHideFlags: 0

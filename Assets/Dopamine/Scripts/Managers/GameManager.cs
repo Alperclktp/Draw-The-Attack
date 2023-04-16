@@ -51,6 +51,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject cardPanel;
     public GameObject startButton;
     public GameObject restartButton;
+    public GameObject restartGameButton;
     public GameObject nextLevelButton;
     public GameObject moneyPanel;
 
@@ -76,6 +77,8 @@ public class GameManager : Singleton<GameManager>
     public bool tutorial;
 
     public bool canManaUpgrade;
+
+    public bool isFinishReported;
 
     private void Start()
     {
@@ -197,14 +200,8 @@ public class GameManager : Singleton<GameManager>
         //maxMana += level * level / (int) 1f; //Test mana.
         currentMana = maxMana;
 
-        AppMetrica.Instance.ReportEvent("level_started", new Dictionary<string, object>
-        {
-            { "level_number", level }
-        });
+        AppMetricaReportStartEvent();
 
-        AppMetrica.Instance.SendEventsBuffer();
-
-        Debug.Log("Level Started : " + level);
     }
 
 
@@ -249,15 +246,31 @@ public class GameManager : Singleton<GameManager>
         MMVibrationManager.Haptic(HapticTypes.Success, true, this);
 
         RestartGame();
+    }
 
-        AppMetrica.Instance.ReportEvent("level_finished", new Dictionary<string, object>
+    public void AppMetricaReportStartEvent()
+    {
+        AppMetrica.Instance.ReportEvent("level_started", new Dictionary<string, object>
         {
-            { "level_number", level }
+            { "level_number", level + 1 }
         });
-  
+
         AppMetrica.Instance.SendEventsBuffer();
 
-        Debug.Log("Level Finished " + level);
+        Debug.Log("<color=red>AppMetricaLevelData:</color> Level Started : " + (level + 1));
+    }
+
+    public void AppMetricaReportFinishEvent()
+    {
+        AppMetrica.Instance.ReportEvent("level_finished", new Dictionary<string, object>
+        {
+             { "level_number", level + 1 }
+        });
+
+        AppMetrica.Instance.SendEventsBuffer();
+
+        Debug.Log("<color=red>AppMetricaLevelData:</color> Level Finished : " + (level + 1));
+
     }
 
     public void SetTowerHealth()

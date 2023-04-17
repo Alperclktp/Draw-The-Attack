@@ -206,10 +206,10 @@ public class GameManager : Singleton<GameManager>
             PlayerPrefs.SetInt("am_level_number", PlayerPrefs.GetInt("am_level_number", 0) + 1);
         else PlayerPrefs.SetInt("am_level_number_defeatblock", 0);
 
-        PlayerPrefs.SetString("am_result", "win");
+        
         PlayerPrefs.SetInt("am_level_count", PlayerPrefs.GetInt("am_level_count", 0) + 1);
 
-        ReportAppMetricaEvents();
+        ReportAppMetricaEventsStartLevel();
     }
 
 
@@ -256,23 +256,32 @@ public class GameManager : Singleton<GameManager>
         RestartGame();
     }
 
-    public void ReportAppMetricaEvents() {
+    public void ReportAppMetricaEventsStartLevel() {
 
-        AppMetrica.Instance.ReportEvent("level_start ", new Dictionary<string, object> {
+        AppMetrica.Instance.ReportEvent("level_start", new Dictionary<string, object> {
 
             { "level_number", PlayerPrefs.GetInt("am_level_number") },
-            { "am_level_count", PlayerPrefs.GetInt("am_level_count") }
+            { "level_count", PlayerPrefs.GetInt("am_level_count") }
         });
+        print("<b><color=yellow>LEVEL START EVENT</color></b> ");
+        Debug.Log("<b><color=green>level_number:</color></b> " + PlayerPrefs.GetInt("am_level_number"));
+        Debug.Log("<b><color=green>level_count:</color></b> " + PlayerPrefs.GetInt("am_level_count"));
 
+        AppMetrica.Instance.SendEventsBuffer();
+    }
+
+    public void ReportAppMetricaEventsLevelFinish()
+    {
         AppMetrica.Instance.ReportEvent("level_finish", new Dictionary<string, object> {
 
             { "level_number", PlayerPrefs.GetInt("am_level_number") },
-            { "am_level_count", PlayerPrefs.GetInt("am_level_count") },
-            { "result", PlayerPrefs.GetString("am_result", "win") }
+            { "level_count", PlayerPrefs.GetInt("am_level_count") },
+            { "result", PlayerPrefs.GetString("am_result") }
         });
-
-        Debug.Log("<b><color=green>am_level_number:</color></b> " + PlayerPrefs.GetInt("am_level_number"));
-        Debug.Log("<b><color=green>am_level_count:</color></b> " + PlayerPrefs.GetInt("am_level_count"));
+        print("<b><color=yellow>LEVEL FINISH EVENT</color></b> ");
+        Debug.Log("<b><color=green>result: </color></b> " + PlayerPrefs.GetString("am_result"));
+        Debug.Log("<b><color=green>level_number:</color></b> " + PlayerPrefs.GetInt("am_level_number"));
+        Debug.Log("<b><color=green>level_count:</color></b> " + PlayerPrefs.GetInt("am_level_count"));
 
         AppMetrica.Instance.SendEventsBuffer();
     }

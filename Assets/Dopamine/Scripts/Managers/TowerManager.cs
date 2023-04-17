@@ -127,6 +127,7 @@ public class TowerManager : BaseAttackController
 
         if (totalHealth <= 0)
         {
+            PlayerPrefs.SetString("am_result", "win");
             GameManager gameManager = GameManager.Instance;
 
             gameManager.gameState = GameState.COMPLATE;
@@ -143,15 +144,11 @@ public class TowerManager : BaseAttackController
 
             if (!GameManager.Instance.isFinishReported)
             {
-                GameManager.Instance.ReportAppMetricaEvents();
-
-                Debug.Log("<b><color=green>result: </color></b> " + PlayerPrefs.GetString("am_result", "win"));
+                GameManager.Instance.ReportAppMetricaEventsLevelFinish();
 
                 gameManager.isFinishReported = true;
             }
-
-
-            //Debug.Log("You Won!");
+            
 
             for (int i = 0; i < GameManager.Instance.enemyList.Count; i++)
             {

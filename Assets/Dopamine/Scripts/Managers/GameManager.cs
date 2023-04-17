@@ -200,8 +200,16 @@ public class GameManager : Singleton<GameManager>
         //maxMana += level * level / (int) 1f; //Test mana.
         currentMana = maxMana;
 
-        AppMetricaReportStartEvent();
+        //AppMetrica
 
+        if (PlayerPrefs.GetInt("am_level_number_defeatblock", 0) == 0)
+            PlayerPrefs.SetInt("am_level_number", PlayerPrefs.GetInt("am_level_number", 0) + 1);
+        else PlayerPrefs.SetInt("am_level_number_defeatblock", 0);
+
+        PlayerPrefs.SetString("am_result", "win");
+        PlayerPrefs.SetInt("am_level_count", PlayerPrefs.GetInt("am_level_count", 0) + 1);
+
+        ReportAppMetricaEvents();
     }
 
 
@@ -248,16 +256,38 @@ public class GameManager : Singleton<GameManager>
         RestartGame();
     }
 
+    public void ReportAppMetricaEvents() {
+
+        AppMetrica.Instance.ReportEvent("level_start ", new Dictionary<string, object> {
+
+            { "level_number", PlayerPrefs.GetInt("am_level_number") },
+            { "am_level_count", PlayerPrefs.GetInt("am_level_count") }
+        });
+
+        AppMetrica.Instance.ReportEvent("level_finish", new Dictionary<string, object> {
+
+            { "level_number", PlayerPrefs.GetInt("am_level_number") },
+            { "am_level_count", PlayerPrefs.GetInt("am_level_count") },
+            { "result", PlayerPrefs.GetString("am_result", "win") }
+        });
+
+        Debug.Log("<b><color=green>am_level_number:</color></b> " + PlayerPrefs.GetInt("am_level_number"));
+        Debug.Log("<b><color=green>am_level_count:</color></b> " + PlayerPrefs.GetInt("am_level_count"));
+
+        AppMetrica.Instance.SendEventsBuffer();
+    }
+
+    /*
     public void AppMetricaReportStartEvent()
     {
-        AppMetrica.Instance.ReportEvent("level_started", new Dictionary<string, object>
+        AppMetrica.Instance.ReportEvent("level_start ", new Dictionary<string, object>
         {
             { "level_number", level + 1 }
         });
 
         AppMetrica.Instance.SendEventsBuffer();
 
-        Debug.Log("<color=red>AppMetricaLevelData:</color> Level Started : " + (level + 1));
+        Debug.Log("AppMetricaLevelData: Level Started : " + (level + 1));     
     }
 
     public void AppMetricaReportFinishEvent()
@@ -269,9 +299,9 @@ public class GameManager : Singleton<GameManager>
 
         AppMetrica.Instance.SendEventsBuffer();
 
-        Debug.Log("<color=red>AppMetricaLevelData:</color> Level Finished : " + (level + 1));
-
+        Debug.Log("AppMetricaLevelData: Level Finished : " + (level + 1));
     }
+    */
 
     public void SetTowerHealth()
     {

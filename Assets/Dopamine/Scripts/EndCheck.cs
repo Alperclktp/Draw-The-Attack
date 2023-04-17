@@ -10,6 +10,13 @@ public class EndCheck : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            PlayerPrefs.SetString("am_result", "lose");
+            PlayerPrefs.SetInt("am_level_number_defeatblock", 1);
+
+            Debug.Log("<b><color=red>result: </color></b> " + PlayerPrefs.GetString("am_result", "lose"));
+
+            GameManager.Instance.ReportAppMetricaEvents();
+
             TowerManager.Instance.canSpawn = false;
 
             GameManager.Instance.enemyList.RemoveAt(0);

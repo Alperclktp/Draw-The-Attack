@@ -129,23 +129,27 @@ public class TowerManager : BaseAttackController
         {
             GameManager gameManager = GameManager.Instance;
 
-           gameManager.gameState = GameState.COMPLATE;
+            gameManager.gameState = GameState.COMPLATE;
 
-           gameManager.levelComplete = true;
+            gameManager.levelComplete = true;
 
-           gameManager.nextLevelButton.SetActive(true);
+            gameManager.nextLevelButton.SetActive(true);
 
-           gameManager.restartGameButton.SetActive(false);
+            gameManager.restartGameButton.SetActive(false);
 
-           gameManager.cardPanel.SetActive(false);
+            gameManager.cardPanel.SetActive(false);
 
-           gameManager.selectTutorialHand.SetActive(false);
+            gameManager.selectTutorialHand.SetActive(false);
 
             if (!GameManager.Instance.isFinishReported)
             {
-                gameManager.AppMetricaReportFinishEvent();
+                GameManager.Instance.ReportAppMetricaEvents();
+
+                Debug.Log("<b><color=green>result: </color></b> " + PlayerPrefs.GetString("am_result", "win"));
+
                 gameManager.isFinishReported = true;
             }
+
 
             //Debug.Log("You Won!");
 
@@ -263,13 +267,13 @@ public class LevelDifficulty
         //
         //float hardness = 1 + hardnessLevel * LevelManager.Instance.levelSOTemplate.hardnessPerLevel;
 
-        Debug.Log("Hardness: " + hardness);
+        //Debug.Log("Hardness: " + hardness);
 
 
         warrior = Mathf.FloorToInt(22.5f * hardness);
         enemyCardSO[0].attackDamage = cardManager.cardList[0].cardSO.attackDamage / 2.5f * hardness;
         enemyCardSO[0].health = (int)(cardManager.cardList[0].cardSO.health / 2.5f * hardness);
-        Debug.Log("hardness : " + hardness + "enemy warrior attack : " + enemyCardSO[0].attackDamage + " health : " + enemyCardSO[0].health);
+        //Debug.Log("hardness : " + hardness + "enemy warrior attack : " + enemyCardSO[0].attackDamage + " health : " + enemyCardSO[0].health);
 
         archer = Mathf.FloorToInt(7.5f * hardness);
         enemyCardSO[1].attackDamage = cardManager.cardList[1].cardSO.attackDamage / 2.5f * hardness;

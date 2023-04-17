@@ -10,8 +10,8 @@ public class EndCheck : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            PlayerPrefs.SetString("am_result", "lose");
-            PlayerPrefs.SetInt("am_level_number_defeatblock", 1);
+            GameManager.OnFail();
+            GameManager.OnFinish();
 
             GameManager.Instance.ReportAppMetricaEventsLevelFinish();
 

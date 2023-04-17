@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -201,15 +201,31 @@ public class GameManager : Singleton<GameManager>
         currentMana = maxMana;
 
         //AppMetrica
+        var am_finish = PlayerPrefs.GetInt("am_finish", 0);
+        if (am_finish == 0 || am_finish == 2)
+        {
+            PlayerPrefs.SetInt("am_finish", 1);
 
-        if (PlayerPrefs.GetInt("am_level_number_defeatblock", 0) == 0)
             PlayerPrefs.SetInt("am_level_number", PlayerPrefs.GetInt("am_level_number", 0) + 1);
-        else PlayerPrefs.SetInt("am_level_number_defeatblock", 0);
-
-        
-        PlayerPrefs.SetInt("am_level_count", PlayerPrefs.GetInt("am_level_count", 0) + 1);
+            PlayerPrefs.SetInt("am_level_count", PlayerPrefs.GetInt("am_level_count", 0) + 1);
+        }
 
         ReportAppMetricaEventsStartLevel();
+    }
+
+    public static void OnWin() {
+
+        PlayerPrefs.SetString("am_result", "win");
+    }
+
+    public static void OnFail()
+    {
+        PlayerPrefs.SetString("am_result", "lose");
+    }
+
+    public static void OnFinish()
+    {
+        PlayerPrefs.SetInt("am_finish", 2);
     }
 
 
@@ -230,8 +246,10 @@ public class GameManager : Singleton<GameManager>
         MMVibrationManager.Haptic(HapticTypes.Failure, true, this);
     }
 
-    public void RestartGame()
+    public void RestartGame(bool next = false)
     {
+        if (!next) PlayerPrefs.SetInt("am_level_count", PlayerPrefs.GetInt("am_level_count", 0) + 1);
+
         string currentSceneLevel = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneLevel);
 
@@ -253,17 +271,19 @@ public class GameManager : Singleton<GameManager>
 
         MMVibrationManager.Haptic(HapticTypes.Success, true, this);
 
-        RestartGame();
+        RestartGame(true);
     }
 
-    public void ReportAppMetricaEventsStartLevel() {
-
+    public void ReportAppMetricaEventsStartLevel() 
+    {
         AppMetrica.Instance.ReportEvent("level_start", new Dictionary<string, object> {
 
             { "level_number", PlayerPrefs.GetInt("am_level_number") },
             { "level_count", PlayerPrefs.GetInt("am_level_count") }
         });
-        print("<b><color=yellow>LEVEL START EVENT</color></b> ");
+
+        Debug.Log("<b><color=yellow>LEVEL START EVENT</color></b> ");
+
         Debug.Log("<b><color=green>level_number:</color></b> " + PlayerPrefs.GetInt("am_level_number"));
         Debug.Log("<b><color=green>level_count:</color></b> " + PlayerPrefs.GetInt("am_level_count"));
 
@@ -278,39 +298,16 @@ public class GameManager : Singleton<GameManager>
             { "level_count", PlayerPrefs.GetInt("am_level_count") },
             { "result", PlayerPrefs.GetString("am_result") }
         });
-        print("<b><color=yellow>LEVEL FINISH EVENT</color></b> ");
+
+        Debug.Log("<b><color=yellow>LEVEL FINISH EVENT</color></b> ");
+
         Debug.Log("<b><color=green>result: </color></b> " + PlayerPrefs.GetString("am_result"));
+
         Debug.Log("<b><color=green>level_number:</color></b> " + PlayerPrefs.GetInt("am_level_number"));
         Debug.Log("<b><color=green>level_count:</color></b> " + PlayerPrefs.GetInt("am_level_count"));
 
         AppMetrica.Instance.SendEventsBuffer();
     }
-
-    /*
-    public void AppMetricaReportStartEvent()
-    {
-        AppMetrica.Instance.ReportEvent("level_start ", new Dictionary<string, object>
-        {
-            { "level_number", level + 1 }
-        });
-
-        AppMetrica.Instance.SendEventsBuffer();
-
-        Debug.Log("AppMetricaLevelData: Level Started : " + (level + 1));     
-    }
-
-    public void AppMetricaReportFinishEvent()
-    {
-        AppMetrica.Instance.ReportEvent("level_finished", new Dictionary<string, object>
-        {
-             { "level_number", level + 1 }
-        });
-
-        AppMetrica.Instance.SendEventsBuffer();
-
-        Debug.Log("AppMetricaLevelData: Level Finished : " + (level + 1));
-    }
-    */
 
     public void SetTowerHealth()
     {

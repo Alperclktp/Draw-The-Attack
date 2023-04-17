@@ -127,7 +127,9 @@ public class TowerManager : BaseAttackController
 
         if (totalHealth <= 0)
         {
-            PlayerPrefs.SetString("am_result", "win");
+            GameManager.OnWin();
+            GameManager.OnFinish();
+
             GameManager gameManager = GameManager.Instance;
 
             gameManager.gameState = GameState.COMPLATE;

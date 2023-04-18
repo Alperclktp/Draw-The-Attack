@@ -202,11 +202,12 @@ public class GameManager : Singleton<GameManager>
 
         //AppMetrica
         var am_finish = PlayerPrefs.GetInt("am_finish", 0);
-        if (am_finish == 0 || am_finish == 2)
+
+        if (am_finish == 0 || am_finish > 1)
         {
             PlayerPrefs.SetInt("am_finish", 1);
 
-            PlayerPrefs.SetInt("am_level_number", PlayerPrefs.GetInt("am_level_number", 0) + 1);
+            if (am_finish != 3) PlayerPrefs.SetInt("am_level_number", PlayerPrefs.GetInt("am_level_number", 0) + 1);
             PlayerPrefs.SetInt("am_level_count", PlayerPrefs.GetInt("am_level_count", 0) + 1);
         }
 
@@ -216,18 +217,16 @@ public class GameManager : Singleton<GameManager>
     public static void OnWin() {
 
         PlayerPrefs.SetString("am_result", "win");
+        PlayerPrefs.SetInt("am_finish", 2);
     }
 
     public static void OnFail()
     {
         PlayerPrefs.SetString("am_result", "lose");
+        PlayerPrefs.SetInt("am_finish", 3);
     }
 
-    public static void OnFinish()
-    {
-        PlayerPrefs.SetInt("am_finish", 2);
-    }
-
+    public static void OnFinish() { }
 
     public void FailLevel()
     {
